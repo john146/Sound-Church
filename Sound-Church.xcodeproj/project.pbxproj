@@ -1,0 +1,484 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		52BE14C6137F5BF300A195FB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52BE14C5137F5BF300A195FB /* UIKit.framework */; };
+		52BE14C8137F5BF300A195FB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52BE14C7137F5BF300A195FB /* Foundation.framework */; };
+		52BE14CA137F5BF300A195FB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52BE14C9137F5BF300A195FB /* CoreGraphics.framework */; };
+		52BE14CC137F5BF300A195FB /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52BE14CB137F5BF300A195FB /* CoreData.framework */; };
+		52BE14D2137F5BF400A195FB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 52BE14D0137F5BF400A195FB /* InfoPlist.strings */; };
+		52BE14D5137F5BF400A195FB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 52BE14D4137F5BF400A195FB /* main.m */; };
+		52BE14D8137F5BF400A195FB /* Sound_ChurchAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 52BE14D7137F5BF400A195FB /* Sound_ChurchAppDelegate.m */; };
+		52BE14DB137F5BF400A195FB /* Sound_Church.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 52BE14D9137F5BF400A195FB /* Sound_Church.xcdatamodeld */; };
+		52BE14DE137F5BF400A195FB /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52BE14DC137F5BF400A195FB /* MainWindow.xib */; };
+		52BE14E1137F5BF400A195FB /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52BE14E0137F5BF400A195FB /* RootViewController.m */; };
+		52BE14E4137F5BF400A195FB /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52BE14E2137F5BF400A195FB /* RootViewController.xib */; };
+		52BE14EB137F5BF400A195FB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52BE14C5137F5BF300A195FB /* UIKit.framework */; };
+		52BE14EC137F5BF400A195FB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52BE14C7137F5BF300A195FB /* Foundation.framework */; };
+		52BE14ED137F5BF400A195FB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52BE14C9137F5BF300A195FB /* CoreGraphics.framework */; };
+		52BE14EE137F5BF400A195FB /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52BE14CB137F5BF300A195FB /* CoreData.framework */; };
+		52BE14F6137F5BF400A195FB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 52BE14F4137F5BF400A195FB /* InfoPlist.strings */; };
+		52BE14F9137F5BF400A195FB /* Sound_ChurchTests.h in Resources */ = {isa = PBXBuildFile; fileRef = 52BE14F8137F5BF400A195FB /* Sound_ChurchTests.h */; };
+		52BE14FB137F5BF400A195FB /* Sound_ChurchTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 52BE14FA137F5BF400A195FB /* Sound_ChurchTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		52BE14EF137F5BF400A195FB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 52BE14B8137F5BF300A195FB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 52BE14C0137F5BF300A195FB;
+			remoteInfo = "Sound-Church";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		52BE14C1137F5BF300A195FB /* Sound-Church.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Sound-Church.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		52BE14C5137F5BF300A195FB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		52BE14C7137F5BF300A195FB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		52BE14C9137F5BF300A195FB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		52BE14CB137F5BF300A195FB /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		52BE14CF137F5BF400A195FB /* Sound-Church-Info.plist */ = {isa = PBXFileReference; path = "Sound-Church-Info.plist"; sourceTree = "<group>"; };
+		52BE14D1137F5BF400A195FB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		52BE14D3137F5BF400A195FB /* Sound-Church-Prefix.pch */ = {isa = PBXFileReference; path = "Sound-Church-Prefix.pch"; sourceTree = "<group>"; };
+		52BE14D4137F5BF400A195FB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		52BE14D6137F5BF400A195FB /* Sound_ChurchAppDelegate.h */ = {isa = PBXFileReference; path = Sound_ChurchAppDelegate.h; sourceTree = "<group>"; };
+		52BE14D7137F5BF400A195FB /* Sound_ChurchAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Sound_ChurchAppDelegate.m; sourceTree = "<group>"; };
+		52BE14DA137F5BF400A195FB /* Sound_Church.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Sound_Church.xcdatamodel; sourceTree = "<group>"; };
+		52BE14DD137F5BF400A195FB /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
+		52BE14DF137F5BF400A195FB /* RootViewController.h */ = {isa = PBXFileReference; path = RootViewController.h; sourceTree = "<group>"; };
+		52BE14E0137F5BF400A195FB /* RootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		52BE14E3137F5BF400A195FB /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/RootViewController.xib; sourceTree = "<group>"; };
+		52BE14EA137F5BF400A195FB /* Sound-ChurchTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Sound-ChurchTests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		52BE14F3137F5BF400A195FB /* Sound-ChurchTests-Info.plist */ = {isa = PBXFileReference; path = "Sound-ChurchTests-Info.plist"; sourceTree = "<group>"; };
+		52BE14F5137F5BF400A195FB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		52BE14F7137F5BF400A195FB /* Sound-ChurchTests-Prefix.pch */ = {isa = PBXFileReference; path = "Sound-ChurchTests-Prefix.pch"; sourceTree = "<group>"; };
+		52BE14F8137F5BF400A195FB /* Sound_ChurchTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Sound_ChurchTests.h; sourceTree = "<group>"; };
+		52BE14FA137F5BF400A195FB /* Sound_ChurchTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Sound_ChurchTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		52BE14BE137F5BF300A195FB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				52BE14C6137F5BF300A195FB /* UIKit.framework in Frameworks */,
+				52BE14C8137F5BF300A195FB /* Foundation.framework in Frameworks */,
+				52BE14CA137F5BF300A195FB /* CoreGraphics.framework in Frameworks */,
+				52BE14CC137F5BF300A195FB /* CoreData.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		52BE14E6137F5BF400A195FB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				52BE14EB137F5BF400A195FB /* UIKit.framework in Frameworks */,
+				52BE14EC137F5BF400A195FB /* Foundation.framework in Frameworks */,
+				52BE14ED137F5BF400A195FB /* CoreGraphics.framework in Frameworks */,
+				52BE14EE137F5BF400A195FB /* CoreData.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		52BE14B6137F5BF300A195FB = {
+			isa = PBXGroup;
+			children = (
+				52BE14CD137F5BF300A195FB /* Sound-Church */,
+				52BE14F1137F5BF400A195FB /* Sound-ChurchTests */,
+				52BE14C4137F5BF300A195FB /* Frameworks */,
+				52BE14C2137F5BF300A195FB /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		52BE14C2137F5BF300A195FB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				52BE14C1137F5BF300A195FB /* Sound-Church.app */,
+				52BE14EA137F5BF400A195FB /* Sound-ChurchTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		52BE14C4137F5BF300A195FB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				52BE14C5137F5BF300A195FB /* UIKit.framework */,
+				52BE14C7137F5BF300A195FB /* Foundation.framework */,
+				52BE14C9137F5BF300A195FB /* CoreGraphics.framework */,
+				52BE14CB137F5BF300A195FB /* CoreData.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		52BE14CD137F5BF300A195FB /* Sound-Church */ = {
+			isa = PBXGroup;
+			children = (
+				52BE14D6137F5BF400A195FB /* Sound_ChurchAppDelegate.h */,
+				52BE14D7137F5BF400A195FB /* Sound_ChurchAppDelegate.m */,
+				52BE14DC137F5BF400A195FB /* MainWindow.xib */,
+				52BE14DF137F5BF400A195FB /* RootViewController.h */,
+				52BE14E0137F5BF400A195FB /* RootViewController.m */,
+				52BE14E2137F5BF400A195FB /* RootViewController.xib */,
+				52BE14D9137F5BF400A195FB /* Sound_Church.xcdatamodeld */,
+				52BE14CE137F5BF400A195FB /* Supporting Files */,
+			);
+			path = "Sound-Church";
+			sourceTree = "<group>";
+		};
+		52BE14CE137F5BF400A195FB /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				52BE14CF137F5BF400A195FB /* Sound-Church-Info.plist */,
+				52BE14D0137F5BF400A195FB /* InfoPlist.strings */,
+				52BE14D3137F5BF400A195FB /* Sound-Church-Prefix.pch */,
+				52BE14D4137F5BF400A195FB /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		52BE14F1137F5BF400A195FB /* Sound-ChurchTests */ = {
+			isa = PBXGroup;
+			children = (
+				52BE14F8137F5BF400A195FB /* Sound_ChurchTests.h */,
+				52BE14FA137F5BF400A195FB /* Sound_ChurchTests.m */,
+				52BE14F2137F5BF400A195FB /* Supporting Files */,
+			);
+			path = "Sound-ChurchTests";
+			sourceTree = "<group>";
+		};
+		52BE14F2137F5BF400A195FB /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				52BE14F3137F5BF400A195FB /* Sound-ChurchTests-Info.plist */,
+				52BE14F4137F5BF400A195FB /* InfoPlist.strings */,
+				52BE14F7137F5BF400A195FB /* Sound-ChurchTests-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		52BE14C0137F5BF300A195FB /* Sound-Church */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 52BE14FE137F5BF400A195FB /* Build configuration list for PBXNativeTarget "Sound-Church" */;
+			buildPhases = (
+				52BE14BD137F5BF300A195FB /* Sources */,
+				52BE14BE137F5BF300A195FB /* Frameworks */,
+				52BE14BF137F5BF300A195FB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Sound-Church";
+			productName = "Sound-Church";
+			productReference = 52BE14C1137F5BF300A195FB /* Sound-Church.app */;
+			productType = "com.apple.product-type.application";
+		};
+		52BE14E9137F5BF400A195FB /* Sound-ChurchTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 52BE1501137F5BF400A195FB /* Build configuration list for PBXNativeTarget "Sound-ChurchTests" */;
+			buildPhases = (
+				52BE14E5137F5BF400A195FB /* Sources */,
+				52BE14E6137F5BF400A195FB /* Frameworks */,
+				52BE14E7137F5BF400A195FB /* Resources */,
+				52BE14E8137F5BF400A195FB /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				52BE14F0137F5BF400A195FB /* PBXTargetDependency */,
+			);
+			name = "Sound-ChurchTests";
+			productName = "Sound-ChurchTests";
+			productReference = 52BE14EA137F5BF400A195FB /* Sound-ChurchTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		52BE14B8137F5BF300A195FB /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				ORGANIZATIONNAME = "John Ahrens, LLC";
+			};
+			buildConfigurationList = 52BE14BB137F5BF300A195FB /* Build configuration list for PBXProject "Sound-Church" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 52BE14B6137F5BF300A195FB;
+			productRefGroup = 52BE14C2137F5BF300A195FB /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				52BE14C0137F5BF300A195FB /* Sound-Church */,
+				52BE14E9137F5BF400A195FB /* Sound-ChurchTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		52BE14BF137F5BF300A195FB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				52BE14D2137F5BF400A195FB /* InfoPlist.strings in Resources */,
+				52BE14DE137F5BF400A195FB /* MainWindow.xib in Resources */,
+				52BE14E4137F5BF400A195FB /* RootViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		52BE14E7137F5BF400A195FB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				52BE14F6137F5BF400A195FB /* InfoPlist.strings in Resources */,
+				52BE14F9137F5BF400A195FB /* Sound_ChurchTests.h in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		52BE14E8137F5BF400A195FB /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		52BE14BD137F5BF300A195FB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				52BE14D5137F5BF400A195FB /* main.m in Sources */,
+				52BE14D8137F5BF400A195FB /* Sound_ChurchAppDelegate.m in Sources */,
+				52BE14DB137F5BF400A195FB /* Sound_Church.xcdatamodeld in Sources */,
+				52BE14E1137F5BF400A195FB /* RootViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		52BE14E5137F5BF400A195FB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				52BE14FB137F5BF400A195FB /* Sound_ChurchTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		52BE14F0137F5BF400A195FB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 52BE14C0137F5BF300A195FB /* Sound-Church */;
+			targetProxy = 52BE14EF137F5BF400A195FB /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		52BE14D0137F5BF400A195FB /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				52BE14D1137F5BF400A195FB /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		52BE14DC137F5BF400A195FB /* MainWindow.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				52BE14DD137F5BF400A195FB /* en */,
+			);
+			name = MainWindow.xib;
+			sourceTree = "<group>";
+		};
+		52BE14E2137F5BF400A195FB /* RootViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				52BE14E3137F5BF400A195FB /* en */,
+			);
+			name = RootViewController.xib;
+			sourceTree = "<group>";
+		};
+		52BE14F4137F5BF400A195FB /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				52BE14F5137F5BF400A195FB /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		52BE14FC137F5BF400A195FB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		52BE14FD137F5BF400A195FB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+			};
+			name = Release;
+		};
+		52BE14FF137F5BF400A195FB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Sound-Church/Sound-Church-Prefix.pch";
+				INFOPLIST_FILE = "Sound-Church/Sound-Church-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		52BE1500137F5BF400A195FB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Sound-Church/Sound-Church-Prefix.pch";
+				INFOPLIST_FILE = "Sound-Church/Sound-Church-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		52BE1502137F5BF400A195FB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Sound-Church.app/Sound-Church";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Sound-ChurchTests/Sound-ChurchTests-Prefix.pch";
+				INFOPLIST_FILE = "Sound-ChurchTests/Sound-ChurchTests-Info.plist";
+				OTHER_LDFLAGS = (
+					"-framework",
+					SenTestingKit,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		52BE1503137F5BF400A195FB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Sound-Church.app/Sound-Church";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Sound-ChurchTests/Sound-ChurchTests-Prefix.pch";
+				INFOPLIST_FILE = "Sound-ChurchTests/Sound-ChurchTests-Info.plist";
+				OTHER_LDFLAGS = (
+					"-framework",
+					SenTestingKit,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		52BE14BB137F5BF300A195FB /* Build configuration list for PBXProject "Sound-Church" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				52BE14FC137F5BF400A195FB /* Debug */,
+				52BE14FD137F5BF400A195FB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		52BE14FE137F5BF400A195FB /* Build configuration list for PBXNativeTarget "Sound-Church" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				52BE14FF137F5BF400A195FB /* Debug */,
+				52BE1500137F5BF400A195FB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		52BE1501137F5BF400A195FB /* Build configuration list for PBXNativeTarget "Sound-ChurchTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				52BE1502137F5BF400A195FB /* Debug */,
+				52BE1503137F5BF400A195FB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		52BE14D9137F5BF400A195FB /* Sound_Church.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				52BE14DA137F5BF400A195FB /* Sound_Church.xcdatamodel */,
+			);
+			currentVersion = 52BE14DA137F5BF400A195FB /* Sound_Church.xcdatamodel */;
+			path = Sound_Church.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 52BE14B8137F5BF300A195FB /* Project object */;
+}

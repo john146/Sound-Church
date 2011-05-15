@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'Sound-ChurchTests' target in the 'Sound-ChurchTests' project
+//
+
+#ifdef __OBJC__
+    #import <UIKit/UIKit.h>
+#endif
