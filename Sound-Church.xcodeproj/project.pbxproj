@@ -43,21 +43,21 @@
 		52BE14C7137F5BF300A195FB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		52BE14C9137F5BF300A195FB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		52BE14CB137F5BF300A195FB /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		52BE14CF137F5BF400A195FB /* Sound-Church-Info.plist */ = {isa = PBXFileReference; path = "Sound-Church-Info.plist"; sourceTree = "<group>"; };
+		52BE14CF137F5BF400A195FB /* Sound-Church-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Sound-Church-Info.plist"; sourceTree = "<group>"; };
 		52BE14D1137F5BF400A195FB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		52BE14D3137F5BF400A195FB /* Sound-Church-Prefix.pch */ = {isa = PBXFileReference; path = "Sound-Church-Prefix.pch"; sourceTree = "<group>"; };
+		52BE14D3137F5BF400A195FB /* Sound-Church-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Sound-Church-Prefix.pch"; sourceTree = "<group>"; };
 		52BE14D4137F5BF400A195FB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		52BE14D6137F5BF400A195FB /* Sound_ChurchAppDelegate.h */ = {isa = PBXFileReference; path = Sound_ChurchAppDelegate.h; sourceTree = "<group>"; };
+		52BE14D6137F5BF400A195FB /* Sound_ChurchAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Sound_ChurchAppDelegate.h; sourceTree = "<group>"; };
 		52BE14D7137F5BF400A195FB /* Sound_ChurchAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Sound_ChurchAppDelegate.m; sourceTree = "<group>"; };
 		52BE14DA137F5BF400A195FB /* Sound_Church.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Sound_Church.xcdatamodel; sourceTree = "<group>"; };
 		52BE14DD137F5BF400A195FB /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
-		52BE14DF137F5BF400A195FB /* RootViewController.h */ = {isa = PBXFileReference; path = RootViewController.h; sourceTree = "<group>"; };
+		52BE14DF137F5BF400A195FB /* RootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		52BE14E0137F5BF400A195FB /* RootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		52BE14E3137F5BF400A195FB /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/RootViewController.xib; sourceTree = "<group>"; };
 		52BE14EA137F5BF400A195FB /* Sound-ChurchTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Sound-ChurchTests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		52BE14F3137F5BF400A195FB /* Sound-ChurchTests-Info.plist */ = {isa = PBXFileReference; path = "Sound-ChurchTests-Info.plist"; sourceTree = "<group>"; };
+		52BE14F3137F5BF400A195FB /* Sound-ChurchTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Sound-ChurchTests-Info.plist"; sourceTree = "<group>"; };
 		52BE14F5137F5BF400A195FB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		52BE14F7137F5BF400A195FB /* Sound-ChurchTests-Prefix.pch */ = {isa = PBXFileReference; path = "Sound-ChurchTests-Prefix.pch"; sourceTree = "<group>"; };
+		52BE14F7137F5BF400A195FB /* Sound-ChurchTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Sound-ChurchTests-Prefix.pch"; sourceTree = "<group>"; };
 		52BE14F8137F5BF400A195FB /* Sound_ChurchTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Sound_ChurchTests.h; sourceTree = "<group>"; };
 		52BE14FA137F5BF400A195FB /* Sound_ChurchTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Sound_ChurchTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */

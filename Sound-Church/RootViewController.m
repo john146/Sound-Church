@@ -14,9 +14,9 @@
 
 @implementation RootViewController
 
-@synthesize fetchedResultsController=__fetchedResultsController;
+@synthesize fetchedResultsController;
 
-@synthesize managedObjectContext=__managedObjectContext;
+@synthesize managedObjectContext;
 
 - (void)viewDidLoad
 {
@@ -151,8 +151,8 @@
 
 - (void)dealloc
 {
-    [__fetchedResultsController release];
-    [__managedObjectContext release];
+    [fetchedResultsController release];
+    [managedObjectContext release];
     [super dealloc];
 }
 
@@ -191,9 +191,9 @@
 
 - (NSFetchedResultsController *)fetchedResultsController
 {
-    if (__fetchedResultsController != nil)
+    if (fetchedResultsController != nil)
     {
-        return __fetchedResultsController;
+        return fetchedResultsController;
     }
     
     /*
@@ -202,14 +202,14 @@
     // Create the fetch request for the entity.
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     // Edit the entity name as appropriate.
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Event" inManagedObjectContext:self.managedObjectContext];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Item" inManagedObjectContext:self.managedObjectContext];
     [fetchRequest setEntity:entity];
     
     // Set the batch size to a suitable number.
     [fetchRequest setFetchBatchSize:20];
     
     // Edit the sort key as appropriate.
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"timeStamp" ascending:NO];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"pubDate" ascending:NO];
     NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
     
     [fetchRequest setSortDescriptors:sortDescriptors];
@@ -237,7 +237,7 @@
 	    abort();
 	}
     
-    return __fetchedResultsController;
+    return fetchedResultsController;
 }    
 
 #pragma mark - Fetched results controller delegate
