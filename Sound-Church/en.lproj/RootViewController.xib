@@ -39,7 +39,7 @@
 			<object class="IBUITableView" id="709618507">
 				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">274</int>
-				<string key="NSFrameSize">{320, 247}</string>
+				<string key="NSFrame">{{0, 64}, {320, 416}}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView"/>
@@ -50,6 +50,12 @@
 				<bool key="IBUIOpaque">NO</bool>
 				<bool key="IBUIClipsSubviews">YES</bool>
 				<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
+				<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics">
+					<int key="IBUIStatusBarStyle">1</int>
+				</object>
+				<object class="IBUISimulatedNavigationBarMetrics" key="IBUISimulatedTopBarMetrics">
+					<bool key="IBUIPrompted">NO</bool>
+				</object>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 				<bool key="IBUIBouncesZoom">NO</bool>
 				<int key="IBUISeparatorStyle">1</int>
