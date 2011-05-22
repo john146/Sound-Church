@@ -12,8 +12,10 @@
 
 #import <SenTestingKit/SenTestingKit.h>
 
+@class RSSDownloader;
+
 @interface RSSDownloadTests : SenTestCase {
-    
+    RSSDownloader *downloader;
 }
 
 @end

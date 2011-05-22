@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		5270A3B713888E4A0035E522 /* RSSDownloadTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5270A3B613888E4A0035E522 /* RSSDownloadTests.m */; };
 		5270A3D81388A7F30035E522 /* RSSDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 5270A3D71388A7F30035E522 /* RSSDownloader.m */; };
+		5270A3F71388C1500035E522 /* OCMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5270A3F61388C1500035E522 /* OCMock.framework */; };
 		52BE14C6137F5BF300A195FB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52BE14C5137F5BF300A195FB /* UIKit.framework */; };
 		52BE14C8137F5BF300A195FB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52BE14C7137F5BF300A195FB /* Foundation.framework */; };
 		52BE14CA137F5BF300A195FB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52BE14C9137F5BF300A195FB /* CoreGraphics.framework */; };
@@ -30,6 +31,34 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		5270A3EA1388BB880035E522 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5270A3DF1388BB870035E522 /* OCMock.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 8DC2EF5B0486A6940098B216;
+			remoteInfo = OCMock;
+		};
+		5270A3EC1388BB880035E522 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5270A3DF1388BB870035E522 /* OCMock.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 03BF2D3708F1C69500978C59;
+			remoteInfo = OCMockTests;
+		};
+		5270A3EE1388BB880035E522 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5270A3DF1388BB870035E522 /* OCMock.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 033C84AF11F585CB0009B9CD;
+			remoteInfo = OCMockPhoneSim;
+		};
+		5270A3F01388BB880035E522 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5270A3DF1388BB870035E522 /* OCMock.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 03DAC01F11FEB771007AF17B;
+			remoteInfo = OCMockPhoneDevice;
+		};
 		52BE14EF137F5BF400A195FB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 52BE14B8137F5BF300A195FB /* Project object */;
@@ -44,6 +73,10 @@
 		5270A3B613888E4A0035E522 /* RSSDownloadTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSSDownloadTests.m; sourceTree = "<group>"; };
 		5270A3D61388A7F30035E522 /* RSSDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSSDownloader.h; sourceTree = "<group>"; };
 		5270A3D71388A7F30035E522 /* RSSDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSSDownloader.m; sourceTree = "<group>"; };
+		5270A3DB1388B9B80035E522 /* OCMock.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OCMock.framework; path = "OCMock-1.77/Release/OCMock.framework"; sourceTree = "<group>"; };
+		5270A3DD1388B9DD0035E522 /* libOCMock.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libOCMock.a; path = "OCMock-1.77/Release/Library/libOCMock.a"; sourceTree = "<group>"; };
+		5270A3DF1388BB870035E522 /* OCMock.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OCMock.xcodeproj; path = "OCMock-1.77/Source/ocmock-1.77/OCMock.xcodeproj"; sourceTree = "<group>"; };
+		5270A3F61388C1500035E522 /* OCMock.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OCMock.framework; path = "OCMock-1.77/Release/OCMock.framework"; sourceTree = "<group>"; };
 		52BE14C1137F5BF300A195FB /* Sound-Church.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Sound-Church.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		52BE14C5137F5BF300A195FB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		52BE14C7137F5BF300A195FB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -84,6 +117,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5270A3F71388C1500035E522 /* OCMock.framework in Frameworks */,
 				52BE14EB137F5BF400A195FB /* UIKit.framework in Frameworks */,
 				52BE14EC137F5BF400A195FB /* Foundation.framework in Frameworks */,
 				52BE14ED137F5BF400A195FB /* CoreGraphics.framework in Frameworks */,
@@ -94,9 +128,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5270A3E01388BB870035E522 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5270A3EB1388BB880035E522 /* OCMock.framework */,
+				5270A3ED1388BB880035E522 /* OCMockTests.octest */,
+				5270A3EF1388BB880035E522 /* libOCMock.a */,
+				5270A3F11388BB880035E522 /* libOCMock.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		52BE14B6137F5BF300A195FB = {
 			isa = PBXGroup;
 			children = (
+				5270A3DF1388BB870035E522 /* OCMock.xcodeproj */,
+				5270A3DD1388B9DD0035E522 /* libOCMock.a */,
+				5270A3DB1388B9B80035E522 /* OCMock.framework */,
 				52BE14CD137F5BF300A195FB /* Sound-Church */,
 				52BE14F1137F5BF400A195FB /* Sound-ChurchTests */,
 				52BE14C4137F5BF300A195FB /* Frameworks */,
@@ -116,6 +164,7 @@
 		52BE14C4137F5BF300A195FB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5270A3F61388C1500035E522 /* OCMock.framework */,
 				52BE14C5137F5BF300A195FB /* UIKit.framework */,
 				52BE14C7137F5BF300A195FB /* Foundation.framework */,
 				52BE14C9137F5BF300A195FB /* CoreGraphics.framework */,
@@ -231,6 +280,12 @@
 			mainGroup = 52BE14B6137F5BF300A195FB;
 			productRefGroup = 52BE14C2137F5BF300A195FB /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 5270A3E01388BB870035E522 /* Products */;
+					ProjectRef = 5270A3DF1388BB870035E522 /* OCMock.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				52BE14C0137F5BF300A195FB /* Sound-Church */,
@@ -238,6 +293,37 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		5270A3EB1388BB880035E522 /* OCMock.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = OCMock.framework;
+			remoteRef = 5270A3EA1388BB880035E522 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		5270A3ED1388BB880035E522 /* OCMockTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = OCMockTests.octest;
+			remoteRef = 5270A3EC1388BB880035E522 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		5270A3EF1388BB880035E522 /* libOCMock.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libOCMock.a;
+			remoteRef = 5270A3EE1388BB880035E522 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		5270A3F11388BB880035E522 /* libOCMock.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libOCMock.a;
+			remoteRef = 5270A3F01388BB880035E522 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		52BE14BF137F5BF300A195FB /* Resources */ = {
@@ -382,10 +468,19 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/OCMock-1.77/Release\"",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Sound-Church/Sound-Church-Prefix.pch";
+				HEADER_SEARCH_PATHS = "/Users/john/SoundChurch/Sound-Church/OCMock-1.77/Release/Library/Headers";
 				INFOPLIST_FILE = "Sound-Church/Sound-Church-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/OCMock-1.77/Release/Library\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -396,9 +491,18 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/OCMock-1.77/Release\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Sound-Church/Sound-Church-Prefix.pch";
+				HEADER_SEARCH_PATHS = "/Users/john/SoundChurch/Sound-Church/OCMock-1.77/Release/Library/Headers";
 				INFOPLIST_FILE = "Sound-Church/Sound-Church-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/OCMock-1.77/Release/Library\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
@@ -413,12 +517,13 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+					"\"$(SRCROOT)/OCMock-1.77/Release\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Sound-ChurchTests/Sound-ChurchTests-Prefix.pch";
-				HEADER_SEARCH_PATHS = "OCMock-1.77/Release/Library/Headers";
+				HEADER_SEARCH_PATHS = "/Users/john/SoundChurch/Sound-Church/OCMock-1.77/Release/Library/Headers";
 				INFOPLIST_FILE = "Sound-ChurchTests/Sound-ChurchTests-Info.plist";
-				LIBRARY_SEARCH_PATHS = "OCMock-1.77/Release/Library";
+				LIBRARY_SEARCH_PATHS = "";
 				OTHER_LDFLAGS = (
 					"-framework",
 					SenTestingKit,
@@ -438,12 +543,13 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+					"\"$(SRCROOT)/OCMock-1.77/Release\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Sound-ChurchTests/Sound-ChurchTests-Prefix.pch";
-				HEADER_SEARCH_PATHS = "OCMock-1.77/Release/Library/Headers";
+				HEADER_SEARCH_PATHS = "/Users/john/SoundChurch/Sound-Church/OCMock-1.77/Release/Library/Headers";
 				INFOPLIST_FILE = "Sound-ChurchTests/Sound-ChurchTests-Info.plist";
-				LIBRARY_SEARCH_PATHS = "OCMock-1.77/Release/Library";
+				LIBRARY_SEARCH_PATHS = "";
 				OTHER_LDFLAGS = (
 					"-framework",
 					SenTestingKit,

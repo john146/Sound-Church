@@ -8,15 +8,21 @@
 
 #import "RSSDownloader.h"
 
+static NSString *rssFeedURLString = @"feed://feeds.feedburner.com/SoundChurch";
 
 @implementation RSSDownloader
 
 - (id)init {
     if ((self = [super init])) {
-        
+        //      NSURLRequest *request = [NSURLRequest requestWithURL: [NSURL URLWithString: rssFeedURLString]];
+        //NSURLConnection *connection = [[[NSURLConnection alloc] initWithRequest: request delegate: self] autorelease];
     }
     
     return self;
+}
+
+- (NSURLConnection *)initializeConnection: (NSURLRequest *)request {
+    return nil;
 }
 
 @end
