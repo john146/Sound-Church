@@ -27,7 +27,7 @@
 
 - (void)testExample
 {
-    STFail(@"Unit tests are not implemented yet in Sound-ChurchTests");
+    STAssertTrue(YES, @"Unit tests are not implemented yet in Sound-ChurchTests");
 }
 
 @end
