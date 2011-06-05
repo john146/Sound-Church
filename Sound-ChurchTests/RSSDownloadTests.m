@@ -14,7 +14,7 @@
 @implementation RSSDownloadTests
 
 - (void)setUp {
-    downloader = [[[RSSDownloader alloc] init] autorelease];
+    downloader = [[RSSDownloader alloc] init];
     [super setUp];
 }
 
