@@ -13,4 +13,6 @@
     
 }
 
+- (NSURLConnection *)initializeConnection: (NSURLRequest *)request;
+
 @end

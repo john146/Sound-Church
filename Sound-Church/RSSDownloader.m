@@ -14,15 +14,21 @@ static NSString *rssFeedURLString = @"feed://feeds.feedburner.com/SoundChurch";
 
 - (id)init {
     if ((self = [super init])) {
-        //      NSURLRequest *request = [NSURLRequest requestWithURL: [NSURL URLWithString: rssFeedURLString]];
-        //NSURLConnection *connection = [[[NSURLConnection alloc] initWithRequest: request delegate: self] autorelease];
+        NSURLRequest *request = [NSURLRequest requestWithURL: [NSURL URLWithString: rssFeedURLString]];
+        [self initializeConnection: request];
     }
     
     return self;
 }
 
 - (NSURLConnection *)initializeConnection: (NSURLRequest *)request {
-    return nil;
+    NSURLConnection *connection = [[[NSURLConnection alloc] initWithRequest: request delegate: self] autorelease];
+    
+    return connection;
+}
+
+- (void)dealloc {
+    [super dealloc];
 }
 
 @end
