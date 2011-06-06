@@ -8,26 +8,47 @@
 
 #import "Sound_ChurchAppDelegate.h"
 
+#import "ParseOperation.h"
 #import "RootViewController.h"
+
+static NSString *rssFeedURLString = @"http://feeds.feedburner.com/SoundChurch";
+
+@interface Sound_ChurchAppDelegate () 
+
+@property (nonatomic, retain)NSURLConnection *podcastFeedConnection;
+@property (nonatomic, retain)NSOperationQueue *parseQueue;
+
+@end
 
 @implementation Sound_ChurchAppDelegate
 
-
 @synthesize window=_window;
-
 @synthesize managedObjectContext=__managedObjectContext;
-
 @synthesize managedObjectModel=__managedObjectModel;
-
 @synthesize persistentStoreCoordinator=__persistentStoreCoordinator;
-
 @synthesize navigationController=_navigationController;
+
+@synthesize podcastFeedConnection;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
     // Add the navigation controller's view to the window and display.
     self.window.rootViewController = self.navigationController;
+    
+    NSURLRequest *request = [NSURLRequest requestWithURL: [NSURL URLWithString: rssFeedURLString]];
+    self.podcastFeedConnection = [[[NSURLConnection alloc] initWithRequest: request delegate: self] autorelease];
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    parseQueue = [NSOperationQueue new];
+    [[NSNotificationCenter defaultCenter] addObserver: self 
+                                             selector: @selector(addPodcast:) 
+                                                 name: kParsePodcastsNofification 
+                                               object: nil];
+    [[NSNotificationCenter defaultCenter] addObserver: self
+                                             selector: @selector(addPodcastError:)
+                                                 name: kParsePodcastsError
+                                               object: nil];
+
     [self.window makeKeyAndVisible];
     return YES;
 }
@@ -75,6 +96,13 @@
     [__managedObjectModel release];
     [__persistentStoreCoordinator release];
     [_navigationController release];
+    
+    [podcastFeedConnection cancel];
+    [podcastFeedConnection release];
+    [parseQueue release];
+    [[NSNotificationCenter defaultCenter] removeObserver: self name: kParsePodcastsNofification object: nil];
+    [[NSNotificationCenter defaultCenter] removeObserver: self name: kParsePodcastsError object: nil];
+    
     [super dealloc];
 }
 
@@ -195,6 +223,37 @@
 - (NSURL *)applicationDocumentsDirectory
 {
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+}
+
+#pragma mark - 
+#pragma mark NSURLConnection Delegate Methods
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
+    NSLog(@"Response from connection: %@", [response MIMEType]);
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
+    NSLog(@"Received %i bytes of data", [data length]);
+    NSLog(@"Data received %s", [data bytes]);
+}
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    NSLog(@"Connection failed with error %@", [error localizedDescription]);
+}
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    NSLog(@"Finished loading data");
+}
+
+#pragma mark -
+#pragma mark NSOperationCenter Callbacks
+- (void)addPodcast: (NSNotification *)notification {
+    NSLog(@"Notification Center call");
+}
+
+- (void)addPodcastError: (NSNotification *)notification {
+    NSLog(@"Notification Center error");
 }
 
 @end

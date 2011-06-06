@@ -8,8 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+@class NSURLConnection;
+
 @interface Sound_ChurchAppDelegate : NSObject <UIApplicationDelegate> {
 
+@private
+    NSURLConnection *podcastFeedConnection;
+    NSOperationQueue *parseQueue;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;

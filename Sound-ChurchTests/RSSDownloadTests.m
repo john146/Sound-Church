@@ -26,10 +26,13 @@
 
 // Test Object Construction
 - (void)testConstructor {
-    id mock = [OCMockObject partialMockForObject: downloader];
-    [[[mock stub] andCall: @selector(fakeInitWithRequest:) onObject: self] initializeConnection: [OCMArg any]];
     RSSDownloader *myDownloader = [[[RSSDownloader alloc] init] autorelease];
     STAssertNotNil(myDownloader, @"Could not initialize RSSDownloader");
+}
+
+// Test connection:didReceiveResponse:
+-  (void)testConnectionDidReceiveResponse {
+    
 }
 
 #pragma mark - 

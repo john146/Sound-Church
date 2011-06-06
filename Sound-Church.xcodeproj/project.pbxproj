@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		526D2FC8139C40E20058E08E /* MainWindow-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 526D2FC6139C40E20058E08E /* MainWindow-iPad.xib */; };
+		526D2FD3139C4FB80058E08E /* ParseOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 526D2FD2139C4FB80058E08E /* ParseOperation.m */; };
 		5270A3B713888E4A0035E522 /* RSSDownloadTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5270A3B613888E4A0035E522 /* RSSDownloadTests.m */; };
 		5270A3D81388A7F30035E522 /* RSSDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 5270A3D71388A7F30035E522 /* RSSDownloader.m */; };
 		52BE14C6137F5BF300A195FB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52BE14C5137F5BF300A195FB /* UIKit.framework */; };
@@ -41,6 +43,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		526D2FC7139C40E20058E08E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = "iPad/en.lproj/MainWindow-iPad.xib"; sourceTree = "<group>"; };
+		526D2FD1139C4FB70058E08E /* ParseOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParseOperation.h; sourceTree = "<group>"; };
+		526D2FD2139C4FB80058E08E /* ParseOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParseOperation.m; sourceTree = "<group>"; };
 		5270A3B513888E4A0035E522 /* RSSDownloadTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSSDownloadTests.h; sourceTree = "<group>"; };
 		5270A3B613888E4A0035E522 /* RSSDownloadTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSSDownloadTests.m; sourceTree = "<group>"; };
 		5270A3D61388A7F30035E522 /* RSSDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSSDownloader.h; sourceTree = "<group>"; };
@@ -98,6 +103,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		526D2FC5139C40E00058E08E /* iPad */ = {
+			isa = PBXGroup;
+			children = (
+				526D2FC6139C40E20058E08E /* MainWindow-iPad.xib */,
+			);
+			name = iPad;
+			sourceTree = "<group>";
+		};
 		52BE14B6137F5BF300A195FB = {
 			isa = PBXGroup;
 			children = (
@@ -133,6 +146,7 @@
 		52BE14CD137F5BF300A195FB /* Sound-Church */ = {
 			isa = PBXGroup;
 			children = (
+				526D2FC5139C40E00058E08E /* iPad */,
 				52BE14D6137F5BF400A195FB /* Sound_ChurchAppDelegate.h */,
 				52BE14D7137F5BF400A195FB /* Sound_ChurchAppDelegate.m */,
 				52BE14DC137F5BF400A195FB /* MainWindow.xib */,
@@ -143,6 +157,8 @@
 				52BE14CE137F5BF400A195FB /* Supporting Files */,
 				5270A3D61388A7F30035E522 /* RSSDownloader.h */,
 				5270A3D71388A7F30035E522 /* RSSDownloader.m */,
+				526D2FD1139C4FB70058E08E /* ParseOperation.h */,
+				526D2FD2139C4FB80058E08E /* ParseOperation.m */,
 			);
 			path = "Sound-Church";
 			sourceTree = "<group>";
@@ -253,6 +269,7 @@
 				52BE14D2137F5BF400A195FB /* InfoPlist.strings in Resources */,
 				52BE14DE137F5BF400A195FB /* MainWindow.xib in Resources */,
 				52BE14E4137F5BF400A195FB /* RootViewController.xib in Resources */,
+				526D2FC8139C40E20058E08E /* MainWindow-iPad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -293,6 +310,7 @@
 				52BE14DB137F5BF400A195FB /* Sound_Church.xcdatamodeld in Sources */,
 				52BE14E1137F5BF400A195FB /* RootViewController.m in Sources */,
 				5270A3D81388A7F30035E522 /* RSSDownloader.m in Sources */,
+				526D2FD3139C4FB80058E08E /* ParseOperation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -316,6 +334,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		526D2FC6139C40E20058E08E /* MainWindow-iPad.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				526D2FC7139C40E20058E08E /* en */,
+			);
+			name = "MainWindow-iPad.xib";
+			sourceTree = "<group>";
+		};
 		52BE14D0137F5BF400A195FB /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -397,11 +423,13 @@
 				GCC_PREFIX_HEADER = "Sound-Church/Sound-Church-Prefix.pch";
 				HEADER_SEARCH_PATHS = "/Users/john/SoundChurch/Sound-Church/OCMock-1.77/Release/Library/Headers";
 				INFOPLIST_FILE = "Sound-Church/Sound-Church-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/OCMock-1.77/Release/Library\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -419,11 +447,13 @@
 				GCC_PREFIX_HEADER = "Sound-Church/Sound-Church-Prefix.pch";
 				HEADER_SEARCH_PATHS = "/Users/john/SoundChurch/Sound-Church/OCMock-1.77/Release/Library/Headers";
 				INFOPLIST_FILE = "Sound-Church/Sound-Church-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/OCMock-1.77/Release/Library\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};

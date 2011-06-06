@@ -31,4 +31,10 @@ static NSString *rssFeedURLString = @"feed://feeds.feedburner.com/SoundChurch";
     [super dealloc];
 }
 
+#pragma mark -
+#pragma mark NSURLConnection Delegate Methods
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
+    NSLog(@"Response from connection: %@", [response MIMEType]);
+}
+
 @end
