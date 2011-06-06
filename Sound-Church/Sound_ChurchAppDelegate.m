@@ -250,8 +250,7 @@ static NSString *rssFeedURLString = @"http://feeds.feedburner.com/SoundChurch";
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
-    NSLog(@"Received %i bytes of data", [data length]);
-    NSLog(@"Data received %s", [data bytes]);
+    [podcastData appendData: data];
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
@@ -261,7 +260,7 @@ static NSString *rssFeedURLString = @"http://feeds.feedburner.com/SoundChurch";
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-    NSLog(@"Finished loading data");
+    NSLog(@"Finished loading data\n%@", [podcastData bytes]);
 }
 
 #pragma mark -
