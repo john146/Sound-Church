@@ -17,6 +17,9 @@ static NSString *rssFeedURLString = @"http://feeds.feedburner.com/SoundChurch";
 
 @property (nonatomic, retain)NSURLConnection *podcastFeedConnection;
 @property (nonatomic, retain)NSOperationQueue *parseQueue;
+@property (nonatomic, retain)NSMutableData *podcastData;
+
+- (void) handleError: (NSError *)error;
 
 @end
 
@@ -29,6 +32,8 @@ static NSString *rssFeedURLString = @"http://feeds.feedburner.com/SoundChurch";
 @synthesize navigationController=_navigationController;
 
 @synthesize podcastFeedConnection;
+@synthesize parseQueue;
+@synthesize podcastData;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -225,10 +230,23 @@ static NSString *rssFeedURLString = @"http://feeds.feedburner.com/SoundChurch";
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
 
-#pragma mark - 
-#pragma mark NSURLConnection Delegate Methods
+#pragma mark - NSURLConnection Delegate Methods
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
     NSLog(@"Response from connection: %@", [response MIMEType]);
+    // check for HTTP status code for proxy authentication failures
+    // anything in the 200 to 299 range is considered successful,
+    // also make sure the MIMEType is correct:
+    NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
+    if ((([httpResponse statusCode]/100) == 2) && [[response MIMEType] isEqual:@"application/rss+xml"]) {
+        self.podcastData = [NSMutableData data];
+    } else {
+        NSDictionary *userInfo = [NSDictionary dictionaryWithObject:
+                                  NSLocalizedString(@"HTTP Error",
+                                                    @"Error message displayed when receving a connection error.")
+                                                             forKey:NSLocalizedDescriptionKey];
+        NSError *error = [NSError errorWithDomain:@"HTTP" code:[httpResponse statusCode] userInfo:userInfo];
+        [self handleError:error];
+    }
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
@@ -254,6 +272,23 @@ static NSString *rssFeedURLString = @"http://feeds.feedburner.com/SoundChurch";
 
 - (void)addPodcastError: (NSNotification *)notification {
     NSLog(@"Notification Center error");
+}
+
+// Handle errors in the download by showing an alert to the user. This is a very
+// simple way of handling the error, partly because this application does not have any offline
+// functionality for the user. Most real applications should handle the error in a less obtrusive
+// way and provide offline functionality to the user.
+- (void)handleError:(NSError *)error {
+    NSString *errorMessage = [error localizedDescription];
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:
+     NSLocalizedString(@"Error Title",
+                       @"Title for alert displayed when download or parse error occurs.")
+                               message:errorMessage
+                              delegate:nil
+                     cancelButtonTitle:@"OK"
+                     otherButtonTitles:nil];
+    [alertView show];
+    [alertView release];
 }
 
 @end

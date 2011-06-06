@@ -15,6 +15,7 @@
 @private
     NSURLConnection *podcastFeedConnection;
     NSOperationQueue *parseQueue;
+    NSMutableData *podcastData;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
