@@ -233,7 +233,7 @@ static NSString *rssFeedURLString = @"http://feeds.feedburner.com/SoundChurch";
 #pragma mark - NSURLConnection Delegate Methods
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
     NSLog(@"Response from connection: %@", [response MIMEType]);
-    // check for HTTP status code for proxy authentication failures
+    // check for HTTP status code for proxy authentication failures 7
     // anything in the 200 to 299 range is considered successful,
     // also make sure the MIMEType is correct:
     NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
@@ -250,17 +250,45 @@ static NSString *rssFeedURLString = @"http://feeds.feedburner.com/SoundChurch";
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
+    // TODO: Need to feed a progress bar.
     [podcastData appendData: data];
 }
 
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-    NSLog(@"Connection failed with error %@", [error localizedDescription]);
+- (void)connection:(NSURLConnection *)connection didFailWithError: (NSError *)error {
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;   
+    if ([error code] == kCFURLErrorNotConnectedToInternet) {
+        // if we can identify the error, we can present a more precise message to the user.
+        NSDictionary *userInfo = [NSDictionary dictionaryWithObject: NSLocalizedString(@"No Connection Error",
+                                                    @"Error message displayed when not connected to the Internet.")
+                                                             forKey: NSLocalizedDescriptionKey];
+        NSError *noConnectionError = [NSError errorWithDomain: NSCocoaErrorDomain
+                                                         code: kCFURLErrorNotConnectedToInternet
+                                                     userInfo: userInfo];
+        [self handleError: noConnectionError];
+    } else {
+        // otherwise handle the error generically
+        [self handleError: error];
+    }
+    
+    self.podcastFeedConnection = nil;
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-    NSLog(@"Finished loading data\n%@", [podcastData bytes]);
+    self.podcastFeedConnection = nil;
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;   
+    
+    // Spawn an NSOperation to parse the earthquake data so that the UI is not blocked while the
+    // application parses the XML data.
+    //
+    // IMPORTANT! - Don't access or affect UIKit objects on secondary threads.
+    //
+    ParseOperation *parseOperation = [[ParseOperation alloc] initWithData:self.podcastData];
+    [self.parseQueue addOperation:parseOperation];
+    [parseOperation release];   // once added to the NSOperationQueue it's retained, we don't need it anymore
+    
+    //  podcastData will be retained by the NSOperation until it has finished executing,
+    // so we no longer need a reference to it in the main thread.
+    self.podcastData = nil;
 }
 
 #pragma mark -
@@ -273,7 +301,7 @@ static NSString *rssFeedURLString = @"http://feeds.feedburner.com/SoundChurch";
     NSLog(@"Notification Center error");
 }
 
-// Handle errors in the download by showing an alert to the user. This is a very
+// TODO: Handle errors in the download by showing an alert to the user. This is a very
 // simple way of handling the error, partly because this application does not have any offline
 // functionality for the user. Most real applications should handle the error in a less obtrusive
 // way and provide offline functionality to the user.
