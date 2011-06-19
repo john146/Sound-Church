@@ -26,6 +26,10 @@
 
 // Test Object Construction
 - (void)testConstructor {
+    id mock = [OCMockObject mockForClass: [NSURLConnection class]];
+    [[[mock expect] initWithRequest: [OCMArg any] delegate: [OCMArg any]
+                            andCall: @selector(fakeInitWithRequest:) 
+                           onObject: self]];
     RSSDownloader *myDownloader = [[[RSSDownloader alloc] init] autorelease];
     STAssertNotNil(myDownloader, @"Could not initialize RSSDownloader");
 }
@@ -35,9 +39,7 @@
     
 }
 
-#pragma mark - 
-#pragma mark OCMock Methods
-
+#pragma mark - OCMock Methods
 - (NSURLConnection *)fakeInitWithRequest: (NSURLRequest *)request {
     STAssertNotNil(request, @"Failed to get valid NSURLRequest object");
     NSString *urlStringExpected = @"feed://feeds.feedburner.com/SoundChurch";

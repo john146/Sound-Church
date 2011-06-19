@@ -15,7 +15,6 @@ static NSString *rssFeedURLString = @"http://feeds.feedburner.com/SoundChurch";
 
 @interface Sound_ChurchAppDelegate () 
 
-@property (nonatomic, retain)NSURLConnection *podcastFeedConnection;
 @property (nonatomic, retain)NSOperationQueue *parseQueue;
 @property (nonatomic, retain)NSMutableData *podcastData;
 
@@ -31,7 +30,6 @@ static NSString *rssFeedURLString = @"http://feeds.feedburner.com/SoundChurch";
 @synthesize persistentStoreCoordinator=__persistentStoreCoordinator;
 @synthesize navigationController=_navigationController;
 
-@synthesize podcastFeedConnection;
 @synthesize parseQueue;
 @synthesize podcastData;
 
@@ -40,9 +38,7 @@ static NSString *rssFeedURLString = @"http://feeds.feedburner.com/SoundChurch";
     // Override point for customization after application launch.
     // Add the navigation controller's view to the window and display.
     self.window.rootViewController = self.navigationController;
-    
-    NSURLRequest *request = [NSURLRequest requestWithURL: [NSURL URLWithString: rssFeedURLString]];
-    self.podcastFeedConnection = [[[NSURLConnection alloc] initWithRequest: request delegate: self] autorelease];
+/*    
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     parseQueue = [NSOperationQueue new];
     [[NSNotificationCenter defaultCenter] addObserver: self 
@@ -53,7 +49,7 @@ static NSString *rssFeedURLString = @"http://feeds.feedburner.com/SoundChurch";
                                              selector: @selector(addPodcastError:)
                                                  name: kParsePodcastsError
                                                object: nil];
-
+*/
     [self.window makeKeyAndVisible];
     return YES;
 }
@@ -102,8 +98,6 @@ static NSString *rssFeedURLString = @"http://feeds.feedburner.com/SoundChurch";
     [__persistentStoreCoordinator release];
     [_navigationController release];
     
-    [podcastFeedConnection cancel];
-    [podcastFeedConnection release];
     [parseQueue release];
     [[NSNotificationCenter defaultCenter] removeObserver: self name: kParsePodcastsNofification object: nil];
     [[NSNotificationCenter defaultCenter] removeObserver: self name: kParsePodcastsError object: nil];
@@ -270,11 +264,11 @@ static NSString *rssFeedURLString = @"http://feeds.feedburner.com/SoundChurch";
         [self handleError: error];
     }
     
-    self.podcastFeedConnection = nil;
+    //    self.podcastFeedConnection = nil;
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
-    self.podcastFeedConnection = nil;
+    //    self.podcastFeedConnection = nil;
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;   
     
     // Spawn an NSOperation to parse the earthquake data so that the UI is not blocked while the

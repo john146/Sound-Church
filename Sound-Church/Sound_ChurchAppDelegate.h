@@ -13,7 +13,6 @@
 @interface Sound_ChurchAppDelegate : NSObject <UIApplicationDelegate> {
 
 @private
-    NSURLConnection *podcastFeedConnection;
     NSOperationQueue *parseQueue;
     NSMutableData *podcastData;
 }

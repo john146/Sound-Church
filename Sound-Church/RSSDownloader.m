@@ -10,24 +10,28 @@
 
 static NSString *rssFeedURLString = @"feed://feeds.feedburner.com/SoundChurch";
 
+@interface RSSDownloader ()
+@property (nonatomic, retain)NSURLConnection *podcastFeedConnection;
+
+@end
+
 @implementation RSSDownloader
+
+@synthesize podcastFeedConnection;
 
 - (id)init {
     if ((self = [super init])) {
         NSURLRequest *request = [NSURLRequest requestWithURL: [NSURL URLWithString: rssFeedURLString]];
-        [self initializeConnection: request];
+        self.podcastFeedConnection = [[[NSURLConnection alloc] initWithRequest: request delegate: self] autorelease];
     }
     
     return self;
 }
 
-- (NSURLConnection *)initializeConnection: (NSURLRequest *)request {
-    NSURLConnection *connection = [[[NSURLConnection alloc] initWithRequest: request delegate: self] autorelease];
-    
-    return connection;
-}
-
 - (void)dealloc {
+    [podcastFeedConnection cancel];
+    [podcastFeedConnection release];
+    
     [super dealloc];
 }
 

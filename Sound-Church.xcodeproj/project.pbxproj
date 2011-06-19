@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		52167B5913AD7E6400F745CB /* RSSDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 5270A3D71388A7F30035E522 /* RSSDownloader.m */; };
 		526D2FC8139C40E20058E08E /* MainWindow-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 526D2FC6139C40E20058E08E /* MainWindow-iPad.xib */; };
 		526D2FD3139C4FB80058E08E /* ParseOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 526D2FD2139C4FB80058E08E /* ParseOperation.m */; };
 		5270A3B713888E4A0035E522 /* RSSDownloadTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5270A3B613888E4A0035E522 /* RSSDownloadTests.m */; };
@@ -320,6 +321,7 @@
 			files = (
 				52BE14FB137F5BF400A195FB /* Sound_ChurchTests.m in Sources */,
 				5270A3B713888E4A0035E522 /* RSSDownloadTests.m in Sources */,
+				52167B5913AD7E6400F745CB /* RSSDownloader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
