@@ -9,10 +9,16 @@
 #import <Foundation/Foundation.h>
 
 
-@interface RSSDownloader : NSObject <NSURLConnectionDelegate> {
+@interface RSSDownloader : NSObject {
     
 @private
     NSURLConnection *podcastFeedConnection;
 }
+
+@end
+
+@protocol RSSDownloaderDelegate <NSObject>
+
+- 
 
 @end

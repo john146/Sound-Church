@@ -4,6 +4,16 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Sound-Church copy 2.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
+		<key>Sound-Church copy.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 		<key>Sound-Church.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -12,6 +22,21 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>523AB0E913AD9B900022650D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>523AB11213ADA35A0022650D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>523AB12713ADA3A60022650D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>52BE14C0137F5BF300A195FB</key>
 		<dict>
 			<key>primary</key>

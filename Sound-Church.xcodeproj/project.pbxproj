@@ -33,16 +33,6 @@
 		52C56A401389D41600ADD7C9 /* libOCMock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 52C56A3F1389D41600ADD7C9 /* libOCMock.a */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		52BE14EF137F5BF400A195FB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 52BE14B8137F5BF300A195FB /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 52BE14C0137F5BF300A195FB;
-			remoteInfo = "Sound-Church";
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
 		526D2FC7139C40E20058E08E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = "iPad/en.lproj/MainWindow-iPad.xib"; sourceTree = "<group>"; };
 		526D2FD1139C4FB70058E08E /* ParseOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParseOperation.h; sourceTree = "<group>"; };
@@ -229,7 +219,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				52BE14F0137F5BF400A195FB /* PBXTargetDependency */,
 			);
 			name = "Sound-ChurchTests";
 			productName = "Sound-ChurchTests";
@@ -288,14 +277,14 @@
 /* Begin PBXShellScriptBuildPhase section */
 		52BE14E8137F5BF400A195FB /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 8;
 			files = (
 			);
 			inputPaths = (
 			);
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
 			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
 		};
@@ -326,14 +315,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		52BE14F0137F5BF400A195FB /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 52BE14C0137F5BF300A195FB /* Sound-Church */;
-			targetProxy = 52BE14EF137F5BF400A195FB /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		526D2FC6139C40E20058E08E /* MainWindow-iPad.xib */ = {
@@ -432,6 +413,7 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -535,7 +517,7 @@
 				52BE14FD137F5BF400A195FB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		52BE14FE137F5BF400A195FB /* Build configuration list for PBXNativeTarget "Sound-Church" */ = {
 			isa = XCConfigurationList;
@@ -544,7 +526,7 @@
 				52BE1500137F5BF400A195FB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		52BE1501137F5BF400A195FB /* Build configuration list for PBXNativeTarget "Sound-ChurchTests" */ = {
 			isa = XCConfigurationList;
@@ -553,7 +535,7 @@
 				52BE1503137F5BF400A195FB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 
