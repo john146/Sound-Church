@@ -14,9 +14,6 @@
 
 @interface Sound_ChurchAppDelegate () 
 
-@property (nonatomic, retain)NSOperationQueue *parseQueue;
-@property (nonatomic, retain)NSMutableData *podcastData;
-
 - (void) handleError: (NSError *)error;
 
 @end
@@ -28,9 +25,6 @@
 @synthesize managedObjectModel=__managedObjectModel;
 @synthesize persistentStoreCoordinator=__persistentStoreCoordinator;
 @synthesize navigationController=_navigationController;
-
-@synthesize parseQueue;
-@synthesize podcastData;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {

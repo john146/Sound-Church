@@ -13,8 +13,6 @@
 @interface Sound_ChurchAppDelegate : NSObject <UIApplicationDelegate> {
 
 @private
-    NSOperationQueue *parseQueue;
-    NSMutableData *podcastData;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;

@@ -7,17 +7,25 @@
 //
 
 #import "RSSDownloader.h"
+#import "ParseOperation.h"
 
 static NSString *rssFeedURLString = @"http://feeds.feedburner.com/SoundChurch";
 
-@interface RSSDownloader ()
+@interface RSSDownloader()
+
 @property (nonatomic, retain)NSURLConnection *podcastFeedConnection;
+@property (nonatomic, retain)NSMutableData *podcastData;
+@property (nonatomic, retain)NSOperationQueue *parseQueue;
+
+- (void)handleError:(NSError *)error;
 
 @end
 
 @implementation RSSDownloader
 
 @synthesize podcastFeedConnection;
+@synthesize podcastData;
+@synthesize parseQueue;
 
 - (id)init {
     if ((self = [super init])) {
@@ -87,8 +95,8 @@ static NSString *rssFeedURLString = @"http://feeds.feedburner.com/SoundChurch";
     //
     // IMPORTANT! - Don't access or affect UIKit objects on secondary threads.
     //
-    ParseOperation *parseOperation = [[ParseOperation alloc] initWithData:self.podcastData];
-    [self.parseQueue addOperation:parseOperation];
+    ParseOperation *parseOperation = [[ParseOperation alloc] initWithData: self.podcastData];
+    [self.parseQueue addOperation: parseOperation];
     [parseOperation release];   // once added to the NSOperationQueue it's retained, we don't need it anymore
     
     //  podcastData will be retained by the NSOperation until it has finished executing,

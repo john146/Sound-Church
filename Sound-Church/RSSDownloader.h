@@ -13,12 +13,14 @@
     
 @private
     NSURLConnection *podcastFeedConnection;
+    NSMutableData *podcastData;
+    NSOperationQueue *parseQueue;
 }
 
 @end
 
 @protocol RSSDownloaderDelegate <NSObject>
 
-- 
+- (void)downloadStarted;
 
 @end
