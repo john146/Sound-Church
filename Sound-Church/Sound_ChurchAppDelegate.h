@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+#import "RSSDownloader.h"
+
 @class NSURLConnection;
 
 @interface Sound_ChurchAppDelegate : NSObject <UIApplicationDelegate, RSSDownloaderDelegate> {

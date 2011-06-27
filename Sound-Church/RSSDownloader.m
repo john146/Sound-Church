@@ -50,7 +50,6 @@ static NSString *rssFeedURLString = @"http://feeds.feedburner.com/SoundChurch";
     // also make sure the MIMEType is correct:
     NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
     if ((([httpResponse statusCode]/100) == 2) && [[response MIMEType] isEqual:@"application/rss+xml"]) {
-        self.podcastData = [NSMutableData data];
         [delegate downloader: self didReceiveResponseError: nil];
     } else {
         NSDictionary *userInfo = [NSDictionary dictionaryWithObject:
@@ -85,21 +84,8 @@ static NSString *rssFeedURLString = @"http://feeds.feedburner.com/SoundChurch";
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
-    //    self.podcastFeedConnection = nil;
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;   
-    
-    // Spawn an NSOperation to parse the earthquake data so that the UI is not blocked while the
-    // application parses the XML data.
-    //
-    // IMPORTANT! - Don't access or affect UIKit objects on secondary threads.
-    //
-    ParseOperation *parseOperation = [[ParseOperation alloc] initWithData: self.podcastData];
-    [self.parseQueue addOperation: parseOperation];
-    [parseOperation release];   // once added to the NSOperationQueue it's retained, we don't need it anymore
-    
-    //  podcastData will be retained by the NSOperation until it has finished executing,
-    // so we no longer need a reference to it in the main thread.
-    self.podcastData = nil;
+    self.podcastFeedConnection = nil;
+    [downloaderDidFinishLoading: (RSSDownloader *)downloader];
 }
 
 @end

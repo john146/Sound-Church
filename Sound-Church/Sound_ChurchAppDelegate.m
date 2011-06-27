@@ -10,7 +10,6 @@
 
 #import "ParseOperation.h"
 #import "RootViewController.h"
-#import "RSSDownloader.h"
 
 @interface Sound_ChurchAppDelegate () 
 
@@ -227,11 +226,30 @@
 - (void)downloader: (RSSDownloader *)downloader didReceiveData:(NSData *)data {
     // TODO: Need to feed a progress bar.
     [podcastData appendData: data];
+    NSLog(@"%@", data);
 }
 
 - (void)downloader: (RSSDownloader *)downloader didFailWithError:(NSError *)error {
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;   
     [self handleError: error];
+}
+
+- (void)downloaderdidFinishLoading: (RSSDownloader *)downloader {
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;   
+    
+    // Spawn an NSOperation to parse the earthquake data so that the UI is not blocked while the
+    // application parses the XML data.
+    //
+    // IMPORTANT! - Don't access or affect UIKit objects on secondary threads.
+    //
+    ParseOperation *parseOperation = [[ParseOperation alloc] initWithData: self.podcastData];
+    [self.parseQueue addOperation: parseOperation];
+    [parseOperation release];   // once added to the NSOperationQueue it's retained, we don't need it anymore
+    
+    //  podcastData will be retained by the NSOperation until it has finished executing,
+    // so we no longer need a reference to it in the main thread.
+    self.podcastData = nil;
+    NSLog(@"Done.");
 }
 
 #pragma mark - Application's Documents directory

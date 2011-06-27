@@ -26,14 +26,8 @@
 
 // Test Object Construction
 - (void)testConstructor {
-    id mock = [OCMockObject mockForClass: [NSURLConnection class]];
-    [[mock expect] initWithRequest: [OCMArg any]
-                            andCall: @selector(fakeInitWithRequest:) 
-                           onObject: self];
     RSSDownloader *myDownloader = [[[RSSDownloader alloc] init] autorelease];
     STAssertNotNil(myDownloader, @"Could not initialize RSSDownloader");
-    
-    [mock verify];
 }
 
 // Test connection:didReceiveResponse:
