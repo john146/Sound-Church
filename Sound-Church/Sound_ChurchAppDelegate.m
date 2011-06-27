@@ -14,6 +14,9 @@
 
 @interface Sound_ChurchAppDelegate () 
 
+@property (nonatomic, retain)NSMutableData *podcastData;
+@property (nonatomic, retain)NSOperationQueue *parseQueue;
+
 - (void) handleError: (NSError *)error;
 
 @end
@@ -26,23 +29,17 @@
 @synthesize persistentStoreCoordinator=__persistentStoreCoordinator;
 @synthesize navigationController=_navigationController;
 
+@synthesize podcastData;
+@synthesize parseQueue;
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
     // Add the navigation controller's view to the window and display.
     self.window.rootViewController = self.navigationController;
-    RSSDownloader *downloader = [[[RSSDownloader alloc] init] autorelease];
-/*    
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-    parseQueue = [NSOperationQueue new];
-    [[NSNotificationCenter defaultCenter] addObserver: self 
-                                             selector: @selector(addPodcast:) 
-                                                 name: kParsePodcastsNofification 
-                                               object: nil];
-    [[NSNotificationCenter defaultCenter] addObserver: self
-                                             selector: @selector(addPodcastError:)
-                                                 name: kParsePodcastsError
-                                               object: nil];
+    RSSDownloader *downloader = [[[RSSDownloader alloc] initWithDelegate: self] autorelease];
+/*    
 */
     [self.window makeKeyAndVisible];
     return YES;
@@ -208,6 +205,35 @@
     return __persistentStoreCoordinator;
 }
 
+#pragma mark - RSSDownloader Delegate Methods
+- (void)downloader: (RSSDownloader *)downloader didReceiveResponseError:(NSError *)error {
+    if (nil == error) {
+        // Successful connection
+        parseQueue = [NSOperationQueue new];
+        [[NSNotificationCenter defaultCenter] addObserver: self 
+                                                 selector: @selector(addPodcast:) 
+                                                     name: kParsePodcastsNofification 
+                                                   object: nil];
+        [[NSNotificationCenter defaultCenter] addObserver: self
+                                                 selector: @selector(addPodcastError:)
+                                                     name: kParsePodcastsError
+                                                   object: nil];
+    } else {
+        [self handleError: error];
+        [error release];
+    }
+}
+
+- (void)downloader: (RSSDownloader *)downloader didReceiveData:(NSData *)data {
+    // TODO: Need to feed a progress bar.
+    [podcastData appendData: data];
+}
+
+- (void)downloader: (RSSDownloader *)downloader didFailWithError:(NSError *)error {
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;   
+    [self handleError: error];
+}
+
 #pragma mark - Application's Documents directory
 
 /**
@@ -218,14 +244,30 @@
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
 
-#pragma mark -
-#pragma mark NSOperationCenter Callbacks
+#pragma mark - NSOperationCenter Callbacks
 - (void)addPodcast: (NSNotification *)notification {
     NSLog(@"Notification Center call");
 }
 
 - (void)addPodcastError: (NSNotification *)notification {
     NSLog(@"Notification Center error");
+}
+
+// TODO: Handle errors in the download by showing an alert to the user. This is a very
+// simple way of handling the error, partly because this application does not have any offline
+// functionality for the user. Most real applications should handle the error in a less obtrusive
+// way and provide offline functionality to the user.
+- (void)handleError:(NSError *)error {
+    NSString *errorMessage = [error localizedDescription];
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:
+                              NSLocalizedString(@"Error Title",
+                                                @"Title for alert displayed when download or parse error occurs.")
+                                                        message:errorMessage
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+    [alertView show];
+    [alertView release];
 }
 
 @end

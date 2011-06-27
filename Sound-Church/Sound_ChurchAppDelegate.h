@@ -10,9 +10,11 @@
 
 @class NSURLConnection;
 
-@interface Sound_ChurchAppDelegate : NSObject <UIApplicationDelegate> {
+@interface Sound_ChurchAppDelegate : NSObject <UIApplicationDelegate, RSSDownloaderDelegate> {
 
 @private
+    NSMutableData *podcastData;
+    NSOperationQueue *parseQueue;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;

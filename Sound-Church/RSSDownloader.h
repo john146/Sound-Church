@@ -13,14 +13,20 @@
     
 @private
     NSURLConnection *podcastFeedConnection;
-    NSMutableData *podcastData;
-    NSOperationQueue *parseQueue;
+    RSSDownloaderDelegate *delegate;
 }
+
+- (id)initWithDelegate: (id)delegate;
 
 @end
 
 @protocol RSSDownloaderDelegate <NSObject>
-
-- (void)downloadStarted;
+/**
+ * if connection:didReceiveResponse: returns a bad response (anything other than HTTP 2xx),
+ * this method will include an error with the conditions in it. Otherwise, the error field will be null.
+ */
+- (void)downloader: (RSSDownloader *)downloader didReceiveResponseError: (NSError *)error;
+- (void)downloader:(RSSDownloader *)downloader didReceiveData: (NSData *)data;
+- (void)downloader:(RSSDownloader *)downloader didFailWithError: (NSError *)error;
 
 @end
