@@ -8,11 +8,28 @@
 
 #import <Foundation/Foundation.h>
 
+extern NSString *kAddPodcastsNotification;
+extern NSString *kPodcastResultsKey;
+
 extern NSString *kParsePodcastsNofification;
 extern NSString *kParsePodcastsError;
 
 @interface ParseOperation : NSOperation {
+    NSData *podcastData;
     
+@private
+    NSDateFormatter *dateFormatter;
+    
+    // These variables are used during parsing
+    Podcast *currentPodcastObject;
+    NSMutableArray *currentParseBatch;
+    NSMutableString *currentParsedCharacterData;
+
+    BOOL accumulatingParsedCharacterData;
+    BOOL didAbortParsing;
+    NSUInteger parsedPodcastsCounter;
 }
+
+@property (copy, readonly)NSData *podcastData;
 
 @end
