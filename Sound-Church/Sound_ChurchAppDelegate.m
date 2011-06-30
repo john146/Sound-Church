@@ -17,6 +17,7 @@
 @property (nonatomic, retain)NSOperationQueue *parseQueue;
 
 - (void) handleError: (NSError *)error;
+- (void) addPodcastsToList: (NSArray *)items;
 
 @end
 
@@ -38,6 +39,17 @@
     self.window.rootViewController = self.navigationController;
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     RSSDownloader *downloader = [[[RSSDownloader alloc] initWithDelegate: self] autorelease];
+
+    parseQueue = [NSOperationQueue new];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(addPodcasts:)
+                                                 name:kAddPodcastsNotification
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(podcastsError:)
+                                                 name:kParsePodcastsError
+                                               object:nil];
 
     [self.window makeKeyAndVisible];
     return YES;
@@ -263,12 +275,30 @@
 }
 
 #pragma mark - NSOperationCenter Callbacks
-- (void)addPodcast: (NSNotification *)notification {
-    NSLog(@"Notification Center call");
+// Our NSNotification callback from the running NSOperation to add the earthquakes
+//
+- (void)addPodcasts:(NSNotification *)notification {
+    assert([NSThread isMainThread]);
+    
+    [self addPodcastsToList:[[notification userInfo] valueForKey: kPodcastResultsKey]];
 }
 
-- (void)addPodcastError: (NSNotification *)notification {
-    NSLog(@"Notification Center error");
+// Our NSNotification callback from the running NSOperation when a parsing error has occurred
+//
+- (void)podcastsError:(NSNotification *)notification {
+    assert([NSThread isMainThread]);
+    
+    [self handleError:[[notification userInfo] valueForKey:kPodcastsMsgErrorKey]];
+}
+
+// The NSOperation "ParseOperation" calls addEarthquakes: via NSNotification, on the main thread
+// which in turn calls this method, with batches of parsed objects.
+// The batch size is set via the kSizeOfEarthquakeBatch constant.
+//
+- (void)addPodcastsToList:(NSArray *)items {
+    
+    // insert the earthquakes into our rootViewController's data source (for KVO purposes)
+    [self.window.rootViewController insertPodcasts: items];
 }
 
 // TODO: Handle errors in the download by showing an alert to the user. This is a very

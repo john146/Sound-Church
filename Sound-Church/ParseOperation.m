@@ -15,6 +15,7 @@ NSString *kParsePodcastsNofification = @"parsePodcastsNotification";
 NSString *kPodcastResultsKey = @"podcastResultsKey";
 NSString *kAddPodcastsNotification = @"addPodcastsNotification";
 NSString *kParsePodcastsError = @"parsePodcastsError";
+NSString *kPodcastsMsgErrorKey = @"PodcastsMsgErrorKey";
 
 @interface ParseOperation () <NSXMLParserDelegate>
 
@@ -215,12 +216,12 @@ static NSString *const kContentURLElementName = @"media:content";
                                    withObject:self.currentParseBatch
                                 waitUntilDone:NO];
             self.currentParseBatch = [NSMutableArray array];*/
-        }
+    //    }
     //    } else if ([elementName isEqualToString:kTitleElementName]) {
         // The title element contains the magnitude and location in the following format:
         // <title>M 3.6, Virgin Islands region<title/>
         // Extract the magnitude and the location using a scanner:
-        NSScanner *scanner = [NSScanner scannerWithString:self.currentParsedCharacterData];
+        //  NSScanner *scanner = [NSScanner scannerWithString:self.currentParsedCharacterData];
         // Scan past the "M " before the magnitude.
         /*       if ([scanner scanString:@"M " intoString:NULL]) {
             CGFloat magnitude;
@@ -238,25 +239,25 @@ static NSString *const kContentURLElementName = @"media:content";
             }
         } */
     //    } else if ([elementName isEqualToString:kUpdatedElementName]) {
-        if (self.currentItemObject != nil) {
+    //  if (self.currentItemObject != nil) {
             //           self.currentItemObject.date = [dateFormatter dateFromString:self.currentParsedCharacterData];
-        }
-        else {
+            //    }
+            //        else {
             // kUpdatedElementName can be found outside an entry element (i.e. in the XML header)
             // so don't process it here.
-        }
+            //}
         //   } else if ([elementName isEqualToString:kGeoRSSPointElementName]) {
         // The georss:point element contains the latitude and longitude of the earthquake epicenter.
         // 18.6477 -66.7452
         //
         //        NSScanner *scanner = [NSScanner scannerWithString:self.currentParsedCharacterData];
-        double latitude, longitude;
-        if ([scanner scanDouble:&latitude]) {
-            if ([scanner scanDouble:&longitude]) {
+        //  double latitude, longitude;
+        //if ([scanner scanDouble:&latitude]) {
+        //   if ([scanner scanDouble:&longitude]) {
                 //                self.currentPodcastObject.latitude = latitude;
                 //              self.currentPodcastObject.longitude = longitude;
-            }
-        }
+                //  }
+                //}
     //    }
     // Stop accumulating parsed character data. We won't start again until specific elements begin.
     accumulatingParsedCharacterData = NO;
@@ -276,10 +277,10 @@ static NSString *const kContentURLElementName = @"media:content";
 // an error occurred while parsing the podcast data,
 // post the error as an NSNotification to our app delegate.
 - (void)handlePodcastsError:(NSError *)parseError {
-    [[NSNotificationCenter defaultCenter] postNotificationName:kParsePodcastsError
-                                                        object:self
-                                                      userInfo:[NSDictionary dictionaryWithObject:parseError
-                                                                                           forKey:kParsePodcastsError]];
+    [[NSNotificationCenter defaultCenter] postNotificationName: kParsePodcastsError
+                                                        object: self
+                                                      userInfo: [NSDictionary dictionaryWithObject:parseError
+                                                                                            forKey:kParsePodcastsError]];
 }
 
 // an error occurred while parsing the earthquake data,

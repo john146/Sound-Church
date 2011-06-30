@@ -13,6 +13,7 @@ extern NSString *kPodcastResultsKey;
 
 extern NSString *kParsePodcastsNofification;
 extern NSString *kParsePodcastsError;
+extern NSString *kPodcastsMsgErrorKey;
 
 @class Channel;
 @class Item;
