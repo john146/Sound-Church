@@ -25,12 +25,13 @@ extern NSString *kParsePodcastsError;
     
     // These variables are used during parsing
     Channel *currentChannelObject;
-    Podcast *currentPodcastObject;
+    Item *currentItemObject;
     NSMutableArray *currentParseBatch;
     NSMutableString *currentParsedCharacterData;
 
     BOOL accumulatingParsedCharacterData;
     BOOL didAbortParsing;
+    BOOL parsingItem;
     NSUInteger parsedPodcastsCounter;
 }
 

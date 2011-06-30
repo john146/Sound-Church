@@ -135,16 +135,20 @@ static NSString *const kContentURLElementName = @"media:content";
     if (parsedPodcastsCounter >= kMaximumNumberOfPodcastsToParse) {
         // Use the flag didAbortParsing to distinguish between this deliberate stop
         // and other parser errors.
-        //
         didAbortParsing = YES;
         [parser abortParsing];
     }
     
     if ([elementName isEqualToString:kChannelElementName]) {
+        parsingItem = NO;
         Channel *channel = [[Channel alloc] init];
         self.currentChannelObject = channel;
-        self.currentPodcastObject = podcast;
-        [podcast release];
+        [channel release];
+    } else if ([elementName isEqualToString: kItemElementName]) {
+        parsingItem = YES;
+        Item *item = [[Item alloc] init];
+        self.currentItemObject = item;
+        [item release];
     } else if ([elementName isEqualToString:kLinkElementName]) {
         NSString *relAttribute = [attributeDict valueForKey:@"rel"];
         if ([relAttribute isEqualToString:@"alternate"]) {
