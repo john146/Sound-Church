@@ -38,8 +38,7 @@
     self.window.rootViewController = self.navigationController;
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     RSSDownloader *downloader = [[[RSSDownloader alloc] initWithDelegate: self] autorelease];
-/*    
-*/
+
     [self.window makeKeyAndVisible];
     return YES;
 }
@@ -87,10 +86,9 @@
     [__managedObjectModel release];
     [__persistentStoreCoordinator release];
     [_navigationController release];
+    [podcastData release];
+    [parseQueue release];
     
-    //    [parseQueue release];
-    //[[NSNotificationCenter defaultCenter] removeObserver: self name: kParsePodcastsNofification object: nil];
-    //    [[NSNotificationCenter defaultCenter] removeObserver: self name: kParsePodcastsError object: nil];
     
     [super dealloc];
 }
@@ -208,6 +206,8 @@
 - (void)downloader: (RSSDownloader *)downloader didReceiveResponseError:(NSError *)error {
     if (nil == error) {
         // Successful connection
+        NSLog(@"Downloader connected to RSS feed");
+        
         parseQueue = [NSOperationQueue new];
         [[NSNotificationCenter defaultCenter] addObserver: self 
                                                  selector: @selector(addPodcast:) 

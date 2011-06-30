@@ -14,10 +14,10 @@
     
 @private
     NSURLConnection *podcastFeedConnection;
-    RSSDownloaderDelegate *delegate;
+    id delegate;
 }
 
-- (id)initWithDelegate: (id)delegate;
+- (id)initWithDelegate: (id)inDelegate;
 
 @end
 

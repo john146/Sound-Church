@@ -14,7 +14,7 @@ static NSString *rssFeedURLString = @"http://feeds.feedburner.com/SoundChurch";
 @interface RSSDownloader()
 
 @property (nonatomic, retain)NSURLConnection *podcastFeedConnection;
-@property (nonatomic, retain)RSSDownloaderDelegate *delegate;
+@property (nonatomic, assign)id delegate;
 
 - (void)handleError:(NSError *)error;
 
@@ -25,9 +25,9 @@ static NSString *rssFeedURLString = @"http://feeds.feedburner.com/SoundChurch";
 @synthesize podcastFeedConnection;
 @synthesize delegate;
 
-- (id)initWithDelegate: (id)delegate {
+- (id)initWithDelegate: (id)inDelegate {
     if ((self = [super init])) {
-        self.delegate = delegate;
+        self.delegate = inDelegate;
         NSURLRequest *request = [NSURLRequest requestWithURL: [NSURL URLWithString: rssFeedURLString]];
         self.podcastFeedConnection = [[[NSURLConnection alloc] initWithRequest: request delegate: self] autorelease];
     }
