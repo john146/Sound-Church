@@ -14,6 +14,9 @@ extern NSString *kPodcastResultsKey;
 extern NSString *kParsePodcastsNofification;
 extern NSString *kParsePodcastsError;
 
+@class Channel;
+@class Item;
+
 @interface ParseOperation : NSOperation {
     NSData *podcastData;
     
@@ -21,6 +24,7 @@ extern NSString *kParsePodcastsError;
     NSDateFormatter *dateFormatter;
     
     // These variables are used during parsing
+    Channel *currentChannelObject;
     Podcast *currentPodcastObject;
     NSMutableArray *currentParseBatch;
     NSMutableString *currentParsedCharacterData;

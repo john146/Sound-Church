@@ -14,7 +14,7 @@
 @implementation RSSDownloadTests
 
 - (void)setUp {
-    downloader = [[RSSDownloader alloc] init];
+    downloader = [[RSSDownloader alloc] initWithDelegate: nil];
     [super setUp];
 }
 
@@ -26,7 +26,7 @@
 
 // Test Object Construction
 - (void)testConstructor {
-    RSSDownloader *myDownloader = [[[RSSDownloader alloc] init] autorelease];
+    RSSDownloader *myDownloader = [[[RSSDownloader alloc] initWithDelegate: nil] autorelease];
     STAssertNotNil(myDownloader, @"Could not initialize RSSDownloader");
 }
 

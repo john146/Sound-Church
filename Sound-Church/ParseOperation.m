@@ -16,6 +16,7 @@ NSString *kParsePodcastsError = @"parsePodcastsError";
 
 @interface ParseOperation () <NSXMLParserDelegate>
 
+@property (nonatomic, assign) Channel *currentChannelObject; 
 @property (nonatomic, retain) Podcast *currentPodcastObject;
 @property (nonatomic, retain) NSMutableArray *currentParseBatch;
 @property (nonatomic, retain) NSMutableString *currentParsedCharacterData;
@@ -25,7 +26,8 @@ NSString *kParsePodcastsError = @"parsePodcastsError";
 @implementation ParseOperation
 
 @synthesize podcastData;
-@synthesize currentEarthquakeObject;
+@synthesize currentChannelObject;
+@synthesize currentPodcastObject;
 @synthesize currentParsedCharacterData;
 @synthesize currentParseBatch;
 
@@ -107,32 +109,40 @@ static const const NSUInteger kMaximumNumberOfPodcastsToParse = 50;
 static NSUInteger const kSizeOfPodcastBatch = 10;
 
 // Reduce potential parsing errors by using string constants declared in a single place.
-static NSString * const kEntryElementName = @"entry";
-static NSString * const kLinkElementName = @"link";
-static NSString * const kTitleElementName = @"title";
-static NSString * const kUpdatedElementName = @"updated";
-static NSString * const kGeoRSSPointElementName = @"georss:point";
+static NSString *const kChannelElementName = @"channel";
+static NSString *const kLinkElementName = @"link";
+static NSString *const kTitleElementName = @"title";
+static NSString *const kLastBuildDateElementName = @"lastBuildDate";
+static NSString *const kPubDateElementName = @"pubDate";
+static NSString *const kDescriptionElementName = @"description";
+static NSString *const kItemElementName = @"item";
+static NSString *const kItemDescriptionElementName = @"description";
+static NSString *const kCategoryElementName = @"category";
+static NSString *const kSubtitleElementName = @"itunes:subtitle";
+static NSString *const kAuthorElementName = @"itunes:author";
+static NSString *const kSummaryElementName = @"itunes:summary";
+static NSString *const kGUIDElementName = @"guid";
+static NSString *const kContentURLElementName = @"media:content";
 
-
-#pragma mark -
-#pragma mark NSXMLParser delegate methods
+#pragma mark - NSXMLParser delegate methods
 
 - (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName
   namespaceURI:(NSString *)namespaceURI
  qualifiedName:(NSString *)qName
     attributes:(NSDictionary *)attributeDict {
     // If the number of parsed earthquakes is greater than
-    // kMaximumNumberOfEarthquakesToParse, abort the parse.
-    //
-    if (parsedEarthquakesCounter >= kMaximumNumberOfPodcastsToParse) {
+    // kMaximumNumberOfPodcastsToParse, abort the parse.
+    if (parsedPodcastsCounter >= kMaximumNumberOfPodcastsToParse) {
         // Use the flag didAbortParsing to distinguish between this deliberate stop
         // and other parser errors.
         //
         didAbortParsing = YES;
         [parser abortParsing];
     }
-    if ([elementName isEqualToString:kEntryElementName]) {
-        Podcast *podcast = [[Podcast alloc] init];
+    
+    if ([elementName isEqualToString:kChannelElementName]) {
+        Channel *channel = [[Channel alloc] init];
+        self.currentChannelObject = channel;
         self.currentPodcastObject = podcast;
         [podcast release];
     } else if ([elementName isEqualToString:kLinkElementName]) {
@@ -223,7 +233,7 @@ static NSString * const kGeoRSSPointElementName = @"georss:point";
     }
 }
 
-// an error occurred while parsing the earthquake data,
+// an error occurred while parsing the podcast data,
 // post the error as an NSNotification to our app delegate.
 // 
 - (void)handlePodcastsError:(NSError *)parseError {
