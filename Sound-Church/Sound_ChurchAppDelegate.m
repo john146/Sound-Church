@@ -18,6 +18,7 @@
 
 - (void) handleError: (NSError *)error;
 - (void) addPodcastsToList: (NSArray *)items;
+- (void)podcastError: (NSNotification *)notification;
 
 @end
 
@@ -226,7 +227,7 @@
                                                      name: kParsePodcastsNofification 
                                                    object: nil];
         [[NSNotificationCenter defaultCenter] addObserver: self
-                                                 selector: @selector(addPodcastError:)
+                                                 selector: @selector(podcastError:)
                                                      name: kParsePodcastsError
                                                    object: nil];
     } else {
@@ -238,7 +239,7 @@
 - (void)downloader: (RSSDownloader *)downloader didReceiveData:(NSData *)data {
     // TODO: Need to feed a progress bar.
     [podcastData appendData: data];
-    NSLog(@"%@", data);
+    NSLog(@"%@", [NSString stringWithUTF8String: data]);
 }
 
 - (void)downloader: (RSSDownloader *)downloader didFailWithError:(NSError *)error {
@@ -285,7 +286,7 @@
 
 // Our NSNotification callback from the running NSOperation when a parsing error has occurred
 //
-- (void)podcastsError:(NSNotification *)notification {
+- (void)podcastsError: (NSNotification *)notification {
     assert([NSThread isMainThread]);
     
     [self handleError:[[notification userInfo] valueForKey:kPodcastsMsgErrorKey]];
