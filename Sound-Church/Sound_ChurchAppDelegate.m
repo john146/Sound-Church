@@ -234,7 +234,7 @@
     [self handleError: error];
 }
 
-- (void)downloaderdidFinishLoading: (RSSDownloader *)downloader {
+- (void)downloaderDidFinishLoading: (RSSDownloader *)downloader {
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;   
     
     // Spawn an NSOperation to parse the earthquake data so that the UI is not blocked while the

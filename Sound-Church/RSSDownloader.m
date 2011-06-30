@@ -16,8 +16,6 @@ static NSString *rssFeedURLString = @"http://feeds.feedburner.com/SoundChurch";
 @property (nonatomic, retain)NSURLConnection *podcastFeedConnection;
 @property (nonatomic, assign)id delegate;
 
-- (void)handleError:(NSError *)error;
-
 @end
 
 @implementation RSSDownloader
@@ -85,7 +83,7 @@ static NSString *rssFeedURLString = @"http://feeds.feedburner.com/SoundChurch";
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
     self.podcastFeedConnection = nil;
-    [downloaderDidFinishLoading: (RSSDownloader *)downloader];
+    [delegate downloaderDidFinishLoading: self];
 }
 
 @end

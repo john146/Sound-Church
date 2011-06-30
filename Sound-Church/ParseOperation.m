@@ -7,6 +7,8 @@
 //
 
 #import "ParseOperation.h"
+#import "Channel.h"
+#import "Item.h"
 
 // Notification string for sending podcast data back to the App_Delegate
 NSString *kParsePodcastsNofification = @"parsePodcastsNotification";
@@ -17,7 +19,7 @@ NSString *kParsePodcastsError = @"parsePodcastsError";
 @interface ParseOperation () <NSXMLParserDelegate>
 
 @property (nonatomic, assign) Channel *currentChannelObject; 
-@property (nonatomic, retain) Podcast *currentPodcastObject;
+@property (nonatomic, retain) Item *currentItemObject;
 @property (nonatomic, retain) NSMutableArray *currentParseBatch;
 @property (nonatomic, retain) NSMutableString *currentParsedCharacterData;
 
@@ -27,7 +29,7 @@ NSString *kParsePodcastsError = @"parsePodcastsError";
 
 @synthesize podcastData;
 @synthesize currentChannelObject;
-@synthesize currentPodcastObject;
+@synthesize currentItemObject;
 @synthesize currentParsedCharacterData;
 @synthesize currentParseBatch;
 
@@ -77,7 +79,7 @@ NSString *kParsePodcastsError = @"parsePodcastsError";
     }
     
     self.currentParseBatch = nil;
-    self.currendPodcastObject = nil;
+    self.currentItemObject = nil;
     self.currentParsedCharacterData = nil;
     
     [parser release];
@@ -86,7 +88,7 @@ NSString *kParsePodcastsError = @"parsePodcastsError";
 - (void)dealloc {
     [podcastData release];
     
-    [currentPodcastObject release];
+    [currentItemObject release];
     [currentParsedCharacterData release];
     [currentParseBatch release];
     [dateFormatter release];
@@ -153,11 +155,12 @@ static NSString *const kContentURLElementName = @"media:content";
         NSString *relAttribute = [attributeDict valueForKey:@"rel"];
         if ([relAttribute isEqualToString:@"alternate"]) {
             NSString *podcastLink = [attributeDict valueForKey:@"href"];
-            self.currentPodcastObject.podcastLink = [NSURL URLWithString:podcastLink];
+            //            self.currentPodcastObject.podcastLink = [NSURL URLWithString:podcastLink];
         }
-    } else if ([elementName isEqualToString:kTitleElementName] ||
-               [elementName isEqualToString:kUpdatedElementName] ||
-               [elementName isEqualToString:kGeoRSSPointElementName]) {
+    } else if ([elementName isEqualToString:kTitleElementName] )//||
+    {
+               //               [elementName isEqualToString:kUpdatedElementName] ||
+               //               [elementName isEqualToString:kGeoRSSPointElementName]) {
         // For the 'title', 'updated', or 'georss:point' element begin accumulating parsed character data.
         // The contents are collected in parser:foundCharacters:.
         accumulatingParsedCharacterData = YES;
@@ -169,16 +172,16 @@ static NSString *const kContentURLElementName = @"media:content";
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName
   namespaceURI:(NSString *)namespaceURI
  qualifiedName:(NSString *)qName {     
-    if ([elementName isEqualToString:kEntryElementName]) {
-        [self.currentParseBatch addObject:self.currentPodcastObject];
-        parsedPodcastCounter++;
+     //    if ([elementName isEqualToString:kEntryElementName]) {
+     //        [self.currentParseBatch addObject:self.currentPodcastObject];
+     //        parsedPodcastCounter++;
         if ([self.currentParseBatch count] >= kMaximumNumberOfPodcastsToParse) {
             [self performSelectorOnMainThread:@selector(addPodcastsToList:)
                                    withObject:self.currentParseBatch
                                 waitUntilDone:NO];
             self.currentParseBatch = [NSMutableArray array];
         }
-    } else if ([elementName isEqualToString:kTitleElementName]) {
+    //    } else if ([elementName isEqualToString:kTitleElementName]) {
         // The title element contains the magnitude and location in the following format:
         // <title>M 3.6, Virgin Islands region<title/>
         // Extract the magnitude and the location using a scanner:
@@ -199,27 +202,27 @@ static NSString *const kContentURLElementName = @"media:content";
                 }
             }
         } */
-    } else if ([elementName isEqualToString:kUpdatedElementName]) {
-        if (self.currentPodcastObject != nil) {
-            self.currentPodcastObject.date = [dateFormatter dateFromString:self.currentParsedCharacterData];
+    //    } else if ([elementName isEqualToString:kUpdatedElementName]) {
+        if (self.currentItemObject != nil) {
+            //           self.currentItemObject.date = [dateFormatter dateFromString:self.currentParsedCharacterData];
         }
         else {
             // kUpdatedElementName can be found outside an entry element (i.e. in the XML header)
             // so don't process it here.
         }
-    } else if ([elementName isEqualToString:kGeoRSSPointElementName]) {
+        //   } else if ([elementName isEqualToString:kGeoRSSPointElementName]) {
         // The georss:point element contains the latitude and longitude of the earthquake epicenter.
         // 18.6477 -66.7452
         //
-        NSScanner *scanner = [NSScanner scannerWithString:self.currentParsedCharacterData];
+        //        NSScanner *scanner = [NSScanner scannerWithString:self.currentParsedCharacterData];
         double latitude, longitude;
         if ([scanner scanDouble:&latitude]) {
             if ([scanner scanDouble:&longitude]) {
-                self.currentPodcastObject.latitude = latitude;
-                self.currentPodcastObject.longitude = longitude;
+                //                self.currentPodcastObject.latitude = latitude;
+                //              self.currentPodcastObject.longitude = longitude;
             }
         }
-    }
+    //    }
     // Stop accumulating parsed character data. We won't start again until specific elements begin.
     accumulatingParsedCharacterData = NO;
 }
@@ -241,10 +244,10 @@ static NSString *const kContentURLElementName = @"media:content";
 // post the error as an NSNotification to our app delegate.
 // 
 - (void)handlePodcastsError:(NSError *)parseError {
-    [[NSNotificationCenter defaultCenter] postNotificationName:kPodcastsErrorNotif
+    [[NSNotificationCenter defaultCenter] postNotificationName:kParsePodcastsError
                                                         object:self
                                                       userInfo:[NSDictionary dictionaryWithObject:parseError
-                                                                                           forKey:kPodcastsMsgErrorKey]];
+                                                                                           forKey:kParsePodcastsError]];
 }
 
 // an error occurred while parsing the earthquake data,

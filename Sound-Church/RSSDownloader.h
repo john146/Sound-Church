@@ -29,6 +29,6 @@
 - (void)downloader: (RSSDownloader *)downloader didReceiveResponseError: (NSError *)error;
 - (void)downloader:(RSSDownloader *)downloader didReceiveData: (NSData *)data;
 - (void)downloader:(RSSDownloader *)downloader didFailWithError: (NSError *)error;
-- (void)downloaderdidFinishLoading: (RSSDownloader *)downloader;
+- (void)downloaderDidFinishLoading: (RSSDownloader *)downloader;
 
 @end
