@@ -221,15 +221,6 @@
         // Successful connection
         NSLog(@"Downloader connected to RSS feed");
         
-        parseQueue = [NSOperationQueue new];
-        [[NSNotificationCenter defaultCenter] addObserver: self 
-                                                 selector: @selector(addPodcast:) 
-                                                     name: kParsePodcastsNofification 
-                                                   object: nil];
-        [[NSNotificationCenter defaultCenter] addObserver: self
-                                                 selector: @selector(podcastError:)
-                                                     name: kParsePodcastsError
-                                                   object: nil];
     } else {
         [self handleError: error];
         [error release];
@@ -239,7 +230,7 @@
 - (void)downloader: (RSSDownloader *)downloader didReceiveData:(NSData *)data {
     // TODO: Need to feed a progress bar.
     [podcastData appendData: data];
-    NSLog(@"%@", [NSString stringWithUTF8String: data]);
+    NSLog(@"Total bytes: %i", [data length]);
 }
 
 - (void)downloader: (RSSDownloader *)downloader didFailWithError:(NSError *)error {
@@ -289,7 +280,7 @@
 - (void)podcastsError: (NSNotification *)notification {
     assert([NSThread isMainThread]);
     
-    [self handleError:[[notification userInfo] valueForKey:kPodcastsMsgErrorKey]];
+    [self handleError:[[notification userInfo] valueForKey: kPodcastsMsgErrorKey]];
 }
 
 // The NSOperation "ParseOperation" calls addEarthquakes: via NSNotification, on the main thread

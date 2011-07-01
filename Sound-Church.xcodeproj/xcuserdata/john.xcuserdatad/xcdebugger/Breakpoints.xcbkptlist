@@ -51,53 +51,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Sound-Church/Sound_ChurchAppDelegate.m"
-         timestampString = "331169932.580301"
+         timestampString = "331171103.003059"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "42"
-         endingLineNumber = "42"
-         landmarkName = "-application:didFinishLaunchingWithOptions:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         isPathRelative = "1"
-         filePath = "Sound-Church/ParseOperation.m"
-         timestampString = "331169999.04594"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "289"
-         endingLineNumber = "289"
-         landmarkName = "-parser:parseErrorOccurred:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         isPathRelative = "1"
-         filePath = "Sound-Church/Sound_ChurchAppDelegate.m"
-         timestampString = "331170309.546839"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "289"
-         endingLineNumber = "289"
-         landmarkName = "-podcastsError:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         isPathRelative = "1"
-         filePath = "Sound-Church/Sound_ChurchAppDelegate.m"
-         timestampString = "331170311.019483"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "281"
-         endingLineNumber = "281"
+         startingLineNumber = "272"
+         endingLineNumber = "272"
          landmarkName = "-addPodcasts:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -107,26 +65,12 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Sound-Church/Sound_ChurchAppDelegate.m"
-         timestampString = "331170312.55063"
+         timestampString = "331171103.003059"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "299"
-         endingLineNumber = "299"
+         startingLineNumber = "290"
+         endingLineNumber = "290"
          landmarkName = "-addPodcastsToList:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         isPathRelative = "1"
-         filePath = "Sound-Church/Sound_ChurchAppDelegate.m"
-         timestampString = "331170321.168539"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "273"
-         endingLineNumber = "273"
-         landmarkName = "-applicationDocumentsDirectory"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -149,40 +93,12 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Sound-Church/ParseOperation.m"
-         timestampString = "331170343.522768"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "62"
-         endingLineNumber = "62"
-         landmarkName = "-main"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         isPathRelative = "1"
-         filePath = "Sound-Church/ParseOperation.m"
          timestampString = "331170350.811606"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "50"
          endingLineNumber = "50"
          landmarkName = "-addPodcastsToList:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         isPathRelative = "1"
-         filePath = "Sound-Church/ParseOperation.m"
-         timestampString = "331170354.839403"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "37"
-         endingLineNumber = "37"
-         landmarkName = "-initWithData:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
