@@ -289,8 +289,8 @@
 //
 - (void)addPodcastsToList:(NSArray *)items {
     
-    // insert the earthquakes into our rootViewController's data source (for KVO purposes)
-    [self.window.rootViewController insertPodcasts: items];
+    // insert the podcasts into our rootViewController's data source (for KVO purposes)
+    
 }
 
 // TODO: Handle errors in the download by showing an alert to the user. This is a very

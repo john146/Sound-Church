@@ -6,6 +6,7 @@
 //  Copyright 2011 John Ahrens, LLC. All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
 #import <OCMock/OCMock.h>
 
 #import "RSSDownloadTests.h"
@@ -26,7 +27,11 @@
 
 // Test Object Construction
 - (void)testConstructor {
-    RSSDownloader *myDownloader = [[[RSSDownloader alloc] initWithDelegate: nil] autorelease];
+    id mock = [OCMockObject mockForProtocol:@protocol(RSSDownloaderDelegate)];
+    RSSDownloader *myDownloader;
+    NSData *data;
+    [[mock expect] downloader: myDownloader didReceiveData: data];
+    myDownloader = [[[RSSDownloader alloc] initWithDelegate: mock] autorelease];
     STAssertNotNil(myDownloader, @"Could not initialize RSSDownloader");
 }
 
@@ -36,7 +41,7 @@
 }
 
 #pragma mark - OCMock Methods
-- (NSURLConnection *)fakeInitWithRequest: (NSURLRequest *)request {
+- (NSURLConnection *)fakeInitWithRequest: (NSURLRequest *)request delegate: (id)delegate {
     STAssertNotNil(request, @"Failed to get valid NSURLRequest object");
     NSString *urlStringExpected = @"feed://feeds.feedburner.com/SoundChurch";
     NSString *urlStringActual = [request.URL absoluteString];
