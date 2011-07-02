@@ -10,6 +10,8 @@
 #import "Channel.h"
 #import "Item.h"
 
+static NSString *rssFeedURLString = @"http://feeds.feedburner.com/SoundChurch";
+
 // Notification string for sending podcast data back to the App_Delegate
 NSString *kParsePodcastsNofification = @"parsePodcastsNotification";
 NSString *kPodcastResultsKey = @"podcastResultsKey";
@@ -23,6 +25,7 @@ NSString *kPodcastsMsgErrorKey = @"PodcastsMsgErrorKey";
 @property (nonatomic, retain) Item *currentItemObject;
 @property (nonatomic, retain) NSMutableArray *currentParseBatch;
 @property (nonatomic, retain) NSMutableString *currentParsedCharacterData;
+@property (nonatomic, assign) NSManagedObjectContext *context;
 
 @end
 
@@ -33,11 +36,11 @@ NSString *kPodcastsMsgErrorKey = @"PodcastsMsgErrorKey";
 @synthesize currentItemObject;
 @synthesize currentParsedCharacterData;
 @synthesize currentParseBatch;
+@synthesize context;
 
--  (id)initWithData: (NSData *)data {
-    if (self = [super init]) {
-        podcastData = [data copy];
-        
+-  (id)initWithManagedObjectContext:(NSManagedObjectContext *)inContext {
+    if ((self = [super init])) {
+        self.context = inContext;
         dateFormatter = [[NSDateFormatter alloc] init];
         [dateFormatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
         [dateFormatter setLocale:[[[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"] autorelease]];
@@ -66,7 +69,7 @@ NSString *kPodcastsMsgErrorKey = @"PodcastsMsgErrorKey";
     // It's also possible to have NSXMLParser download the data, by passing it a URL, but this is
     // not desirable because it gives less control over the network, particularly in responding to
     // connection errors.
-    NSXMLParser *parser = [[NSXMLParser alloc] initWithData: self.podcastData];
+    NSXMLParser *parser = [[NSXMLParser alloc] initWithContentsOfURL: [NSURL URLWithString: rssFeedURLString]];
     [parser setDelegate:self];
     [parser parse];
     
@@ -144,13 +147,15 @@ static NSString *const kContentURLElementName = @"media:content";
     
     if ([elementName isEqualToString: kChannelElementName]) {
         parsingItem = NO;
-        Channel *channel = [[Channel alloc] init];
-        self.currentChannelObject = channel;
+        NSManagedObject *channel = [NSEntityDescription insertNewObjectForEntityForName: @"Channel" 
+                                                                 inManagedObjectContext:context];
+        self.currentChannelObject = (Channel *)channel;
         [channel release];
     } else if ([elementName isEqualToString: kItemElementName]) {
         parsingItem = YES;
-        Item *item = [[Item alloc] init];
-        self.currentItemObject = item;
+        NSManagedObject *item = [NSEntityDescription insertNewObjectForEntityForName: @"Item"
+                                                              inManagedObjectContext: context];
+        self.currentItemObject = (Item *)item;
         [item release];
     } else if (nil == currentItemObject && [elementName isEqualToString: kLinkElementName]) {
         // if currentItemObject is nil, we must be dealing with the Channel object.
@@ -208,6 +213,8 @@ static NSString *const kContentURLElementName = @"media:content";
         } else {
             // Do nothing here as we don't care about these values.
         }
+    } else if ([elementName isEqualToString: kItemElementName]) {
+        // TODO: deal with the new element
     }
         /*[self.currentParseBatch addObject: self.currentChannelObject];
         parsedPodcastCounter++;
@@ -278,9 +285,9 @@ static NSString *const kContentURLElementName = @"media:content";
 // post the error as an NSNotification to our app delegate.
 - (void)handlePodcastsError:(NSError *)parseError {
     [[NSNotificationCenter defaultCenter] postNotificationName: kParsePodcastsError
-                                                        object: self
+                                                        object: parseError
                                                       userInfo: [NSDictionary dictionaryWithObject:parseError
-                                                                                            forKey:kParsePodcastsError]];
+                                                                                            forKey:kPodcastsMsgErrorKey]];
 }
 
 // an error occurred while parsing the earthquake data,

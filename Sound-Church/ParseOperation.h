@@ -29,6 +29,7 @@ extern NSString *kPodcastsMsgErrorKey;
     Item *currentItemObject;
     NSMutableArray *currentParseBatch;
     NSMutableString *currentParsedCharacterData;
+    NSManagedObjectContext *context;
 
     BOOL accumulatingParsedCharacterData;
     BOOL didAbortParsing;
@@ -37,5 +38,7 @@ extern NSString *kPodcastsMsgErrorKey;
 }
 
 @property (copy, readonly)NSData *podcastData;
+
+- (id)initWithManagedObjectContext: (NSManagedObjectContext *)context;
 
 @end

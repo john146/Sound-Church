@@ -18,7 +18,7 @@
 
 - (void) handleError: (NSError *)error;
 - (void) addPodcastsToList: (NSArray *)items;
-- (void)podcastError: (NSNotification *)notification;
+- (void)podcastsError: (NSNotification *)notification;
 
 @end
 
@@ -39,7 +39,7 @@
     // Add the navigation controller's view to the window and display.
     self.window.rootViewController = self.navigationController;
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-    RSSDownloader *downloader = [[[RSSDownloader alloc] initWithDelegate: self] autorelease];
+    //    RSSDownloader *downloader = [[[RSSDownloader alloc] initWithDelegate: self] autorelease];
 
     parseQueue = [NSOperationQueue new];
     
@@ -51,6 +51,9 @@
                                              selector:@selector(podcastsError:)
                                                  name:kParsePodcastsError
                                                object:nil];
+
+    ParseOperation *parseOperation = [[[ParseOperation alloc] initWithManagedObjectContext: self.managedObjectContext] autorelease];
+    [self.parseQueue addOperation: parseOperation];
 
     [self.window makeKeyAndVisible];
     return YES;
