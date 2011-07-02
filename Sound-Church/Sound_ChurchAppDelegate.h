@@ -12,7 +12,7 @@
 
 @class NSURLConnection;
 
-@interface Sound_ChurchAppDelegate : NSObject <UIApplicationDelegate, RSSDownloaderDelegate> {
+@interface Sound_ChurchAppDelegate : NSObject <UIApplicationDelegate> {
 
 @private
     NSMutableData *podcastData;
