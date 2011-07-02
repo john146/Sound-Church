@@ -234,6 +234,7 @@
 - (void)addPodcasts:(NSNotification *)notification {
     assert([NSThread isMainThread]);
     
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     [self addPodcastsToList:[[notification userInfo] valueForKey: kPodcastResultsKey]];
 }
 
@@ -250,7 +251,7 @@
 // The batch size is set via the kSizeOfEarthquakeBatch constant.
 //
 - (void)addPodcastsToList:(NSArray *)items {
-    
+    NSLog(@"Entering addPodcastsToList:");
     // insert the podcasts into our rootViewController's data source (for KVO purposes)
     
 }
