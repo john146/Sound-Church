@@ -22,7 +22,7 @@
 @dynamic summary;
 @dynamic guid;
 @dynamic contentUrl;
-@dynamic item;
+@dynamic channel;
 
 - (void)addItemObject:(Channel *)value {    
     NSSet *changedObjects = [[NSSet alloc] initWithObjects:&value count:1];

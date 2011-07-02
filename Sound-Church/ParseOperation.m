@@ -44,7 +44,7 @@ NSString *kPodcastsMsgErrorKey = @"PodcastsMsgErrorKey";
     if ((self = [super init])) {
         self.context = inContext;
         dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
+        [dateFormatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:-28800]]; // Pacific Standard Time
         [dateFormatter setLocale:[[[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"] autorelease]];
         [dateFormatter setDateFormat:@"yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'"];
     }
@@ -172,28 +172,20 @@ static NSString *const kContentURLElementName = @"media:content";
     } else if ([elementName isEqualToString: kTitleElementName] ||
                [elementName isEqualToString: kLastBuildDateElementName] ||
                [elementName isEqualToString: kPubDateElementName] ||
-               [elementName isEqualToString: kDescriptionElementName]) {
-        // For the 'title', 'buildDate', 'pubDate', and 'description' element begin accumulationg parsed 
-        // character data. The contents are collected in parser:foundCharacters.
+               [elementName isEqualToString: kDescriptionElementName] ||
+               [elementName isEqualToString: kItemDescriptionElementName] ||
+               [elementName isEqualToString: kCategoryElementName] ||
+               [elementName isEqualToString: kSubtitleElementName] ||
+               [elementName isEqualToString: kAuthorElementName] ||
+               [elementName isEqualToString: kLinkElementName] ||
+               [elementName isEqualToString: kSummaryElementName] ||
+               [elementName isEqualToString: kGUIDElementName]) {
         accumulatingParsedCharacterData = YES;
         // The mutable string needs to be reset to empty.
         [currentParsedCharacterData setString: @""];
-    }/* else if ([elementName isEqualToString:kLinkElementName]) {
-        NSString *relAttribute = [attributeDict valueForKey:@"rel"];
-        if ([relAttribute isEqualToString:@"alternate"]) {
-            NSString *podcastLink = [attributeDict valueForKey:@"href"];
-            //            self.currentPodcastObject.podcastLink = [NSURL URLWithString:podcastLink];
-        }
-    } else if ([elementName isEqualToString:kTitleElementName] )//||
-    {
-               //               [elementName isEqualToString:kUpdatedElementName] ||
-               //               [elementName isEqualToString:kGeoRSSPointElementName]) {
-        // For the 'title', 'updated', or 'georss:point' element begin accumulating parsed character data.
-        // The contents are collected in parser:foundCharacters:.
-        accumulatingParsedCharacterData = YES;
-        // The mutable string needs to be reset to empty.
-        [currentParsedCharacterData setString:@""];
-    } */
+    } else if ([elementName isEqualToString:kContentURLElementName]) {
+        self.currentItemObject.contentUrl = [attributeDict valueForKey:@"url"];
+    }
 }
 
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName
@@ -217,60 +209,29 @@ static NSString *const kContentURLElementName = @"media:content";
             // Do nothing here as we don't care about these values.
         }
     } else if ([elementName isEqualToString: kItemElementName]) {
+        self.currentItemObject.channel = self.currentChannelObject;
         [self.podcasts addObject: self.currentItemObject];
     } else if (YES ==  parsingItem) {
-        
+        if ([elementName isEqualToString: kItemDescriptionElementName]) {
+            self.currentItemObject.itemDescription = self.currentParsedCharacterData;
+        } else if ([elementName isEqualToString: kCategoryElementName]) {
+            self.currentItemObject.category = self.currentParsedCharacterData;
+        } else if ([elementName isEqualToString: kSubtitleElementName]) {
+            self.currentItemObject.subtitle = self.currentParsedCharacterData;
+        } else if ([elementName isEqualToString: kAuthorElementName]) {
+            self.currentItemObject.author  = self.currentParsedCharacterData;
+        } else if ([elementName isEqualToString: kLinkElementName]) {
+            self.currentItemObject.link = self.currentParsedCharacterData;
+        } else if ([elementName isEqualToString: kPubDateElementName]) {
+            self.currentItemObject.pubDate = [dateFormatter dateFromString: self.currentParsedCharacterData];
+        } else if ([elementName isEqualToString: kTitleElementName]) {
+            self.currentItemObject.title = self.currentParsedCharacterData;
+        } else if ([elementName isEqualToString: kSummaryElementName]) {
+            self.currentItemObject.summary = self.currentParsedCharacterData;
+        } else if ([elementName isEqualToString: kGUIDElementName]) {
+            self.currentItemObject.guid = self.currentParsedCharacterData;
+        }
     }
-        /*[self.currentParseBatch addObject: self.currentChannelObject];
-        parsedPodcastCounter++;
-        if ([self.currentParseBatch count] >= kMaximumNumberOfPodcastsToParse) {
-            [self performSelectorOnMainThread:@selector(addPodcastsToList:)
-                                   withObject:self.currentParseBatch
-                                waitUntilDone:NO];
-            self.currentParseBatch = [NSMutableArray array];*/
-    //    }
-    //    } else if ([elementName isEqualToString:kTitleElementName]) {
-        // The title element contains the magnitude and location in the following format:
-        // <title>M 3.6, Virgin Islands region<title/>
-        // Extract the magnitude and the location using a scanner:
-        //  NSScanner *scanner = [NSScanner scannerWithString:self.currentParsedCharacterData];
-        // Scan past the "M " before the magnitude.
-        /*       if ([scanner scanString:@"M " intoString:NULL]) {
-            CGFloat magnitude;
-            if ([scanner scanFloat:&magnitude]) {
-                self.currentPodcastObject.magnitude = magnitude;
-                // Scan past the ", " before the title.
-                if ([scanner scanString:@", " intoString:NULL]) {
-                    NSString *location = nil;
-                    // Scan the remainer of the string.
-                    if ([scanner scanUpToCharactersFromSet:
-                         [NSCharacterSet illegalCharacterSet] intoString:&location]) {
-                        self.currentEarthquakeObject.location = location;
-                    }
-                }
-            }
-        } */
-    //    } else if ([elementName isEqualToString:kUpdatedElementName]) {
-    //  if (self.currentItemObject != nil) {
-            //           self.currentItemObject.date = [dateFormatter dateFromString:self.currentParsedCharacterData];
-            //    }
-            //        else {
-            // kUpdatedElementName can be found outside an entry element (i.e. in the XML header)
-            // so don't process it here.
-            //}
-        //   } else if ([elementName isEqualToString:kGeoRSSPointElementName]) {
-        // The georss:point element contains the latitude and longitude of the earthquake epicenter.
-        // 18.6477 -66.7452
-        //
-        //        NSScanner *scanner = [NSScanner scannerWithString:self.currentParsedCharacterData];
-        //  double latitude, longitude;
-        //if ([scanner scanDouble:&latitude]) {
-        //   if ([scanner scanDouble:&longitude]) {
-                //                self.currentPodcastObject.latitude = latitude;
-                //              self.currentPodcastObject.longitude = longitude;
-                //  }
-                //}
-    //    }
     // Stop accumulating parsed character data. We won't start again until specific elements begin.
     accumulatingParsedCharacterData = NO;
 }

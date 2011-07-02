@@ -35,6 +35,7 @@ extern NSString *kPodcastsMsgErrorKey;
     BOOL didAbortParsing;
     BOOL parsingItem;
     NSUInteger parsedPodcastsCounter;
+    NSMutableSet *podcasts;
 }
 
 @property (copy, readonly)NSData *podcastData;
