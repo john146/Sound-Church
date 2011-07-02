@@ -52,12 +52,12 @@ NSString *kPodcastsMsgErrorKey = @"PodcastsMsgErrorKey";
     return self;
 }
 
-- (void)addPodcastsToList: (NSArray *)podcasts {
+- (void)addPodcastsToList: (NSArray *)inPodcasts {
     assert([NSThread isMainThread]);
     
     [[NSNotificationCenter defaultCenter] postNotificationName: kAddPodcastsNotification
                                                         object: self
-                                                      userInfo: [NSDictionary dictionaryWithObject: podcasts
+                                                      userInfo: [NSDictionary dictionaryWithObject: inPodcasts
                                                                                             forKey: kPodcastResultsKey]];
 }
 

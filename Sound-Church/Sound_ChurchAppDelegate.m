@@ -218,47 +218,6 @@
     return __persistentStoreCoordinator;
 }
 
-#pragma mark - RSSDownloader Delegate Methods
-- (void)downloader: (RSSDownloader *)downloader didReceiveResponseError:(NSError *)error {
-    if (nil == error) {
-        // Successful connection
-        NSLog(@"Downloader connected to RSS feed");
-        
-    } else {
-        [self handleError: error];
-        [error release];
-    }
-}
-
-- (void)downloader: (RSSDownloader *)downloader didReceiveData:(NSData *)data {
-    // TODO: Need to feed a progress bar.
-    [podcastData appendData: data];
-    NSLog(@"Total bytes: %i", [data length]);
-}
-
-- (void)downloader: (RSSDownloader *)downloader didFailWithError:(NSError *)error {
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;   
-    [self handleError: error];
-}
-
-- (void)downloaderDidFinishLoading: (RSSDownloader *)downloader {
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;   
-    
-    // Spawn an NSOperation to parse the earthquake data so that the UI is not blocked while the
-    // application parses the XML data.
-    //
-    // IMPORTANT! - Don't access or affect UIKit objects on secondary threads.
-    //
-    ParseOperation *parseOperation = [[ParseOperation alloc] initWithData: self.podcastData];
-    [self.parseQueue addOperation: parseOperation];
-    [parseOperation release];   // once added to the NSOperationQueue it's retained, we don't need it anymore
-    
-    //  podcastData will be retained by the NSOperation until it has finished executing,
-    // so we no longer need a reference to it in the main thread.
-    self.podcastData = nil;
-    NSLog(@"Done.");
-}
-
 #pragma mark - Application's Documents directory
 
 /**

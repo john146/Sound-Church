@@ -23,11 +23,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Sound-Church/Sound_ChurchAppDelegate.m"
-         timestampString = "331330072.883453"
+         timestampString = "331340621.770361"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "275"
-         endingLineNumber = "275"
+         startingLineNumber = "234"
+         endingLineNumber = "234"
          landmarkName = "-addPodcasts:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -37,11 +37,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Sound-Church/Sound_ChurchAppDelegate.m"
-         timestampString = "331330072.883453"
+         timestampString = "331340621.770361"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "293"
-         endingLineNumber = "293"
+         startingLineNumber = "252"
+         endingLineNumber = "252"
          landmarkName = "-addPodcastsToList:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -65,11 +65,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Sound-Church/Sound_ChurchAppDelegate.m"
-         timestampString = "331330072.883453"
+         timestampString = "331340621.770361"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "303"
-         endingLineNumber = "303"
+         startingLineNumber = "262"
+         endingLineNumber = "262"
          landmarkName = "-handleError:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -116,17 +116,17 @@
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
-         shouldBeEnabled = "No"
+         shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          isPathRelative = "1"
-         filePath = "Sound-Church/ParseOperation.m"
-         timestampString = "331335184.031453"
+         filePath = "Sound-Church/RootViewController.m"
+         timestampString = "331340612.58193"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "45"
-         endingLineNumber = "45"
-         landmarkName = "-init"
+         startingLineNumber = "296"
+         endingLineNumber = "296"
+         landmarkName = "-controllerDidChangeContent:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
