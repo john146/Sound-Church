@@ -26,6 +26,7 @@ NSString *kPodcastsMsgErrorKey = @"PodcastsMsgErrorKey";
 @property (nonatomic, retain) NSMutableArray *currentParseBatch;
 @property (nonatomic, retain) NSMutableString *currentParsedCharacterData;
 @property (nonatomic, assign) NSManagedObjectContext *context;
+@property (nonatomic, retain) NSMutableSet *podcasts;
 
 @end
 
@@ -37,6 +38,7 @@ NSString *kPodcastsMsgErrorKey = @"PodcastsMsgErrorKey";
 @synthesize currentParsedCharacterData;
 @synthesize currentParseBatch;
 @synthesize context;
+@synthesize podcasts;
 
 -  (id)initWithManagedObjectContext:(NSManagedObjectContext *)inContext {
     if ((self = [super init])) {
@@ -96,6 +98,7 @@ NSString *kPodcastsMsgErrorKey = @"PodcastsMsgErrorKey";
     [currentParsedCharacterData release];
     [currentParseBatch release];
     [dateFormatter release];
+    [podcasts release];
     
     [super dealloc];
 }
@@ -197,9 +200,9 @@ static NSString *const kContentURLElementName = @"media:content";
   namespaceURI:(NSString *)namespaceURI
  qualifiedName:(NSString *)qName {     
     if ([elementName isEqualToString: kChannelElementName]) {
-        // TODO: Handle the currentChannelObject, see if it's new and manage accordingly
-        // Nothing to this one, as we will keep the channel object in self.currentChannelObject for now.
-    } else if (nil == currentItemObject) {
+        self.currentChannelObject.items = self.podcasts;
+        // According to my understanding, this should automatically be assigned to the correct store.
+    } else if (NO == parsingItem) {
         if ([elementName isEqualToString: kLinkElementName]) {
             self.currentChannelObject.link = self.currentParsedCharacterData;
         } else if ([elementName isEqualToString: kTitleElementName]) {
@@ -214,7 +217,9 @@ static NSString *const kContentURLElementName = @"media:content";
             // Do nothing here as we don't care about these values.
         }
     } else if ([elementName isEqualToString: kItemElementName]) {
-        // TODO: deal with the new element
+        [self.podcasts addObject: self.currentItemObject];
+    } else if (YES ==  parsingItem) {
+        
     }
         /*[self.currentParseBatch addObject: self.currentChannelObject];
         parsedPodcastCounter++;

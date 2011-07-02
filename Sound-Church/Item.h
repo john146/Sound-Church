@@ -26,6 +26,6 @@
 @property (nonatomic, retain) NSString * summary;
 @property (nonatomic, retain) NSString * guid;
 @property (nonatomic, retain) NSString * contentUrl;
-@property (nonatomic, retain) NSSet* item;
+@property (nonatomic, retain) NSManagedObject* channel;
 
 @end

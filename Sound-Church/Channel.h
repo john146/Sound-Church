@@ -19,6 +19,6 @@
 @property (nonatomic, retain) NSDate * lastBuildDate;
 @property (nonatomic, retain) NSDate * pubDate;
 @property (nonatomic, retain) NSString * desc;
-@property (nonatomic, retain) NSManagedObject * items;
+@property (nonatomic, retain) NSSet * items;
 
 @end
