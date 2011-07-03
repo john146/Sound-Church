@@ -179,7 +179,7 @@
     // Save the context.
     NSError *error = nil;
     if (![context save:&error])
-    {
+    {*/
         /*
          Replace this implementation with code to handle the error appropriately.
          
