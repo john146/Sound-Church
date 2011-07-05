@@ -67,18 +67,20 @@ NSString *kPodcastsMsgErrorKey = @"PodcastsMsgErrorKey";
 - (void)main {
     self.currentParseBatch = [NSMutableArray array];
     self.currentParsedCharacterData = [NSMutableString string];
+    self.podcasts = [NSMutableSet set];
     
     // It's also possible to have NSXMLParser download the data, by passing it a URL, but this is
     // not desirable because it gives less control over the network, particularly in responding to
     // connection errors.
-    NSXMLParser *parser = [[NSXMLParser alloc] initWithContentsOfURL: [NSURL URLWithString: rssFeedURLString]];
+    NSXMLParser *parser = 
+                [[[NSXMLParser alloc] initWithContentsOfURL: [NSURL URLWithString: rssFeedURLString]] autorelease];
     [parser setDelegate:self];
     [parser parse];
     
     // depending on the total number of podcasts parsed, the last batch might not have been a
     // "full" batch, and thus not been part of the regular batch transfer. So, we check the count of
     // the array and, if necessary, send it to the main thread.
-    if ([self.currentParseBatch count] > 0) {
+    if (self.currentItemObject) {
         [self performSelectorOnMainThread: @selector(addPodcastsToList:)
                                withObject: self.currentParseBatch
                             waitUntilDone: NO];
@@ -87,8 +89,6 @@ NSString *kPodcastsMsgErrorKey = @"PodcastsMsgErrorKey";
     self.currentParseBatch = nil;
     self.currentItemObject = nil;
     self.currentParsedCharacterData = nil;
-    
-    [parser release];
 }
 
 - (void)dealloc {
@@ -210,6 +210,7 @@ static NSString *const kContentURLElementName = @"media:content";
         }
     } else if ([elementName isEqualToString: kItemElementName]) {
         self.currentItemObject.channel = self.currentChannelObject;
+        [self.currentParseBatch addObject: self.currentItemObject];
         [self.podcasts addObject: self.currentItemObject];
     } else if (YES ==  parsingItem) {
         if ([elementName isEqualToString: kItemDescriptionElementName]) {

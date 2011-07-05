@@ -137,8 +137,8 @@
 #pragma mark - Core Data stack
 
 /**
- Returns the managed object context for the application.
- If the context doesn't already exist, it is created and bound to the persistent store coordinator for the application.
+ * Returns the managed object context for the application.
+ * If the context doesn't already exist, it is created and bound to the persistent store coordinator for the application.
  */
 - (NSManagedObjectContext *)managedObjectContext
 {
@@ -157,8 +157,8 @@
 }
 
 /**
- Returns the managed object model for the application.
- If the model doesn't already exist, it is created from the application's model.
+ * Returns the managed object model for the application.
+ * If the model doesn't already exist, it is created from the application's model.
  */
 - (NSManagedObjectModel *)managedObjectModel
 {
@@ -172,8 +172,8 @@
 }
 
 /**
- Returns the persistent store coordinator for the application.
- If the coordinator doesn't already exist, it is created and the application's store added to it.
+ * Returns the persistent store coordinator for the application.
+ * If the coordinator doesn't already exist, it is created and the application's store added to it.
  */
 - (NSPersistentStoreCoordinator *)persistentStoreCoordinator
 {
@@ -230,8 +230,8 @@
 
 #pragma mark - NSOperationCenter Callbacks
 // Our NSNotification callback from the running NSOperation to add the earthquakes
-//
-- (void)addPodcasts:(NSNotification *)notification {
+- (void)addPodcasts:(NSNotification *)notification 
+{
     assert([NSThread isMainThread]);
     
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
@@ -239,28 +239,31 @@
 }
 
 // Our NSNotification callback from the running NSOperation when a parsing error has occurred
-//
-- (void)podcastsError: (NSNotification *)notification {
+- (void)podcastsError: (NSNotification *)notification 
+{
     assert([NSThread isMainThread]);
     
     [self handleError:[[notification userInfo] valueForKey: kPodcastsMsgErrorKey]];
 }
 
-// The NSOperation "ParseOperation" calls addEarthquakes: via NSNotification, on the main thread
+// The NSOperation "ParseOperation" calls addPodcasts: via NSNotification, on the main thread
 // which in turn calls this method, with batches of parsed objects.
-// The batch size is set via the kSizeOfEarthquakeBatch constant.
-//
-- (void)addPodcastsToList:(NSArray *)items {
+- (void)addPodcastsToList:(NSArray *)items 
+{
     NSLog(@"Entering addPodcastsToList:");
     // insert the podcasts into our rootViewController's data source (for KVO purposes)
-    
+    for (id item in items)
+    {
+        [self.managedObjectContext insertObject: item];
+    }
 }
 
 // TODO: Handle errors in the download by showing an alert to the user. This is a very
 // simple way of handling the error, partly because this application does not have any offline
 // functionality for the user. Most real applications should handle the error in a less obtrusive
 // way and provide offline functionality to the user.
-- (void)handleError:(NSError *)error {
+- (void)handleError:(NSError *)error 
+{
     NSString *errorMessage = [error localizedDescription];
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:
                               NSLocalizedString(@"Error Title",
