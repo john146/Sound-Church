@@ -40,8 +40,10 @@ NSString *kPodcastsMsgErrorKey = @"PodcastsMsgErrorKey";
 @synthesize context;
 @synthesize podcasts;
 
--  (id)initWithManagedObjectContext:(NSManagedObjectContext *)inContext {
-    if ((self = [super init])) {
+-  (id)initWithManagedObjectContext:(NSManagedObjectContext *)inContext 
+{
+    if ((self = [super init])) 
+    {
         self.context = inContext;
         dateFormatter = [[NSDateFormatter alloc] init];
         [dateFormatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:-28800]]; // Pacific Standard Time
@@ -52,7 +54,8 @@ NSString *kPodcastsMsgErrorKey = @"PodcastsMsgErrorKey";
     return self;
 }
 
-- (void)addPodcastsToList: (NSArray *)inPodcasts {
+- (void)addPodcastsToList: (NSArray *)inPodcasts 
+{
     assert([NSThread isMainThread]);
     
     [[NSNotificationCenter defaultCenter] postNotificationName: kAddPodcastsNotification
@@ -64,7 +67,8 @@ NSString *kPodcastsMsgErrorKey = @"PodcastsMsgErrorKey";
 /**
  * The main function to start the processing the parsing
  */
-- (void)main {
+- (void)main
+{
     self.currentParseBatch = [NSMutableArray array];
     self.currentParsedCharacterData = [NSMutableString string];
     self.podcasts = [NSMutableSet set];
@@ -80,7 +84,8 @@ NSString *kPodcastsMsgErrorKey = @"PodcastsMsgErrorKey";
     // depending on the total number of podcasts parsed, the last batch might not have been a
     // "full" batch, and thus not been part of the regular batch transfer. So, we check the count of
     // the array and, if necessary, send it to the main thread.
-    if (self.currentItemObject) {
+    if (self.currentItemObject) 
+    {
         [self performSelectorOnMainThread: @selector(addPodcastsToList:)
                                withObject: self.currentParseBatch
                             waitUntilDone: NO];
@@ -91,7 +96,8 @@ NSString *kPodcastsMsgErrorKey = @"PodcastsMsgErrorKey";
     self.currentParsedCharacterData = nil;
 }
 
-- (void)dealloc {
+- (void)dealloc 
+{
     [podcastData release];
     
     [currentItemObject release];
@@ -138,29 +144,36 @@ static NSString *const kContentURLElementName = @"media:content";
 - (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName
   namespaceURI:(NSString *)namespaceURI
  qualifiedName:(NSString *)qName
-    attributes:(NSDictionary *)attributeDict {
+    attributes:(NSDictionary *)attributeDict 
+{
     // If the number of parsed earthquakes is greater than
     // kMaximumNumberOfPodcastsToParse, abort the parse.
-    if (parsedPodcastsCounter >= kMaximumNumberOfPodcastsToParse) {
+    if (parsedPodcastsCounter >= kMaximumNumberOfPodcastsToParse) 
+    {
         // Use the flag didAbortParsing to distinguish between this deliberate stop
         // and other parser errors.
         didAbortParsing = YES;
         [parser abortParsing];
     }
     
-    if ([elementName isEqualToString: kChannelElementName]) {
+    if ([elementName isEqualToString: kChannelElementName]) 
+    {
         parsingItem = NO;
         NSManagedObject *channel = [NSEntityDescription insertNewObjectForEntityForName: @"Channel" 
                                                                  inManagedObjectContext:context];
         self.currentChannelObject = (Channel *)channel;
         [channel release];
-    } else if ([elementName isEqualToString: kItemElementName]) {
+    } 
+    else if ([elementName isEqualToString: kItemElementName]) 
+    {
         parsingItem = YES;
         NSManagedObject *item = [NSEntityDescription insertNewObjectForEntityForName: @"Item"
                                                               inManagedObjectContext: context];
         self.currentItemObject = (Item *)item;
         [item release];
-    } else if (nil == currentItemObject && [elementName isEqualToString: kLinkElementName]) {
+    } 
+    else if (nil == currentItemObject && [elementName isEqualToString: kLinkElementName]) 
+    {
         // if currentItemObject is nil, we must be dealing with the Channel object.
         // The link element is different for the Channel than it is in the Item, so parsed differently.
         // If currentItemObject is nil, we must be dealing with the channel object.
@@ -169,7 +182,8 @@ static NSString *const kContentURLElementName = @"media:content";
         accumulatingParsedCharacterData = YES;
         // The mutable string needs to be reset to empty.
         [currentParsedCharacterData setString: @""];
-    } else if ([elementName isEqualToString: kTitleElementName] ||
+    } 
+    else if ([elementName isEqualToString: kTitleElementName] ||
                [elementName isEqualToString: kLastBuildDateElementName] ||
                [elementName isEqualToString: kPubDateElementName] ||
                [elementName isEqualToString: kDescriptionElementName] ||
@@ -179,60 +193,103 @@ static NSString *const kContentURLElementName = @"media:content";
                [elementName isEqualToString: kAuthorElementName] ||
                [elementName isEqualToString: kLinkElementName] ||
                [elementName isEqualToString: kSummaryElementName] ||
-               [elementName isEqualToString: kGUIDElementName]) {
+               [elementName isEqualToString: kGUIDElementName]) 
+    {
         accumulatingParsedCharacterData = YES;
         // The mutable string needs to be reset to empty.
         [currentParsedCharacterData setString: @""];
-    } else if ([elementName isEqualToString:kContentURLElementName]) {
+    } 
+    else if ([elementName isEqualToString:kContentURLElementName]) 
+    {
         self.currentItemObject.contentUrl = [attributeDict valueForKey:@"url"];
+    }
+    else
+    {
+        // Nothing to do here.
     }
 }
 
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName
   namespaceURI:(NSString *)namespaceURI
- qualifiedName:(NSString *)qName {     
-    if ([elementName isEqualToString: kChannelElementName]) {
+ qualifiedName:(NSString *)qName 
+{     
+    if ([elementName isEqualToString: kChannelElementName]) 
+    {
         // self.currentChannelObject.items = self.podcasts;
         // According to my understanding, this should automatically be assigned to the correct store.
-    } else if (NO == parsingItem) {
-        if ([elementName isEqualToString: kLinkElementName]) {
+    } else if (NO == parsingItem) 
+    {
+        if ([elementName isEqualToString: kLinkElementName]) 
+        {
             self.currentChannelObject.link = self.currentParsedCharacterData;
-        } else if ([elementName isEqualToString: kTitleElementName]) {
+        }
+        else if ([elementName isEqualToString: kTitleElementName]) 
+        {
             self.currentChannelObject.title = self.currentParsedCharacterData;
-        } else if ([elementName  isEqualToString: kLastBuildDateElementName]) {
+        } 
+        else if ([elementName  isEqualToString: kLastBuildDateElementName]) 
+        {
             self.currentChannelObject.lastBuildDate = [dateFormatter dateFromString: self.currentParsedCharacterData];
-        } else if ([elementName isEqualToString: kPubDateElementName]) {
+        } 
+        else if ([elementName isEqualToString: kPubDateElementName]) 
+        {
             self.currentChannelObject.pubDate = [dateFormatter dateFromString: self.currentParsedCharacterData];
-        } else if ([elementName isEqualToString: kDescriptionElementName]) {
+        } 
+        else if ([elementName isEqualToString: kDescriptionElementName]) 
+        {
             self.currentChannelObject.desc = self.currentParsedCharacterData;
-        } else {
+        } 
+        else 
+        {
             // Do nothing here as we don't care about these values.
         }
-    } else if ([elementName isEqualToString: kItemElementName]) {
+    } 
+    else if ([elementName isEqualToString: kItemElementName]) 
+    {
         self.currentItemObject.channel = self.currentChannelObject;
         [self.currentParseBatch addObject: self.currentItemObject];
         // [self.podcasts addObject: self.currentItemObject];
-    } else if (YES ==  parsingItem) {
-        if ([elementName isEqualToString: kItemDescriptionElementName]) {
+    } 
+    else if (YES ==  parsingItem)
+    {
+        if ([elementName isEqualToString: kItemDescriptionElementName]) 
+        {
             self.currentItemObject.itemDescription = self.currentParsedCharacterData;
-        } else if ([elementName isEqualToString: kCategoryElementName]) {
+        } 
+        else if ([elementName isEqualToString: kCategoryElementName]) 
+        {
             self.currentItemObject.category = self.currentParsedCharacterData;
-        } else if ([elementName isEqualToString: kSubtitleElementName]) {
+        } 
+        else if ([elementName isEqualToString: kSubtitleElementName]) 
+        {
             self.currentItemObject.subtitle = self.currentParsedCharacterData;
-        } else if ([elementName isEqualToString: kAuthorElementName]) {
+        } 
+        else if ([elementName isEqualToString: kAuthorElementName]) 
+        {
             self.currentItemObject.author  = self.currentParsedCharacterData;
-        } else if ([elementName isEqualToString: kLinkElementName]) {
+        }
+        else if ([elementName isEqualToString: kLinkElementName]) 
+        {
             self.currentItemObject.link = self.currentParsedCharacterData;
-        } else if ([elementName isEqualToString: kPubDateElementName]) {
+        }
+        else if ([elementName isEqualToString: kPubDateElementName]) 
+        {
             self.currentItemObject.pubDate = [dateFormatter dateFromString: self.currentParsedCharacterData];
-        } else if ([elementName isEqualToString: kTitleElementName]) {
+        }
+        else if ([elementName isEqualToString: kTitleElementName]) 
+        {
             self.currentItemObject.title = self.currentParsedCharacterData;
-        } else if ([elementName isEqualToString: kSummaryElementName]) {
+        }
+        else if ([elementName isEqualToString: kSummaryElementName]) 
+        {
             self.currentItemObject.summary = self.currentParsedCharacterData;
-        } else if ([elementName isEqualToString: kGUIDElementName]) {
+        }
+        else if ([elementName isEqualToString: kGUIDElementName]) 
+        {
             self.currentItemObject.guid = self.currentParsedCharacterData;
         }
     }
+    
     // Stop accumulating parsed character data. We won't start again until specific elements begin.
     accumulatingParsedCharacterData = NO;
 }
@@ -240,8 +297,10 @@ static NSString *const kContentURLElementName = @"media:content";
 // This method is called by the parser when it find parsed character data ("PCDATA") in an element.
 // The parser is not guaranteed to deliver all of the parsed character data for an element in a single
 // invocation, so it is necessary to accumulate character data until the end of the element is reached.
-- (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string {
-    if (accumulatingParsedCharacterData) {
+- (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string 
+{
+    if (accumulatingParsedCharacterData) 
+    {
         // If the current element is one whose content we care about, append 'string'
         // to the property that holds the content of the current element.
         [self.currentParsedCharacterData appendString:string];
@@ -250,7 +309,8 @@ static NSString *const kContentURLElementName = @"media:content";
 
 // an error occurred while parsing the podcast data,
 // post the error as an NSNotification to our app delegate.
-- (void)handlePodcastsError:(NSError *)parseError {
+- (void)handlePodcastsError:(NSError *)parseError 
+{
     [[NSNotificationCenter defaultCenter] postNotificationName: kParsePodcastsError
                                                         object: parseError
                                                       userInfo: [NSDictionary dictionaryWithObject:parseError
@@ -260,7 +320,8 @@ static NSString *const kContentURLElementName = @"media:content";
 // an error occurred while parsing the earthquake data,
 // pass the error to the main thread for handling.
 // (note: don't report an error if we aborted the parse due to a max limit of earthquakes)
-- (void)parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError {
+- (void)parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError 
+{
     if ([parseError code] != NSXMLParserDelegateAbortedParseError && !didAbortParsing)
     {
         [self performSelectorOnMainThread:@selector(handlePodcastsError:)
