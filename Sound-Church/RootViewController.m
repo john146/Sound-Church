@@ -279,6 +279,8 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
            atIndex:(NSUInteger)sectionIndex 
      forChangeType:(NSFetchedResultsChangeType)type
 {
+    NSLog(@"Entering controller:didChangeSection:atIndex:forChangeType:");
+    
     switch(type)
     {
         case NSFetchedResultsChangeInsert:
@@ -299,8 +301,10 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
      forChangeType:(NSFetchedResultsChangeType)type
       newIndexPath:(NSIndexPath *)newIndexPath
 {
-    UITableView *tableView = self.tableView;
+    NSLog(@"Entering controller:didChangeObject:atIndexPath: %i forChangeType:newIndexPath: %i", 
+          [indexPath row], [newIndexPath row]);
     
+    UITableView *tableView = self.tableView;
     switch(type)
     {
             
@@ -329,6 +333,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
 {
+    NSLog(@"Entering controllerDidChangeContent:");
     [self.tableView endUpdates];
 }
 
