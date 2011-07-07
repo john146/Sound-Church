@@ -2003,7 +2003,7 @@
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>192</integer>
+					<integer>196</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
@@ -6412,7 +6412,7 @@ NSMutableDate</string>
 		<string>PrimaryDocumentVisibleCharacterRange</string>
 		<string>HideAllIssues</string>
 		<string>PrimaryDocumentSelectedCharacterRange</string>
-		<real>331764235.68666899</real>
+		<real>331766439.83497399</real>
 		<string>{0, 1796}</string>
 		<string>{177, 0}</string>
 		<string>Xcode.IDEKit.EditorDocument.SourceCode</string>
@@ -8703,7 +8703,7 @@ NSMutableDate</string>
 				</dict>
 			</array>
 		</dict>
-		<real>331764235.69120097</real>
+		<real>331766439.83901799</real>
 		<string>{12161, 1928}</string>
 		<string>{14089, 0}</string>
 		<dict>
@@ -11596,7 +11596,7 @@ NSMutableDate</string>
 			<array>
 				<dict>
 					<key>CF$UID</key>
-					<integer>40</integer>
+					<integer>161</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
@@ -12266,10 +12266,10 @@ NSMutableDate</string>
 			</array>
 		</dict>
 		<string>CodeFolds</string>
-		<real>331764235.68815398</real>
-		<string>{9122, 2354}</string>
-		<string>{6496, 0}</string>
-		<string>@implementation Sound_ChurchAppDelegate</string>
+		<real>331766439.83604902</real>
+		<string>{3801, 1587}</string>
+		<string>{4603, 0}</string>
+		<string>-saveContext</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -12302,7 +12302,7 @@ NSMutableDate</string>
 				</dict>
 			</array>
 		</dict>
-		<string>{{0, 0}, {918, 754}}</string>
+		<string>{{0, 0}, {918, 639}}</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -12371,7 +12371,7 @@ NSMutableDate</string>
 				</dict>
 			</array>
 		</dict>
-		<real>203</real>
+		<real>661</real>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -14732,7 +14732,7 @@ NSMutableDate</string>
 			<array>
 				<dict>
 					<key>CF$UID</key>
-					<integer>161</integer>
+					<integer>40</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
@@ -15069,7 +15069,7 @@ NSMutableDate</string>
 			<array>
 				<dict>
 					<key>CF$UID</key>
-					<integer>160</integer>
+					<integer>41</integer>
 				</dict>
 			</array>
 		</dict>
@@ -15425,12 +15425,12 @@ NSMutableDate</string>
             s = 1;
         }
     );
-    r = "{0, 12667}";
+    r = "{0, 12697}";
     s = 0;
 }</string>
 		</dict>
-		<real>331764235.69050097</real>
-		<string>{10954, 1713}</string>
+		<real>331766439.83822501</real>
+		<string>{3709, 1925}</string>
 		<string>{9061, 0}</string>
 		<string>-fetchedResultsController</string>
 		<dict>
@@ -15465,7 +15465,7 @@ NSMutableDate</string>
 				</dict>
 			</array>
 		</dict>
-		<string>{{0, 0}, {918, 639}}</string>
+		<string>{{0, 0}, {918, 776}}</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -16543,7 +16543,7 @@ NSMutableDate</string>
 				</dict>
 			</array>
 		</dict>
-		<real>331764235.68762702</real>
+		<real>331766439.83555502</real>
 		<string>{0, 881}</string>
 		<string>{138, 0}</string>
 		<dict>
@@ -16578,7 +16578,7 @@ NSMutableDate</string>
 				</dict>
 			</array>
 		</dict>
-		<string>{{0, 0}, {955, 776}}</string>
+		<string>{{0, 0}, {955, 754}}</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -21610,7 +21610,7 @@ NSMutableDate</string>
 			<array>
 				<dict>
 					<key>CF$UID</key>
-					<integer>41</integer>
+					<integer>160</integer>
 				</dict>
 			</array>
 		</dict>
@@ -21957,14 +21957,14 @@ NSMutableDate</string>
             s = 1;
         }
     );
-    r = "{0, 12667}";
+    r = "{0, 12697}";
     s = 0;
 }</string>
 		</dict>
-		<real>331764235.68969703</real>
-		<string>{9717, 758}</string>
-		<string>{10016, 76}</string>
-		<string>-controllerWillChangeContent:</string>
+		<real>331766439.837533</real>
+		<string>{10954, 811}</string>
+		<string>{11351, 0}</string>
+		<string>-controller:didChangeObject:atIndexPath:forChangeType:newIndexPath:</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -35684,11 +35684,11 @@ NSMutableDate</string>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>2093</integer>
+					<integer>2094</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>2095</integer>
+					<integer>2096</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
@@ -35743,6 +35743,42 @@ NSMutableDate</string>
 				<integer>2091</integer>
 			</dict>
 		</dict>
+		<string>file://localhost/Users/john/SoundChurch/Sound-Church/Sound-Church/Sound_ChurchAppDelegate.m</string>
+		<dict>
+			<key>$class</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>131</integer>
+			</dict>
+			<key>NS.base</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>0</integer>
+			</dict>
+			<key>NS.relative</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>2093</integer>
+			</dict>
+		</dict>
+		<string>file://localhost/Users/john/SoundChurch/Sound-Church/Sound-Church/Item.h</string>
+		<dict>
+			<key>$class</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>131</integer>
+			</dict>
+			<key>NS.base</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>0</integer>
+			</dict>
+			<key>NS.relative</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>2095</integer>
+			</dict>
+		</dict>
 		<string>file://localhost/Users/john/SoundChurch/Sound-Church/Sound-Church/ParseOperation.m</string>
 		<dict>
 			<key>$class</key>
@@ -35775,46 +35811,10 @@ NSMutableDate</string>
 			<key>NS.relative</key>
 			<dict>
 				<key>CF$UID</key>
-				<integer>2094</integer>
-			</dict>
-		</dict>
-		<string>file://localhost/Users/john/SoundChurch/Sound-Church/Sound-Church/Sound_ChurchAppDelegate.m</string>
-		<dict>
-			<key>$class</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>131</integer>
-			</dict>
-			<key>NS.base</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>0</integer>
-			</dict>
-			<key>NS.relative</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>2096</integer>
-			</dict>
-		</dict>
-		<string>file://localhost/Users/john/SoundChurch/Sound-Church/Sound-Church/Channel.m</string>
-		<dict>
-			<key>$class</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>131</integer>
-			</dict>
-			<key>NS.base</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>0</integer>
-			</dict>
-			<key>NS.relative</key>
-			<dict>
-				<key>CF$UID</key>
 				<integer>2098</integer>
 			</dict>
 		</dict>
-		<string>file://localhost/Users/john/SoundChurch/Sound-Church/Sound-Church/Item.h</string>
+		<string>file://localhost/Users/john/SoundChurch/Sound-Church/Sound-Church/Channel.m</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -44285,7 +44285,7 @@ NSMutableDate</string>
 				</dict>
 			</array>
 		</dict>
-		<real>331764235.68521899</real>
+		<real>331766439.83377999</real>
 		<string>{12161, 1928}</string>
 		<string>{14089, 0}</string>
 		<dict>
@@ -44615,7 +44615,7 @@ NSMutableDate</string>
 				</dict>
 			</array>
 		</dict>
-		<real>331764235.68507499</real>
+		<real>331766439.83356899</real>
 		<string>{0, 1796}</string>
 		<string>{177, 0}</string>
 		<dict>
@@ -44718,9 +44718,9 @@ NSMutableDate</string>
 				</dict>
 			</array>
 		</dict>
-		<real>331764235.684973</real>
-		<string>{9122, 2354}</string>
-		<string>{6496, 0}</string>
+		<real>331766439.83310997</real>
+		<string>{3801, 1587}</string>
+		<string>{4603, 0}</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -44847,13 +44847,13 @@ NSMutableDate</string>
             s = 1;
         }
     );
-    r = "{0, 12667}";
+    r = "{0, 12697}";
     s = 0;
 }</string>
 		</dict>
-		<real>331764235.68596202</real>
-		<string>{10954, 1713}</string>
-		<string>{9061, 0}</string>
+		<real>331766439.833224</real>
+		<string>{10954, 811}</string>
+		<string>{11351, 0}</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -45511,7 +45511,7 @@ NSMutableDate</string>
 				</dict>
 			</array>
 		</dict>
-		<real>331764235.68514597</real>
+		<real>331766439.83367902</real>
 		<string>{0, 881}</string>
 		<string>{138, 0}</string>
 		<dict>
@@ -48713,7 +48713,7 @@ NSMutableDate</string>
 			<array>
 				<dict>
 					<key>CF$UID</key>
-					<integer>41</integer>
+					<integer>160</integer>
 				</dict>
 			</array>
 		</dict>
@@ -49043,13 +49043,13 @@ NSMutableDate</string>
             s = 1;
         }
     );
-    r = "{0, 12667}";
+    r = "{0, 12697}";
     s = 0;
 }</string>
 		</dict>
-		<real>331764235.69175899</real>
-		<string>{9717, 758}</string>
-		<string>{10016, 76}</string>
+		<real>331766439.83961302</real>
+		<string>{10954, 811}</string>
+		<string>{11351, 0}</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -50460,7 +50460,7 @@ NSMutableDate</string>
 				<integer>3033</integer>
 			</dict>
 			<key>NS.time</key>
-			<real>331764234.19817299</real>
+			<real>331766420.91810399</real>
 		</dict>
 		<dict>
 			<key>$classes</key>
@@ -50471,7 +50471,7 @@ NSMutableDate</string>
 			<key>$classname</key>
 			<string>NSDate</string>
 		</dict>
-		<string>Today at 1:43 PM</string>
+		<string>Today at 2:20 PM</string>
 		<integer>106</integer>
 		<dict>
 			<key>$class</key>

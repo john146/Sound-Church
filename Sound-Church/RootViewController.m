@@ -301,8 +301,8 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
      forChangeType:(NSFetchedResultsChangeType)type
       newIndexPath:(NSIndexPath *)newIndexPath
 {
-    NSLog(@"Entering controller:didChangeObject:atIndexPath: %i forChangeType:newIndexPath: %i", 
-          [indexPath row], [newIndexPath row]);
+    NSLog(@"Entering controller:didChangeObject: %@ atIndexPath: %i forChangeType:newIndexPath: %i", 
+          ((Item *)anObject).title, [indexPath row], [newIndexPath row]);
     
     UITableView *tableView = self.tableView;
     switch(type)
