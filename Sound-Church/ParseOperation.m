@@ -192,7 +192,7 @@ static NSString *const kContentURLElementName = @"media:content";
   namespaceURI:(NSString *)namespaceURI
  qualifiedName:(NSString *)qName {     
     if ([elementName isEqualToString: kChannelElementName]) {
-        self.currentChannelObject.items = self.podcasts;
+        // self.currentChannelObject.items = self.podcasts;
         // According to my understanding, this should automatically be assigned to the correct store.
     } else if (NO == parsingItem) {
         if ([elementName isEqualToString: kLinkElementName]) {
@@ -211,7 +211,7 @@ static NSString *const kContentURLElementName = @"media:content";
     } else if ([elementName isEqualToString: kItemElementName]) {
         self.currentItemObject.channel = self.currentChannelObject;
         [self.currentParseBatch addObject: self.currentItemObject];
-        [self.podcasts addObject: self.currentItemObject];
+        // [self.podcasts addObject: self.currentItemObject];
     } else if (YES ==  parsingItem) {
         if ([elementName isEqualToString: kItemDescriptionElementName]) {
             self.currentItemObject.itemDescription = self.currentParsedCharacterData;
