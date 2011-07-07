@@ -63,18 +63,22 @@
 // Customize the number of sections in the table view.
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
+    NSLog(@"Entering numberOfSectionsInTableView. %i sections", [[self.fetchedResultsController sections] count]);
     return [[self.fetchedResultsController sections] count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
+    NSLog(@"Number of objects: %i", [sectionInfo numberOfObjects]);
     return [sectionInfo numberOfObjects];
 }
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSLog(@"Entering tableView:cellForRowAtIndexPath: for index %i", [indexPath row]);
+    
     static NSString *CellIdentifier = @"Cell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -101,6 +105,8 @@
 commitEditingStyle:(UITableViewCellEditingStyle)editingStyle 
 forRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSLog(@"Entering tableView:commitEditingStyle:forRowAtIndexPath: for index %i", [indexPath row]);
+    
     if (editingStyle == UITableViewCellEditingStyleDelete)
     {
         // Delete the managed object for the given index path
@@ -165,6 +171,8 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
+    NSLog(@"Entering configureCell:atIndexPath: for index %i", [indexPath row]);
+    
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     Item *item = [self.fetchedResultsController objectAtIndexPath:indexPath];
     cell.textLabel.text = item.title;
@@ -172,6 +180,8 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 
 - (void)insertNewObject
 {
+    NSLog(@"Entering insertNewObject");
+    
     // Create a new instance of the entity managed by the fetched results controller.
     NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
     NSEntityDescription *entity = [[self.fetchedResultsController fetchRequest] entity];
@@ -200,6 +210,8 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 
 - (NSFetchedResultsController *)fetchedResultsController
 {
+    NSLog(@"Entering fetchedResultsController");
+    
     if (fetchedResultsController != nil)
     {
         return fetchedResultsController;
@@ -258,6 +270,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 
 - (void)controllerWillChangeContent:(NSFetchedResultsController *)controller
 {
+    NSLog(@"Entering controllerWillChangeContent:");
     [self.tableView beginUpdates];
 }
 
