@@ -7,7 +7,6 @@
 //
 
 #import "ParseOperation.h"
-#import "Channel.h"
 #import "Item.h"
 
 static NSString *rssFeedURLString = @"http://feeds.feedburner.com/SoundChurch";
@@ -21,7 +20,6 @@ NSString *kPodcastsMsgErrorKey = @"PodcastsMsgErrorKey";
 
 @interface ParseOperation () <NSXMLParserDelegate>
 
-@property (nonatomic, assign) Channel *currentChannelObject; 
 @property (nonatomic, retain) Item *currentItemObject;
 @property (nonatomic, retain) NSMutableArray *currentParseBatch;
 @property (nonatomic, retain) NSMutableString *currentParsedCharacterData;
@@ -33,7 +31,6 @@ NSString *kPodcastsMsgErrorKey = @"PodcastsMsgErrorKey";
 @implementation ParseOperation
 
 @synthesize podcastData;
-@synthesize currentChannelObject;
 @synthesize currentItemObject;
 @synthesize currentParsedCharacterData;
 @synthesize currentParseBatch;
@@ -124,7 +121,6 @@ static const const NSUInteger kMaximumNumberOfPodcastsToParse = 50;
 static NSUInteger const kSizeOfPodcastBatch = 10;
 
 // Reduce potential parsing errors by using string constants declared in a single place.
-static NSString *const kChannelElementName = @"channel";
 static NSString *const kLinkElementName = @"link";
 static NSString *const kTitleElementName = @"title";
 static NSString *const kLastBuildDateElementName = @"lastBuildDate";
@@ -156,17 +152,8 @@ static NSString *const kContentURLElementName = @"media:content";
         [parser abortParsing];
     }
     
-    if ([elementName isEqualToString: kChannelElementName]) 
+    if ([elementName isEqualToString: kItemElementName]) 
     {
-        parsingItem = NO;
-        NSManagedObject *channel = [NSEntityDescription insertNewObjectForEntityForName: @"Channel" 
-                                                                 inManagedObjectContext:context];
-        self.currentChannelObject = (Channel *)channel;
-        [channel release];
-    } 
-    else if ([elementName isEqualToString: kItemElementName]) 
-    {
-        parsingItem = YES;
         NSManagedObject *item = [NSEntityDescription insertNewObjectForEntityForName: @"Item"
                                                               inManagedObjectContext: context];
         self.currentItemObject = (Item *)item;
@@ -213,81 +200,46 @@ static NSString *const kContentURLElementName = @"media:content";
   namespaceURI:(NSString *)namespaceURI
  qualifiedName:(NSString *)qName 
 {     
-    if ([elementName isEqualToString: kChannelElementName]) 
+    if ([elementName isEqualToString: kItemElementName]) 
     {
-        // self.currentChannelObject.items = self.podcasts;
-        // According to my understanding, this should automatically be assigned to the correct store.
-    } else if (NO == parsingItem) 
-    {
-        if ([elementName isEqualToString: kLinkElementName]) 
-        {
-            self.currentChannelObject.link = self.currentParsedCharacterData;
-        }
-        else if ([elementName isEqualToString: kTitleElementName]) 
-        {
-            self.currentChannelObject.title = self.currentParsedCharacterData;
-        } 
-        else if ([elementName  isEqualToString: kLastBuildDateElementName]) 
-        {
-            self.currentChannelObject.lastBuildDate = [dateFormatter dateFromString: self.currentParsedCharacterData];
-        } 
-        else if ([elementName isEqualToString: kPubDateElementName]) 
-        {
-            self.currentChannelObject.pubDate = [dateFormatter dateFromString: self.currentParsedCharacterData];
-        } 
-        else if ([elementName isEqualToString: kDescriptionElementName]) 
-        {
-            self.currentChannelObject.desc = self.currentParsedCharacterData;
-        } 
-        else 
-        {
-            // Do nothing here as we don't care about these values.
-        }
-    } 
-    else if ([elementName isEqualToString: kItemElementName]) 
-    {
-        self.currentItemObject.channel = self.currentChannelObject;
         [self.currentParseBatch addObject: self.currentItemObject];
         // [self.podcasts addObject: self.currentItemObject];
     } 
-    else if (YES ==  parsingItem)
+    else if ([elementName isEqualToString: kItemDescriptionElementName]) 
     {
-        if ([elementName isEqualToString: kItemDescriptionElementName]) 
-        {
-            self.currentItemObject.itemDescription = self.currentParsedCharacterData;
-        } 
-        else if ([elementName isEqualToString: kCategoryElementName]) 
-        {
-            self.currentItemObject.category = self.currentParsedCharacterData;
-        } 
-        else if ([elementName isEqualToString: kSubtitleElementName]) 
-        {
-            self.currentItemObject.subtitle = self.currentParsedCharacterData;
-        } 
-        else if ([elementName isEqualToString: kAuthorElementName]) 
-        {
-            self.currentItemObject.author  = self.currentParsedCharacterData;
-        }
-        else if ([elementName isEqualToString: kLinkElementName]) 
-        {
-            self.currentItemObject.link = self.currentParsedCharacterData;
-        }
-        else if ([elementName isEqualToString: kPubDateElementName]) 
-        {
-            self.currentItemObject.pubDate = [dateFormatter dateFromString: self.currentParsedCharacterData];
-        }
-        else if ([elementName isEqualToString: kTitleElementName]) 
-        {
-            self.currentItemObject.title = self.currentParsedCharacterData;
-        }
-        else if ([elementName isEqualToString: kSummaryElementName]) 
-        {
-            self.currentItemObject.summary = self.currentParsedCharacterData;
-        }
-        else if ([elementName isEqualToString: kGUIDElementName]) 
-        {
-            self.currentItemObject.guid = self.currentParsedCharacterData;
-        }
+        self.currentItemObject.itemDescription = self.currentParsedCharacterData;
+    } 
+    else if ([elementName isEqualToString: kCategoryElementName]) 
+    {
+        self.currentItemObject.category = self.currentParsedCharacterData;
+    } 
+    else if ([elementName isEqualToString: kSubtitleElementName]) 
+    {
+        self.currentItemObject.subtitle = self.currentParsedCharacterData;
+    } 
+    else if ([elementName isEqualToString: kAuthorElementName]) 
+    {
+        self.currentItemObject.author  = self.currentParsedCharacterData;
+    }
+    else if ([elementName isEqualToString: kLinkElementName]) 
+    {
+        self.currentItemObject.link = self.currentParsedCharacterData;
+    }
+    else if ([elementName isEqualToString: kPubDateElementName]) 
+    {
+        self.currentItemObject.pubDate = [dateFormatter dateFromString: self.currentParsedCharacterData];
+    }
+    else if ([elementName isEqualToString: kTitleElementName]) 
+    {
+        self.currentItemObject.title = self.currentParsedCharacterData;
+    }
+    else if ([elementName isEqualToString: kSummaryElementName]) 
+    {
+        self.currentItemObject.summary = self.currentParsedCharacterData;
+    }
+    else if ([elementName isEqualToString: kGUIDElementName]) 
+    {
+        self.currentItemObject.guid = self.currentParsedCharacterData;
     }
     
     // Stop accumulating parsed character data. We won't start again until specific elements begin.

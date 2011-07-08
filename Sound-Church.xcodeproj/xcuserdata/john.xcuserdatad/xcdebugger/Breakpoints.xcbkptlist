@@ -37,11 +37,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Sound-Church/ParseOperation.m"
-         timestampString = "331751206.335422"
+         timestampString = "331852710.829525"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "313"
-         endingLineNumber = "313"
+         startingLineNumber = "265"
+         endingLineNumber = "265"
          landmarkName = "-handlePodcastsError:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -51,11 +51,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Sound-Church/ParseOperation.m"
-         timestampString = "331751206.335422"
+         timestampString = "331852710.829525"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "324"
-         endingLineNumber = "324"
+         startingLineNumber = "276"
+         endingLineNumber = "276"
          landmarkName = "-parser:parseErrorOccurred:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -85,20 +85,6 @@
          startingLineNumber = "181"
          endingLineNumber = "181"
          landmarkName = "-insertNewObject"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         isPathRelative = "1"
-         filePath = "Sound-Church/RootViewController.m"
-         timestampString = "331764409.62401"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "304"
-         endingLineNumber = "304"
-         landmarkName = "-controller:didChangeObject:atIndexPath:forChangeType:newIndexPath:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

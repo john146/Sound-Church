@@ -7,11 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5202169413BCFAC900084CA2 /* Channel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5202169313BCFAC900084CA2 /* Channel.m */; };
-		5202169513BCFAC900084CA2 /* Channel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5202169313BCFAC900084CA2 /* Channel.m */; };
-		5202169913BCFAEF00084CA2 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = 5202169813BCFAEF00084CA2 /* Item.m */; };
-		5202169A13BCFAEF00084CA2 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = 5202169813BCFAEF00084CA2 /* Item.m */; };
 		52167B5913AD7E6400F745CB /* RSSDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 5270A3D71388A7F30035E522 /* RSSDownloader.m */; };
+		526D2EB713C7AA5700D6BAA3 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = 526D2EB613C7AA5700D6BAA3 /* Item.m */; };
+		526D2EB813C7AA5700D6BAA3 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = 526D2EB613C7AA5700D6BAA3 /* Item.m */; };
 		526D2FC8139C40E20058E08E /* MainWindow-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 526D2FC6139C40E20058E08E /* MainWindow-iPad.xib */; };
 		526D2FD3139C4FB80058E08E /* ParseOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 526D2FD2139C4FB80058E08E /* ParseOperation.m */; };
 		5270A3B713888E4A0035E522 /* RSSDownloadTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5270A3B613888E4A0035E522 /* RSSDownloadTests.m */; };
@@ -38,10 +36,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		5202169213BCFAC900084CA2 /* Channel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Channel.h; sourceTree = "<group>"; };
-		5202169313BCFAC900084CA2 /* Channel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Channel.m; sourceTree = "<group>"; };
-		5202169713BCFAEF00084CA2 /* Item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Item.h; sourceTree = "<group>"; };
-		5202169813BCFAEF00084CA2 /* Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Item.m; sourceTree = "<group>"; };
+		526D2EB513C7AA5700D6BAA3 /* Item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Item.h; sourceTree = "<group>"; };
+		526D2EB613C7AA5700D6BAA3 /* Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Item.m; sourceTree = "<group>"; };
 		526D2FC7139C40E20058E08E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = "iPad/en.lproj/MainWindow-iPad.xib"; sourceTree = "<group>"; };
 		526D2FD1139C4FB70058E08E /* ParseOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParseOperation.h; sourceTree = "<group>"; };
 		526D2FD2139C4FB80058E08E /* ParseOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParseOperation.m; sourceTree = "<group>"; };
@@ -158,10 +154,8 @@
 				5270A3D71388A7F30035E522 /* RSSDownloader.m */,
 				526D2FD1139C4FB70058E08E /* ParseOperation.h */,
 				526D2FD2139C4FB80058E08E /* ParseOperation.m */,
-				5202169213BCFAC900084CA2 /* Channel.h */,
-				5202169313BCFAC900084CA2 /* Channel.m */,
-				5202169713BCFAEF00084CA2 /* Item.h */,
-				5202169813BCFAEF00084CA2 /* Item.m */,
+				526D2EB513C7AA5700D6BAA3 /* Item.h */,
+				526D2EB613C7AA5700D6BAA3 /* Item.m */,
 			);
 			path = "Sound-Church";
 			sourceTree = "<group>";
@@ -313,8 +307,7 @@
 				52BE14E1137F5BF400A195FB /* RootViewController.m in Sources */,
 				5270A3D81388A7F30035E522 /* RSSDownloader.m in Sources */,
 				526D2FD3139C4FB80058E08E /* ParseOperation.m in Sources */,
-				5202169413BCFAC900084CA2 /* Channel.m in Sources */,
-				5202169913BCFAEF00084CA2 /* Item.m in Sources */,
+				526D2EB713C7AA5700D6BAA3 /* Item.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -325,8 +318,7 @@
 				52BE14FB137F5BF400A195FB /* Sound_ChurchTests.m in Sources */,
 				5270A3B713888E4A0035E522 /* RSSDownloadTests.m in Sources */,
 				52167B5913AD7E6400F745CB /* RSSDownloader.m in Sources */,
-				5202169513BCFAC900084CA2 /* Channel.m in Sources */,
-				5202169A13BCFAEF00084CA2 /* Item.m in Sources */,
+				526D2EB813C7AA5700D6BAA3 /* Item.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
