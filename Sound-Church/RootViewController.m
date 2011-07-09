@@ -18,6 +18,17 @@
 @synthesize fetchedResultsController;
 @synthesize managedObjectContext;
 
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) 
+    {
+        // Custom initialization
+    }
+    
+    return self;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -25,7 +36,7 @@
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
     // Set the navigation title
     self.navigationItem.title = @"Sound Church";
-    
+    [self fetchedResultsController];
 }
 
 - (void)viewWillAppear:(BOOL)animated

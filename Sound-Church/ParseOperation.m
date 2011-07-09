@@ -129,7 +129,7 @@ static NSString *const kLastBuildDateElementName = @"lastBuildDate";
 static NSString *const kPubDateElementName = @"pubDate";
 static NSString *const kDescriptionElementName = @"description";
 static NSString *const kItemElementName = @"item";
-static NSString *const kItemDescriptionElementName = @"description";
+static NSString *const kItemDescriptionElementName = @"itunes:summary";
 static NSString *const kCategoryElementName = @"category";
 static NSString *const kSubtitleElementName = @"itunes:subtitle";
 static NSString *const kAuthorElementName = @"itunes:author";
@@ -187,12 +187,11 @@ static NSString *const kContentURLElementName = @"media:content";
     }
 }
 
-- (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName
+- (void)parser:(NSXMLParser *)parser 
+ didEndElement:(NSString *)elementName
   namespaceURI:(NSString *)namespaceURI
  qualifiedName:(NSString *)qName 
 {    
-    NSLog(@"Entering parser:didEndElement: %@ namespaceURI:qualifiedName:", elementName);
-    
     if (!self.currentItemObject)
     {
         // We don't want to bother attempting to process all the header info.
@@ -201,7 +200,8 @@ static NSString *const kContentURLElementName = @"media:content";
     
     if ([elementName isEqualToString: kItemElementName]) 
     {
-        [self.currentParseBatch addObject: self.currentItemObject];
+        NSLog(@"Entering parser:didEndElement: %@ namespaceURI:qualifiedName; for item %@", 
+              elementName, self.currentItemObject.title);
         [self performSelectorOnMainThread: @selector(addPodcastsToList:)
                                withObject: self.currentItemObject
                             waitUntilDone: NO];
@@ -209,6 +209,7 @@ static NSString *const kContentURLElementName = @"media:content";
     else if ([elementName isEqualToString: kItemDescriptionElementName]) 
     {
         self.currentItemObject.itemDescription = self.currentParsedCharacterData;
+        NSLog(@"Description: %@", self.currentItemObject.itemDescription);
     } 
     else if ([elementName isEqualToString: kCategoryElementName]) 
     {
@@ -232,8 +233,8 @@ static NSString *const kContentURLElementName = @"media:content";
     }
     else if ([elementName isEqualToString: kTitleElementName]) 
     {
-        NSLog(@"Title: %@", self.currentParsedCharacterData);
         self.currentItemObject.title = self.currentParsedCharacterData;
+        NSLog(@"Title: %@", self.currentItemObject.title);
     }
     else if ([elementName isEqualToString: kSummaryElementName]) 
     {

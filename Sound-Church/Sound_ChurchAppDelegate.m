@@ -260,6 +260,7 @@
     NSLog(@"Entering addPodcastsToList: %@.", item.title);
     // insert the podcasts into our rootViewController's data source (for KVO purposes)
     [self.managedObjectContext insertObject: item];
+    [self saveContext];
  }
 
 // TODO: Handle errors in the download by showing an alert to the user. This is a very
