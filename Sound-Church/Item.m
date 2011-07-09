@@ -8,10 +8,8 @@
 
 #import "Item.h"
 
-
 @implementation Item
-@dynamic category;
-@dynamic itemDescription;
+
 @dynamic subtitle;
 @dynamic message;
 @dynamic author;

@@ -127,10 +127,7 @@ static NSString *const kLinkElementName = @"link";
 static NSString *const kTitleElementName = @"title";
 static NSString *const kLastBuildDateElementName = @"lastBuildDate";
 static NSString *const kPubDateElementName = @"pubDate";
-static NSString *const kDescriptionElementName = @"description";
 static NSString *const kItemElementName = @"item";
-static NSString *const kItemDescriptionElementName = @"itunes:summary";
-static NSString *const kCategoryElementName = @"category";
 static NSString *const kSubtitleElementName = @"itunes:subtitle";
 static NSString *const kAuthorElementName = @"itunes:author";
 static NSString *const kSummaryElementName = @"itunes:summary";
@@ -164,9 +161,6 @@ static NSString *const kContentURLElementName = @"media:content";
     else if ([elementName isEqualToString: kTitleElementName] ||
                [elementName isEqualToString: kLastBuildDateElementName] ||
                [elementName isEqualToString: kPubDateElementName] ||
-               [elementName isEqualToString: kDescriptionElementName] ||
-               [elementName isEqualToString: kItemDescriptionElementName] ||
-               [elementName isEqualToString: kCategoryElementName] ||
                [elementName isEqualToString: kSubtitleElementName] ||
                [elementName isEqualToString: kAuthorElementName] ||
                [elementName isEqualToString: kLinkElementName] ||
@@ -206,15 +200,6 @@ static NSString *const kContentURLElementName = @"media:content";
                                withObject: self.currentItemObject
                             waitUntilDone: NO];
     } 
-    else if ([elementName isEqualToString: kItemDescriptionElementName]) 
-    {
-        self.currentItemObject.itemDescription = self.currentParsedCharacterData;
-        NSLog(@"Description: %@", self.currentItemObject.itemDescription);
-    } 
-    else if ([elementName isEqualToString: kCategoryElementName]) 
-    {
-        self.currentItemObject.category = self.currentParsedCharacterData;
-    } 
     else if ([elementName isEqualToString: kSubtitleElementName]) 
     {
         self.currentItemObject.subtitle = self.currentParsedCharacterData;
@@ -239,6 +224,7 @@ static NSString *const kContentURLElementName = @"media:content";
     else if ([elementName isEqualToString: kSummaryElementName]) 
     {
         self.currentItemObject.summary = self.currentParsedCharacterData;
+        NSLog(@"summary: %@", self.currentItemObject.summary);
     }
     else if ([elementName isEqualToString: kGUIDElementName]) 
     {

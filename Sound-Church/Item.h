@@ -13,8 +13,7 @@
 @interface Item : NSManagedObject {
 @private
 }
-@property (nonatomic, retain) NSString * category;
-@property (nonatomic, retain) NSString * itemDescription;
+
 @property (nonatomic, retain) NSString * subtitle;
 @property (nonatomic, retain) NSData * message;
 @property (nonatomic, retain) NSString * author;
