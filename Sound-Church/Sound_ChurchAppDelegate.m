@@ -17,7 +17,7 @@
 @property (nonatomic, retain)NSOperationQueue *parseQueue;
 
 - (void) handleError: (NSError *)error;
-- (void) addPodcastsToList: (NSArray *)items;
+- (void) addPodcastsToList: (NSManagedObject *)item;
 - (void)podcastsError: (NSNotification *)notification;
 
 @end
@@ -254,15 +254,12 @@
 
 // The NSOperation "ParseOperation" calls addPodcasts: via NSNotification, on the main thread
 // which in turn calls this method, with batches of parsed objects.
-- (void)addPodcastsToList:(NSArray *)items 
+- (void)addPodcastsToList:(NSManagedObject *)item 
 {
     NSLog(@"Entering addPodcastsToList:");
     // insert the podcasts into our rootViewController's data source (for KVO purposes)
-    for (id item in items)
-    {
-        [self.managedObjectContext insertObject: item];
-    }
-}
+    [self.managedObjectContext insertObject: item];
+ }
 
 // TODO: Handle errors in the download by showing an alert to the user. This is a very
 // simple way of handling the error, partly because this application does not have any offline

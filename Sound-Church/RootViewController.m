@@ -21,15 +21,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Set up the edit and add buttons.
+    // Set up the edit buttons.
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
-
-    //    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd 
-    //                                                                           target:self 
-    //                                                                           action:@selector(insertNewObject)];
+    // Set the navigation title
     self.navigationItem.title = @"Sound Church";
-    //self.navigationItem.rightBarButtonItem = addButton;
-    //  [addButton release];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated

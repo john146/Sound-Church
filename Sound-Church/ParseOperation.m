@@ -51,13 +51,13 @@ NSString *kPodcastsMsgErrorKey = @"PodcastsMsgErrorKey";
     return self;
 }
 
-- (void)addPodcastsToList: (NSArray *)inPodcasts 
+- (void)addPodcastsToList: (Item *)inPodcast 
 {
     assert([NSThread isMainThread]);
     
     [[NSNotificationCenter defaultCenter] postNotificationName: kAddPodcastsNotification
                                                         object: self
-                                                      userInfo: [NSDictionary dictionaryWithObject: inPodcasts
+                                                      userInfo: [NSDictionary dictionaryWithObject: inPodcast
                                                                                             forKey: kPodcastResultsKey]];
 }
 
@@ -159,17 +159,6 @@ static NSString *const kContentURLElementName = @"media:content";
         self.currentItemObject = (Item *)item;
         [item release];
     } 
-    else if (nil == currentItemObject && [elementName isEqualToString: kLinkElementName]) 
-    {
-        // if currentItemObject is nil, we must be dealing with the Channel object.
-        // The link element is different for the Channel than it is in the Item, so parsed differently.
-        // If currentItemObject is nil, we must be dealing with the channel object.
-        // For the 'link', element begin accumulationg parsed character data. 
-        // The contents are collected in parser:foundCharacters.
-        accumulatingParsedCharacterData = YES;
-        // The mutable string needs to be reset to empty.
-        [currentParsedCharacterData setString: @""];
-    } 
     else if ([elementName isEqualToString: kTitleElementName] ||
                [elementName isEqualToString: kLastBuildDateElementName] ||
                [elementName isEqualToString: kPubDateElementName] ||
@@ -199,11 +188,19 @@ static NSString *const kContentURLElementName = @"media:content";
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName
   namespaceURI:(NSString *)namespaceURI
  qualifiedName:(NSString *)qName 
-{     
+{    
+    NSLog(@"Entering parser:didEndElement: %@ namespaceURI:qualifiedName:", elementName);
+    
+    if (!self.currentItemObject)
+    {
+        // We don't want to bother attempting to process all the header info.
+        return;
+    }
+    
     if ([elementName isEqualToString: kItemElementName]) 
     {
         [self.currentParseBatch addObject: self.currentItemObject];
-        // [self.podcasts addObject: self.currentItemObject];
+        
     } 
     else if ([elementName isEqualToString: kItemDescriptionElementName]) 
     {
@@ -231,6 +228,7 @@ static NSString *const kContentURLElementName = @"media:content";
     }
     else if ([elementName isEqualToString: kTitleElementName]) 
     {
+        NSLog(@"Title: %@", self.currentParsedCharacterData);
         self.currentItemObject.title = self.currentParsedCharacterData;
     }
     else if ([elementName isEqualToString: kSummaryElementName]) 
