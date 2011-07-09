@@ -2,22 +2,22 @@
 //  Item.m
 //  Sound-Church
 //
-//  Created by John Ahrens on 7/8/11.
+//  Created by John Ahrens on 7/9/11.
 //  Copyright (c) 2011 John Ahrens, LLC. All rights reserved.
 //
 
 #import "Item.h"
 
-@implementation Item
 
-@dynamic subtitle;
-@dynamic message;
+@implementation Item
 @dynamic author;
+@dynamic summary;
+@dynamic subtitle;
+@dynamic contentUrl;
+@dynamic message;
 @dynamic link;
 @dynamic pubDate;
-@dynamic title;
-@dynamic summary;
 @dynamic guid;
-@dynamic contentUrl;
+@dynamic title;
 
 @end

@@ -196,6 +196,20 @@ static NSString *const kContentURLElementName = @"media:content";
     {
         NSLog(@"Entering parser:didEndElement: %@ namespaceURI:qualifiedName; for item %@", 
               elementName, self.currentItemObject.title);
+        NSPredicate *predicate = [NSPredicate predicateWithFormat: @"guid == %@", currentItemObject.guid];
+        NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
+        [request setPredicate: predicate];
+        NSEntityDescription *entity = [NSEntityDescription entityForName:@"Item" 
+                                                  inManagedObjectContext:self.context];
+        [request setEntity: entity];
+        NSError *error = [[[NSError alloc] init] autorelease];
+        NSArray *items = [context executeFetchRequest: request error: &error];
+        if (0 < [items count]) 
+        {
+            // This is a duplicate element, we don't want to save it.
+            return;
+        }
+        
         [self performSelectorOnMainThread: @selector(addPodcastsToList:)
                                withObject: self.currentItemObject
                             waitUntilDone: NO];
