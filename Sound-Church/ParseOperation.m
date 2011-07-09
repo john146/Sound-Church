@@ -53,6 +53,8 @@ NSString *kPodcastsMsgErrorKey = @"PodcastsMsgErrorKey";
 
 - (void)addPodcastsToList: (Item *)inPodcast 
 {
+    NSLog(@"Entering addPodcastsToList: %@", inPodcast.title);
+    
     assert([NSThread isMainThread]);
     
     [[NSNotificationCenter defaultCenter] postNotificationName: kAddPodcastsNotification
@@ -81,12 +83,12 @@ NSString *kPodcastsMsgErrorKey = @"PodcastsMsgErrorKey";
     // depending on the total number of podcasts parsed, the last batch might not have been a
     // "full" batch, and thus not been part of the regular batch transfer. So, we check the count of
     // the array and, if necessary, send it to the main thread.
-    if (self.currentItemObject) 
-    {
-        [self performSelectorOnMainThread: @selector(addPodcastsToList:)
-                               withObject: self.currentParseBatch
-                            waitUntilDone: NO];
-    }
+    //    if (self.currentItemObject) 
+    //{
+    //  [self performSelectorOnMainThread: @selector(addPodcastsToList:)
+    //                         withObject: self.currentParseBatch
+    //                      waitUntilDone: NO];
+    //}
     
     self.currentParseBatch = nil;
     self.currentItemObject = nil;
@@ -200,7 +202,9 @@ static NSString *const kContentURLElementName = @"media:content";
     if ([elementName isEqualToString: kItemElementName]) 
     {
         [self.currentParseBatch addObject: self.currentItemObject];
-        
+        [self performSelectorOnMainThread: @selector(addPodcastsToList:)
+                               withObject: self.currentItemObject
+                            waitUntilDone: NO];
     } 
     else if ([elementName isEqualToString: kItemDescriptionElementName]) 
     {

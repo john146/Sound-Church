@@ -10,6 +10,7 @@
 
 #import "ParseOperation.h"
 #import "RootViewController.h"
+#import "Item.h"
 
 @interface Sound_ChurchAppDelegate () 
 
@@ -254,9 +255,9 @@
 
 // The NSOperation "ParseOperation" calls addPodcasts: via NSNotification, on the main thread
 // which in turn calls this method, with batches of parsed objects.
-- (void)addPodcastsToList:(NSManagedObject *)item 
+- (void)addPodcastsToList:(Item *)item 
 {
-    NSLog(@"Entering addPodcastsToList:");
+    NSLog(@"Entering addPodcastsToList: %@.", item.title);
     // insert the podcasts into our rootViewController's data source (for KVO purposes)
     [self.managedObjectContext insertObject: item];
  }
