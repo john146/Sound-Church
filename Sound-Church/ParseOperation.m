@@ -141,16 +141,6 @@ static NSString *const kContentURLElementName = @"media:content";
  qualifiedName:(NSString *)qName
     attributes:(NSDictionary *)attributeDict 
 {
-    // If the number of parsed earthquakes is greater than
-    // kMaximumNumberOfPodcastsToParse, abort the parse.
-    if (parsedPodcastsCounter >= kMaximumNumberOfPodcastsToParse) 
-    {
-        // Use the flag didAbortParsing to distinguish between this deliberate stop
-        // and other parser errors.
-        didAbortParsing = YES;
-        [parser abortParsing];
-    }
-    
     if ([elementName isEqualToString: kItemElementName]) 
     {
         NSManagedObject *item = [NSEntityDescription insertNewObjectForEntityForName: @"Item"
@@ -174,6 +164,10 @@ static NSString *const kContentURLElementName = @"media:content";
     else if ([elementName isEqualToString:kContentURLElementName]) 
     {
         self.currentItemObject.contentUrl = [attributeDict valueForKey:@"url"];
+        NSLog(@"Item\ttitle: %@\n\tauthor: %@\n\tlink: %@\n\tpublication date: %@\n\tsubtitle: %@\n\tsummary: %@\n\tGUID: %@\n\tContent URL: %@",
+              [self.currentItemObject title], [self.currentItemObject author], [self.currentItemObject link],
+              [self.currentItemObject pubDate], [self.currentItemObject subtitle], [self.currentItemObject summary],
+              [self.currentItemObject guid], [self.currentItemObject contentUrl]);
     }
     else
     {
@@ -194,55 +188,93 @@ static NSString *const kContentURLElementName = @"media:content";
     
     if ([elementName isEqualToString: kItemElementName]) 
     {
-        NSLog(@"Entering parser:didEndElement: %@ namespaceURI:qualifiedName; for item %@", 
-              elementName, self.currentItemObject.title);
-        NSPredicate *predicate = [NSPredicate predicateWithFormat: @"guid == %@", currentItemObject.guid];
+        NSPredicate *predicate = [NSPredicate predicateWithFormat: @"guid == \"%@\"", currentItemObject.guid];
         NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
         [request setPredicate: predicate];
         NSEntityDescription *entity = [NSEntityDescription entityForName:@"Item" 
                                                   inManagedObjectContext:self.context];
         [request setEntity: entity];
         NSError *error = [[[NSError alloc] init] autorelease];
-        NSArray *items = [context executeFetchRequest: request error: &error];
-        if (0 < [items count]) 
+        NSMutableArray *items = [[context executeFetchRequest: request error: &error] mutableCopy];
+        if (!items)
         {
-            // This is a duplicate element, we don't want to save it.
+            // TODO: Need to do better error handling.
+            NSLog(@"Error fetching items. %@", [error localizedDescription]);
+            [items release];
             return;
         }
         
+        if (0 < [items count]) 
+        {
+            // This is a duplicate element, we don't want to save it.
+            [items release];
+            return;
+        }
+        
+        [items release];
+        NSLog(@"Item\ttitle: %@\n\tauthor: %@\n\tlink: %@\n\tpublication date: %@\n\tsubtitle: %@\n\tsummary: %@\n\tGUID: %@\n\tContent URL: %@",
+              [self.currentItemObject title], [self.currentItemObject author], [self.currentItemObject link],
+              [self.currentItemObject pubDate], [self.currentItemObject subtitle], [self.currentItemObject summary],
+              [self.currentItemObject guid], [self.currentItemObject contentUrl]);
         [self performSelectorOnMainThread: @selector(addPodcastsToList:)
                                withObject: self.currentItemObject
                             waitUntilDone: NO];
     } 
     else if ([elementName isEqualToString: kSubtitleElementName]) 
     {
-        self.currentItemObject.subtitle = self.currentParsedCharacterData;
+        [self.currentItemObject setSubtitle: self.currentParsedCharacterData];
+        NSLog(@"Item\ttitle: %@\n\tauthor: %@\n\tlink: %@\n\tpublication date: %@\n\tsubtitle: %@\n\tsummary: %@\n\tGUID: %@\n\tContent URL: %@",
+              [self.currentItemObject title], [self.currentItemObject author], [self.currentItemObject link],
+              [self.currentItemObject pubDate], [self.currentItemObject subtitle], [self.currentItemObject summary],
+              [self.currentItemObject guid], [self.currentItemObject contentUrl]);
     } 
     else if ([elementName isEqualToString: kAuthorElementName]) 
     {
-        self.currentItemObject.author  = self.currentParsedCharacterData;
+        [self.currentItemObject setAuthor:  self.currentParsedCharacterData];
+        NSLog(@"Item\ttitle: %@\n\tauthor: %@\n\tlink: %@\n\tpublication date: %@\n\tsubtitle: %@\n\tsummary: %@\n\tGUID: %@\n\tContent URL: %@",
+              [self.currentItemObject title], [self.currentItemObject author], [self.currentItemObject link],
+              [self.currentItemObject pubDate], [self.currentItemObject subtitle], [self.currentItemObject summary],
+              [self.currentItemObject guid], [self.currentItemObject contentUrl]);
     }
-    else if ([elementName isEqualToString: kLinkElementName]) 
+/*    else if ([elementName isEqualToString: kLinkElementName]) 
     {
-        self.currentItemObject.link = self.currentParsedCharacterData;
-    }
+        [self.currentItemObject setLink: self.currentParsedCharacterData];
+        NSLog(@"Item\ttitle: %@\n\tauthor: %@\n\tlink: %@\n\tpublication date: %@\n\tsubtitle: %@\n\tsummary: %@\n\tGUID: %@",
+              [self.currentItemObject title], [self.currentItemObject author], [self.currentItemObject link],
+              [self.currentItemObject pubDate], [self.currentItemObject subtitle], [self.currentItemObject summary],
+              [self.currentItemObject guid]);
+    }*/
     else if ([elementName isEqualToString: kPubDateElementName]) 
     {
-        self.currentItemObject.pubDate = [dateFormatter dateFromString: self.currentParsedCharacterData];
+        [self.currentItemObject setPubDate: [dateFormatter dateFromString: self.currentParsedCharacterData]];
+        NSLog(@"Item\ttitle: %@\n\tauthor: %@\n\tlink: %@\n\tpublication date: %@\n\tsubtitle: %@\n\tsummary: %@\n\tGUID: %@\n\tContent URL: %@",
+              [self.currentItemObject title], [self.currentItemObject author], [self.currentItemObject link],
+              [self.currentItemObject pubDate], [self.currentItemObject subtitle], [self.currentItemObject summary],
+              [self.currentItemObject guid], [self.currentItemObject contentUrl]);
     }
     else if ([elementName isEqualToString: kTitleElementName]) 
     {
-        self.currentItemObject.title = self.currentParsedCharacterData;
-        NSLog(@"Title: %@", self.currentItemObject.title);
+        [self.currentItemObject setTitle: self.currentParsedCharacterData];
+        NSLog(@"Item\ttitle: %@\n\tauthor: %@\n\tlink: %@\n\tpublication date: %@\n\tsubtitle: %@\n\tsummary: %@\n\tGUID: %@\n\tContent URL: %@",
+              [self.currentItemObject title], [self.currentItemObject author], [self.currentItemObject link],
+              [self.currentItemObject pubDate], [self.currentItemObject subtitle], [self.currentItemObject summary],
+              [self.currentItemObject guid], [self.currentItemObject contentUrl]);
     }
     else if ([elementName isEqualToString: kSummaryElementName]) 
     {
-        self.currentItemObject.summary = self.currentParsedCharacterData;
-        NSLog(@"summary: %@", self.currentItemObject.summary);
+        [self.currentItemObject setSummary: self.currentParsedCharacterData];
+        NSLog(@"Item\ttitle: %@\n\tauthor: %@\n\tlink: %@\n\tpublication date: %@\n\tsubtitle: %@\n\tsummary: %@\n\tGUID: %@\n\tContent URL: %@",
+              [self.currentItemObject title], [self.currentItemObject author], [self.currentItemObject link],
+              [self.currentItemObject pubDate], [self.currentItemObject subtitle], [self.currentItemObject summary],
+              [self.currentItemObject guid], [self.currentItemObject contentUrl]);
     }
     else if ([elementName isEqualToString: kGUIDElementName]) 
     {
-        self.currentItemObject.guid = self.currentParsedCharacterData;
+        [self.currentItemObject setGuid: self.currentParsedCharacterData];
+        NSLog(@"Item\ttitle: %@\n\tauthor: %@\n\tlink: %@\n\tpublication date: %@\n\tsubtitle: %@\n\tsummary: %@\n\tGUID: %@\n\tContent URL: %@",
+              [self.currentItemObject title], [self.currentItemObject author], [self.currentItemObject link],
+              [self.currentItemObject pubDate], [self.currentItemObject subtitle], [self.currentItemObject summary],
+              [self.currentItemObject guid], [self.currentItemObject contentUrl]);
     }
     
     // Stop accumulating parsed character data. We won't start again until specific elements begin.
@@ -277,7 +309,7 @@ static NSString *const kContentURLElementName = @"media:content";
 // (note: don't report an error if we aborted the parse due to a max limit of earthquakes)
 - (void)parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError 
 {
-    if ([parseError code] != NSXMLParserDelegateAbortedParseError && !didAbortParsing)
+    if ([parseError code] != NSXMLParserDelegateAbortedParseError)
     {
         [self performSelectorOnMainThread:@selector(handlePodcastsError:)
                                withObject:parseError

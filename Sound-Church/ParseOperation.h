@@ -25,14 +25,10 @@ extern NSString *kPodcastsMsgErrorKey;
     
     // These variables are used during parsing
     Item *currentItemObject;
-    NSMutableArray *currentParseBatch;
     NSMutableString *currentParsedCharacterData;
     NSManagedObjectContext *context;
 
     BOOL accumulatingParsedCharacterData;
-    BOOL didAbortParsing;
-    NSUInteger parsedPodcastsCounter;
-    NSMutableSet *podcasts;
 }
 
 @property (copy, readonly)NSData *podcastData;
