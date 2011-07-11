@@ -222,7 +222,7 @@ static NSString *const kContentURLElementName = @"media:content";
     } 
     else if ([elementName isEqualToString: kSubtitleElementName]) 
     {
-        [self.currentItemObject setSubtitle: self.currentParsedCharacterData];
+        [self.currentItemObject setSubtitle: [self.currentParsedCharacterData copy]];
         NSLog(@"Item\ttitle: %@\n\tauthor: %@\n\tlink: %@\n\tpublication date: %@\n\tsubtitle: %@\n\tsummary: %@\n\tGUID: %@\n\tContent URL: %@",
               [self.currentItemObject title], [self.currentItemObject author], [self.currentItemObject link],
               [self.currentItemObject pubDate], [self.currentItemObject subtitle], [self.currentItemObject summary],
@@ -230,7 +230,7 @@ static NSString *const kContentURLElementName = @"media:content";
     } 
     else if ([elementName isEqualToString: kAuthorElementName]) 
     {
-        [self.currentItemObject setAuthor:  self.currentParsedCharacterData];
+        [self.currentItemObject setAuthor:  [self.currentParsedCharacterData copy]];
         NSLog(@"Item\ttitle: %@\n\tauthor: %@\n\tlink: %@\n\tpublication date: %@\n\tsubtitle: %@\n\tsummary: %@\n\tGUID: %@\n\tContent URL: %@",
               [self.currentItemObject title], [self.currentItemObject author], [self.currentItemObject link],
               [self.currentItemObject pubDate], [self.currentItemObject subtitle], [self.currentItemObject summary],
@@ -246,7 +246,7 @@ static NSString *const kContentURLElementName = @"media:content";
     }*/
     else if ([elementName isEqualToString: kPubDateElementName]) 
     {
-        [self.currentItemObject setPubDate: [dateFormatter dateFromString: self.currentParsedCharacterData]];
+        [self.currentItemObject setPubDate: [dateFormatter dateFromString: [self.currentParsedCharacterData copy]]];
         NSLog(@"Item\ttitle: %@\n\tauthor: %@\n\tlink: %@\n\tpublication date: %@\n\tsubtitle: %@\n\tsummary: %@\n\tGUID: %@\n\tContent URL: %@",
               [self.currentItemObject title], [self.currentItemObject author], [self.currentItemObject link],
               [self.currentItemObject pubDate], [self.currentItemObject subtitle], [self.currentItemObject summary],
@@ -254,7 +254,7 @@ static NSString *const kContentURLElementName = @"media:content";
     }
     else if ([elementName isEqualToString: kTitleElementName]) 
     {
-        [self.currentItemObject setTitle: self.currentParsedCharacterData];
+        [self.currentItemObject setTitle: [self.currentParsedCharacterData copy]];
         NSLog(@"Item\ttitle: %@\n\tauthor: %@\n\tlink: %@\n\tpublication date: %@\n\tsubtitle: %@\n\tsummary: %@\n\tGUID: %@\n\tContent URL: %@",
               [self.currentItemObject title], [self.currentItemObject author], [self.currentItemObject link],
               [self.currentItemObject pubDate], [self.currentItemObject subtitle], [self.currentItemObject summary],
@@ -262,7 +262,7 @@ static NSString *const kContentURLElementName = @"media:content";
     }
     else if ([elementName isEqualToString: kSummaryElementName]) 
     {
-        [self.currentItemObject setSummary: self.currentParsedCharacterData];
+        [self.currentItemObject setSummary: [self.currentParsedCharacterData copy]];
         NSLog(@"Item\ttitle: %@\n\tauthor: %@\n\tlink: %@\n\tpublication date: %@\n\tsubtitle: %@\n\tsummary: %@\n\tGUID: %@\n\tContent URL: %@",
               [self.currentItemObject title], [self.currentItemObject author], [self.currentItemObject link],
               [self.currentItemObject pubDate], [self.currentItemObject subtitle], [self.currentItemObject summary],
@@ -270,7 +270,7 @@ static NSString *const kContentURLElementName = @"media:content";
     }
     else if ([elementName isEqualToString: kGUIDElementName]) 
     {
-        [self.currentItemObject setGuid: self.currentParsedCharacterData];
+        [self.currentItemObject setGuid: [self.currentParsedCharacterData copy]];
         NSLog(@"Item\ttitle: %@\n\tauthor: %@\n\tlink: %@\n\tpublication date: %@\n\tsubtitle: %@\n\tsummary: %@\n\tGUID: %@\n\tContent URL: %@",
               [self.currentItemObject title], [self.currentItemObject author], [self.currentItemObject link],
               [self.currentItemObject pubDate], [self.currentItemObject subtitle], [self.currentItemObject summary],
