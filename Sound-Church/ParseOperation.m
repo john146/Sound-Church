@@ -164,10 +164,6 @@ static NSString *const kContentURLElementName = @"media:content";
     else if ([elementName isEqualToString:kContentURLElementName]) 
     {
         self.currentItemObject.contentUrl = [attributeDict valueForKey:@"url"];
-        NSLog(@"Item\ttitle: %@\n\tauthor: %@\n\tlink: %@\n\tpublication date: %@\n\tsubtitle: %@\n\tsummary: %@\n\tGUID: %@\n\tContent URL: %@",
-              [self.currentItemObject title], [self.currentItemObject author], [self.currentItemObject link],
-              [self.currentItemObject pubDate], [self.currentItemObject subtitle], [self.currentItemObject summary],
-              [self.currentItemObject guid], [self.currentItemObject contentUrl]);
     }
     else
     {
@@ -188,14 +184,14 @@ static NSString *const kContentURLElementName = @"media:content";
     
     if ([elementName isEqualToString: kItemElementName]) 
     {
-        NSPredicate *predicate = [NSPredicate predicateWithFormat: @"guid == \"%@\"", currentItemObject.guid];
+        //        NSPredicate *predicate = [NSPredicate predicateWithFormat: @"guid == \'%@\'", currentItemObject.guid];
+        //[request setPredicate: predicate];
         NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
-        [request setPredicate: predicate];
         NSEntityDescription *entity = [NSEntityDescription entityForName:@"Item" 
                                                   inManagedObjectContext:self.context];
         [request setEntity: entity];
         NSError *error = [[[NSError alloc] init] autorelease];
-        NSMutableArray *items = [[context executeFetchRequest: request error: &error] mutableCopy];
+        NSArray *items = [[self.context executeFetchRequest: request error: &error] copy];
         if (!items)
         {
             // TODO: Need to do better error handling.
@@ -206,75 +202,44 @@ static NSString *const kContentURLElementName = @"media:content";
         
         if (0 < [items count]) 
         {
-            // This is a duplicate element, we don't want to save it.
-            [items release];
-            return;
+            for (id item in items)
+            {
+                if (NSOrderedSame == [self.currentItemObject.guid compare: ((Item *)item).guid])
+                {
+                    // This is a duplicate element, we don't want to save it.
+                    [self.context deleteObject: self.currentItemObject];
+                    [items release];
+                    return;
+                }
+            }
+            
+            // If you get here, the currentItemObject is not in the managedObjectStore so continue
         }
         
         [items release];
-        NSLog(@"Item\ttitle: %@\n\tauthor: %@\n\tlink: %@\n\tpublication date: %@\n\tsubtitle: %@\n\tsummary: %@\n\tGUID: %@\n\tContent URL: %@",
-              [self.currentItemObject title], [self.currentItemObject author], [self.currentItemObject link],
-              [self.currentItemObject pubDate], [self.currentItemObject subtitle], [self.currentItemObject summary],
-              [self.currentItemObject guid], [self.currentItemObject contentUrl]);
         [self performSelectorOnMainThread: @selector(addPodcastsToList:)
                                withObject: self.currentItemObject
                             waitUntilDone: NO];
     } 
-    else if ([elementName isEqualToString: kSubtitleElementName]) 
-    {
-        [self.currentItemObject setSubtitle: [self.currentParsedCharacterData copy]];
-        NSLog(@"Item\ttitle: %@\n\tauthor: %@\n\tlink: %@\n\tpublication date: %@\n\tsubtitle: %@\n\tsummary: %@\n\tGUID: %@\n\tContent URL: %@",
-              [self.currentItemObject title], [self.currentItemObject author], [self.currentItemObject link],
-              [self.currentItemObject pubDate], [self.currentItemObject subtitle], [self.currentItemObject summary],
-              [self.currentItemObject guid], [self.currentItemObject contentUrl]);
-    } 
     else if ([elementName isEqualToString: kAuthorElementName]) 
     {
         [self.currentItemObject setAuthor:  [self.currentParsedCharacterData copy]];
-        NSLog(@"Item\ttitle: %@\n\tauthor: %@\n\tlink: %@\n\tpublication date: %@\n\tsubtitle: %@\n\tsummary: %@\n\tGUID: %@\n\tContent URL: %@",
-              [self.currentItemObject title], [self.currentItemObject author], [self.currentItemObject link],
-              [self.currentItemObject pubDate], [self.currentItemObject subtitle], [self.currentItemObject summary],
-              [self.currentItemObject guid], [self.currentItemObject contentUrl]);
     }
-/*    else if ([elementName isEqualToString: kLinkElementName]) 
-    {
-        [self.currentItemObject setLink: self.currentParsedCharacterData];
-        NSLog(@"Item\ttitle: %@\n\tauthor: %@\n\tlink: %@\n\tpublication date: %@\n\tsubtitle: %@\n\tsummary: %@\n\tGUID: %@",
-              [self.currentItemObject title], [self.currentItemObject author], [self.currentItemObject link],
-              [self.currentItemObject pubDate], [self.currentItemObject subtitle], [self.currentItemObject summary],
-              [self.currentItemObject guid]);
-    }*/
     else if ([elementName isEqualToString: kPubDateElementName]) 
     {
-        [self.currentItemObject setPubDate: [dateFormatter dateFromString: [self.currentParsedCharacterData copy]]];
-        NSLog(@"Item\ttitle: %@\n\tauthor: %@\n\tlink: %@\n\tpublication date: %@\n\tsubtitle: %@\n\tsummary: %@\n\tGUID: %@\n\tContent URL: %@",
-              [self.currentItemObject title], [self.currentItemObject author], [self.currentItemObject link],
-              [self.currentItemObject pubDate], [self.currentItemObject subtitle], [self.currentItemObject summary],
-              [self.currentItemObject guid], [self.currentItemObject contentUrl]);
+        [self.currentItemObject setPubDate: [dateFormatter dateFromString: self.currentParsedCharacterData]];
     }
     else if ([elementName isEqualToString: kTitleElementName]) 
     {
         [self.currentItemObject setTitle: [self.currentParsedCharacterData copy]];
-        NSLog(@"Item\ttitle: %@\n\tauthor: %@\n\tlink: %@\n\tpublication date: %@\n\tsubtitle: %@\n\tsummary: %@\n\tGUID: %@\n\tContent URL: %@",
-              [self.currentItemObject title], [self.currentItemObject author], [self.currentItemObject link],
-              [self.currentItemObject pubDate], [self.currentItemObject subtitle], [self.currentItemObject summary],
-              [self.currentItemObject guid], [self.currentItemObject contentUrl]);
     }
     else if ([elementName isEqualToString: kSummaryElementName]) 
     {
         [self.currentItemObject setSummary: [self.currentParsedCharacterData copy]];
-        NSLog(@"Item\ttitle: %@\n\tauthor: %@\n\tlink: %@\n\tpublication date: %@\n\tsubtitle: %@\n\tsummary: %@\n\tGUID: %@\n\tContent URL: %@",
-              [self.currentItemObject title], [self.currentItemObject author], [self.currentItemObject link],
-              [self.currentItemObject pubDate], [self.currentItemObject subtitle], [self.currentItemObject summary],
-              [self.currentItemObject guid], [self.currentItemObject contentUrl]);
     }
     else if ([elementName isEqualToString: kGUIDElementName]) 
     {
         [self.currentItemObject setGuid: [self.currentParsedCharacterData copy]];
-        NSLog(@"Item\ttitle: %@\n\tauthor: %@\n\tlink: %@\n\tpublication date: %@\n\tsubtitle: %@\n\tsummary: %@\n\tGUID: %@\n\tContent URL: %@",
-              [self.currentItemObject title], [self.currentItemObject author], [self.currentItemObject link],
-              [self.currentItemObject pubDate], [self.currentItemObject subtitle], [self.currentItemObject summary],
-              [self.currentItemObject guid], [self.currentItemObject contentUrl]);
     }
     
     // Stop accumulating parsed character data. We won't start again until specific elements begin.
