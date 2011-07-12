@@ -184,9 +184,9 @@ static NSString *const kContentURLElementName = @"media:content";
     
     if ([elementName isEqualToString: kItemElementName]) 
     {
-        //        NSPredicate *predicate = [NSPredicate predicateWithFormat: @"guid == \'%@\'", currentItemObject.guid];
-        //[request setPredicate: predicate];
         NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
+        NSPredicate *predicate = [NSPredicate predicateWithFormat: @"guid MATCHES \'%@\'", currentItemObject.guid];
+        [request setPredicate: predicate];
         NSEntityDescription *entity = [NSEntityDescription entityForName:@"Item" 
                                                   inManagedObjectContext:self.context];
         [request setEntity: entity];
