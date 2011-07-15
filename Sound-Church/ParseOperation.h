@@ -24,11 +24,11 @@ extern NSString *kPodcastsMsgErrorKey;
     NSDateFormatter *dateFormatter;
     
     // These variables are used during parsing
-    Item *currentItemObject;
     NSMutableString *currentParsedCharacterData;
     NSManagedObjectContext *context;
 
     BOOL accumulatingParsedCharacterData;
+    BOOL isInItem;
     
     // Fields
     NSString *title;

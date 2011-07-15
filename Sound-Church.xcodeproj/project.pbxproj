@@ -12,8 +12,6 @@
 		526D2FD3139C4FB80058E08E /* ParseOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 526D2FD2139C4FB80058E08E /* ParseOperation.m */; };
 		5270A3B713888E4A0035E522 /* RSSDownloadTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5270A3B613888E4A0035E522 /* RSSDownloadTests.m */; };
 		5270A3D81388A7F30035E522 /* RSSDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 5270A3D71388A7F30035E522 /* RSSDownloader.m */; };
-		52AF221413CA7533005897A8 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = 52AF221313CA7533005897A8 /* Item.m */; };
-		52AF221513CA7533005897A8 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = 52AF221313CA7533005897A8 /* Item.m */; };
 		52BE14C6137F5BF300A195FB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52BE14C5137F5BF300A195FB /* UIKit.framework */; };
 		52BE14C8137F5BF300A195FB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52BE14C7137F5BF300A195FB /* Foundation.framework */; };
 		52BE14CA137F5BF300A195FB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52BE14C9137F5BF300A195FB /* CoreGraphics.framework */; };
@@ -35,6 +33,9 @@
 		52C56A401389D41600ADD7C9 /* libOCMock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 52C56A3F1389D41600ADD7C9 /* libOCMock.a */; };
 		52C7B8C413CFD86000DAA90B /* SoundChurch57x57.png in Resources */ = {isa = PBXBuildFile; fileRef = 52C7B8C313CFD86000DAA90B /* SoundChurch57x57.png */; };
 		52C7B8C613CFD8AA00DAA90B /* SoundChurch72x72.png in Resources */ = {isa = PBXBuildFile; fileRef = 52C7B8C513CFD8AA00DAA90B /* SoundChurch72x72.png */; };
+		52C7B8CA13CFE4E000DAA90B /* SoundChurchwo114x114.png in Resources */ = {isa = PBXBuildFile; fileRef = 52C7B8C913CFE4E000DAA90B /* SoundChurchwo114x114.png */; };
+		52C7B8CC13CFE51A00DAA90B /* SoundChurchwo114x114.png in Resources */ = {isa = PBXBuildFile; fileRef = 52C7B8CB13CFE51A00DAA90B /* SoundChurchwo114x114.png */; };
+		52C7B91713D0C51800DAA90B /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = 52C7B91613D0C51800DAA90B /* Item.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,8 +47,6 @@
 		5270A3D61388A7F30035E522 /* RSSDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSSDownloader.h; sourceTree = "<group>"; };
 		5270A3D71388A7F30035E522 /* RSSDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSSDownloader.m; sourceTree = "<group>"; };
 		5270A3DB1388B9B80035E522 /* OCMock.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OCMock.framework; path = "OCMock-1.77/Release/OCMock.framework"; sourceTree = "<group>"; };
-		52AF221213CA7533005897A8 /* Item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Item.h; sourceTree = "<group>"; };
-		52AF221313CA7533005897A8 /* Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Item.m; sourceTree = "<group>"; };
 		52BE14C1137F5BF300A195FB /* Sound-Church.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Sound-Church.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		52BE14C5137F5BF300A195FB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		52BE14C7137F5BF300A195FB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -71,8 +70,12 @@
 		52BE14F8137F5BF400A195FB /* Sound_ChurchTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Sound_ChurchTests.h; sourceTree = "<group>"; };
 		52BE14FA137F5BF400A195FB /* Sound_ChurchTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Sound_ChurchTests.m; sourceTree = "<group>"; };
 		52C56A3F1389D41600ADD7C9 /* libOCMock.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libOCMock.a; path = "OCMock-1.77/Release/Library/libOCMock.a"; sourceTree = "<group>"; };
-		52C7B8C313CFD86000DAA90B /* SoundChurch57x57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SoundChurch57x57.png; sourceTree = "<group>"; };
-		52C7B8C513CFD8AA00DAA90B /* SoundChurch72x72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SoundChurch72x72.png; sourceTree = "<group>"; };
+		52C7B8C313CFD86000DAA90B /* SoundChurch57x57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = SoundChurch57x57.png; path = ../SoundChurch57x57.png; sourceTree = "<group>"; };
+		52C7B8C513CFD8AA00DAA90B /* SoundChurch72x72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = SoundChurch72x72.png; path = ../SoundChurch72x72.png; sourceTree = "<group>"; };
+		52C7B8C913CFE4E000DAA90B /* SoundChurchwo114x114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SoundChurchwo114x114.png; sourceTree = "<group>"; };
+		52C7B8CB13CFE51A00DAA90B /* SoundChurchwo114x114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = SoundChurchwo114x114.png; path = ../SoundChurchwo114x114.png; sourceTree = "<group>"; };
+		52C7B91513D0C51800DAA90B /* Item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Item.h; sourceTree = "<group>"; };
+		52C7B91613D0C51800DAA90B /* Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Item.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,8 +116,6 @@
 		52BE14B6137F5BF300A195FB = {
 			isa = PBXGroup;
 			children = (
-				52C7B8C513CFD8AA00DAA90B /* SoundChurch72x72.png */,
-				52C7B8C313CFD86000DAA90B /* SoundChurch57x57.png */,
 				52BE14CD137F5BF300A195FB /* Sound-Church */,
 				52BE14F1137F5BF400A195FB /* Sound-ChurchTests */,
 				52BE14C4137F5BF300A195FB /* Frameworks */,
@@ -155,8 +156,8 @@
 				52BE14E0137F5BF400A195FB /* RootViewController.m */,
 				52BE14E2137F5BF400A195FB /* RootViewController.xib */,
 				52BE14D9137F5BF400A195FB /* Sound_Church.xcdatamodeld */,
-				52AF221213CA7533005897A8 /* Item.h */,
-				52AF221313CA7533005897A8 /* Item.m */,
+				52C7B91513D0C51800DAA90B /* Item.h */,
+				52C7B91613D0C51800DAA90B /* Item.m */,
 				52BE14CE137F5BF400A195FB /* Supporting Files */,
 				5270A3D61388A7F30035E522 /* RSSDownloader.h */,
 				5270A3D71388A7F30035E522 /* RSSDownloader.m */,
@@ -169,6 +170,9 @@
 		52BE14CE137F5BF400A195FB /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				52C7B8C913CFE4E000DAA90B /* SoundChurchwo114x114.png */,
+				52C7B8C513CFD8AA00DAA90B /* SoundChurch72x72.png */,
+				52C7B8C313CFD86000DAA90B /* SoundChurch57x57.png */,
 				52BE14CF137F5BF400A195FB /* Sound-Church-Info.plist */,
 				52BE14D0137F5BF400A195FB /* InfoPlist.strings */,
 				52BE14D3137F5BF400A195FB /* Sound-Church-Prefix.pch */,
@@ -192,6 +196,7 @@
 		52BE14F2137F5BF400A195FB /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				52C7B8CB13CFE51A00DAA90B /* SoundChurchwo114x114.png */,
 				52BE14F3137F5BF400A195FB /* Sound-ChurchTests-Info.plist */,
 				52BE14F4137F5BF400A195FB /* InfoPlist.strings */,
 				52BE14F7137F5BF400A195FB /* Sound-ChurchTests-Prefix.pch */,
@@ -274,6 +279,8 @@
 				526D2FC8139C40E20058E08E /* MainWindow-iPad.xib in Resources */,
 				52C7B8C413CFD86000DAA90B /* SoundChurch57x57.png in Resources */,
 				52C7B8C613CFD8AA00DAA90B /* SoundChurch72x72.png in Resources */,
+				52C7B8CA13CFE4E000DAA90B /* SoundChurchwo114x114.png in Resources */,
+				52C7B8CC13CFE51A00DAA90B /* SoundChurchwo114x114.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -315,7 +322,7 @@
 				52BE14E1137F5BF400A195FB /* RootViewController.m in Sources */,
 				5270A3D81388A7F30035E522 /* RSSDownloader.m in Sources */,
 				526D2FD3139C4FB80058E08E /* ParseOperation.m in Sources */,
-				52AF221413CA7533005897A8 /* Item.m in Sources */,
+				52C7B91713D0C51800DAA90B /* Item.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -326,7 +333,6 @@
 				52BE14FB137F5BF400A195FB /* Sound_ChurchTests.m in Sources */,
 				5270A3B713888E4A0035E522 /* RSSDownloadTests.m in Sources */,
 				52167B5913AD7E6400F745CB /* RSSDownloader.m in Sources */,
-				52AF221513CA7533005897A8 /* Item.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

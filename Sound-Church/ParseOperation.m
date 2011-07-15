@@ -20,11 +20,11 @@ NSString *kPodcastsMsgErrorKey = @"PodcastsMsgErrorKey";
 
 @interface ParseOperation () <NSXMLParserDelegate>
 
-@property (nonatomic, retain) Item *currentItemObject;
 @property (nonatomic, retain) NSMutableArray *currentParseBatch;
 @property (nonatomic, retain) NSMutableString *currentParsedCharacterData;
 @property (nonatomic, assign) NSManagedObjectContext *context;
 @property (nonatomic, retain) NSMutableSet *podcasts;
+@property (nonatomic, assign) BOOL isInItem;
 
 @property (nonatomic, retain) NSString *title;
 @property (nonatomic, retain) NSString *author;
@@ -38,11 +38,11 @@ NSString *kPodcastsMsgErrorKey = @"PodcastsMsgErrorKey";
 @implementation ParseOperation
 
 @synthesize podcastData;
-@synthesize currentItemObject;
 @synthesize currentParsedCharacterData;
 @synthesize currentParseBatch;
 @synthesize context;
 @synthesize podcasts;
+@synthesize isInItem;
 @synthesize title;
 @synthesize author;
 @synthesize summary;
@@ -58,7 +58,8 @@ NSString *kPodcastsMsgErrorKey = @"PodcastsMsgErrorKey";
         dateFormatter = [[NSDateFormatter alloc] init];
         [dateFormatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:-28800]]; // Pacific Standard Time
         [dateFormatter setLocale:[[[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"] autorelease]];
-        [dateFormatter setDateFormat:@"yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'"];
+        [dateFormatter setDateFormat: @"EEE, dd MMM yyyy HH:MM:ss ZZZ"];
+        self.isInItem = NO;
     }
     
     return self;
@@ -104,7 +105,6 @@ NSString *kPodcastsMsgErrorKey = @"PodcastsMsgErrorKey";
     //}
     
     self.currentParseBatch = nil;
-    self.currentItemObject = nil;
     self.currentParsedCharacterData = nil;
 }
 
@@ -156,6 +156,7 @@ static NSString *const kContentURLElementName = @"media:content";
     if ([elementName isEqualToString: kItemElementName]) 
     {
         // Nothing to do here right now.
+        self.isInItem = YES;
     } 
     else if ([elementName isEqualToString: kTitleElementName] ||
                [elementName isEqualToString: kLastBuildDateElementName] ||
@@ -185,9 +186,9 @@ static NSString *const kContentURLElementName = @"media:content";
   namespaceURI:(NSString *)namespaceURI
  qualifiedName:(NSString *)qName 
 {    
-    if (!self.currentItemObject)
+    if (!self.isInItem)
     {
-        // We don't want to bother attempting to process all the header info.
+        // We are not creating an Item, so skip ahead
         return;
     }
     
@@ -216,7 +217,6 @@ static NSString *const kContentURLElementName = @"media:content";
                 if (NSOrderedSame == [self.guid compare: ((Item *)item).guid])
                 {
                     // This is a duplicate element, we don't want to save it.
-                    [self.context deleteObject: self.currentItemObject];
                     [items release];
                     return;
                 }
@@ -237,37 +237,37 @@ static NSString *const kContentURLElementName = @"media:content";
         [self performSelectorOnMainThread: @selector(addPodcastsToList:)
                                withObject: item
                             waitUntilDone: NO];
-        [author release];
-        [pubDate release];
-        [title release];
-        [summary release];
-        [guid release];
-        [contentURL release];
-        [item release];
+        //[author release];
+        //[pubDate release];
+        //[title release];
+        //[summary release];
+        //[guid release];
+        //[contentURL release];
+        // [item release];
     } 
     else if ([elementName isEqualToString: kAuthorElementName]) 
     {
-        //[self.currentItemObject setAuthor:  [self.currentParsedCharacterData copy]];
         self.author = [self.currentParsedCharacterData copy];
     }
     else if ([elementName isEqualToString: kPubDateElementName]) 
     {
-        //        [self.currentItemObject setPubDate: [dateFormatter dateFromString: self.currentParsedCharacterData]];
-        self.pubDate = [dateFormatter dateFromString: self.currentParsedCharacterData];
+        NSLog(@"Date input: %@", self.currentParsedCharacterData);
+        struct tm timestruct;
+        const char *formatString = "%a, %d %b %Y %k:%M:%S %z";
+        (void)strptime([self.currentParsedCharacterData cStringUsingEncoding: NSUTF8StringEncoding], formatString, &timestruct);
+        self.pubDate = [NSDate dateWithTimeIntervalSince1970: mktime(&timestruct)];
+        NSLog(@"Pubdate: %@", self.pubDate);
     }
     else if ([elementName isEqualToString: kTitleElementName]) 
     {
-        //        [self.currentItemObject setTitle: [self.currentParsedCharacterData copy]];
         self.title = [self.currentParsedCharacterData copy];
     }
     else if ([elementName isEqualToString: kSummaryElementName]) 
     {
-        //        [self.currentItemObject setSummary: [self.currentParsedCharacterData copy]];
         self.summary = [self.currentParsedCharacterData copy];
     }
     else if ([elementName isEqualToString: kGUIDElementName]) 
     {
-        //        [self.currentItemObject setGuid: [self.currentParsedCharacterData copy]];
         self.guid = [self.currentParsedCharacterData copy];
     }
     

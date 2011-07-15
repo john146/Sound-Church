@@ -14,6 +14,7 @@
 	<array>
 		<string>SoundChurch57x57.png</string>
 		<string>SoundChurch72x72.png</string>
+		<string>SoundChurchwo114x114.png</string>
 	</array>
 	<key>CFBundleIdentifier</key>
 	<string>com.johnahrens.${PRODUCT_NAME:rfc1034identifier}</string>
