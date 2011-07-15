@@ -10,6 +10,11 @@
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIconFile</key>
 	<string></string>
+	<key>CFBundleIconFiles</key>
+	<array>
+		<string>SoundChurch57x57.png</string>
+		<string>SoundChurch72x72.png</string>
+	</array>
 	<key>CFBundleIdentifier</key>
 	<string>com.johnahrens.${PRODUCT_NAME:rfc1034identifier}</string>
 	<key>CFBundleInfoDictionaryVersion</key>

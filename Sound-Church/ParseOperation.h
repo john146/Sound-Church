@@ -29,6 +29,15 @@ extern NSString *kPodcastsMsgErrorKey;
     NSManagedObjectContext *context;
 
     BOOL accumulatingParsedCharacterData;
+    
+    // Fields
+    NSString *title;
+    NSString *author;
+    NSString *summary;
+    NSDate *pubDate;
+    NSString *contentURL;
+    NSString *guid;
+    
 }
 
 @property (copy, readonly)NSData *podcastData;

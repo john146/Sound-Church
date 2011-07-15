@@ -26,6 +26,13 @@ NSString *kPodcastsMsgErrorKey = @"PodcastsMsgErrorKey";
 @property (nonatomic, assign) NSManagedObjectContext *context;
 @property (nonatomic, retain) NSMutableSet *podcasts;
 
+@property (nonatomic, retain) NSString *title;
+@property (nonatomic, retain) NSString *author;
+@property (nonatomic, retain) NSString *summary;
+@property (nonatomic, retain) NSDate *pubDate;
+@property (nonatomic, retain) NSString *contentURL;
+@property (nonatomic, retain) NSString *guid;
+
 @end
 
 @implementation ParseOperation
@@ -36,6 +43,12 @@ NSString *kPodcastsMsgErrorKey = @"PodcastsMsgErrorKey";
 @synthesize currentParseBatch;
 @synthesize context;
 @synthesize podcasts;
+@synthesize title;
+@synthesize author;
+@synthesize summary;
+@synthesize pubDate;
+@synthesize contentURL;
+@synthesize guid;
 
 -  (id)initWithManagedObjectContext:(NSManagedObjectContext *)inContext 
 {
@@ -99,7 +112,6 @@ NSString *kPodcastsMsgErrorKey = @"PodcastsMsgErrorKey";
 {
     [podcastData release];
     
-    [currentItemObject release];
     [currentParsedCharacterData release];
     [currentParseBatch release];
     [dateFormatter release];
@@ -143,10 +155,7 @@ static NSString *const kContentURLElementName = @"media:content";
 {
     if ([elementName isEqualToString: kItemElementName]) 
     {
-        NSManagedObject *item = [NSEntityDescription insertNewObjectForEntityForName: @"Item"
-                                                              inManagedObjectContext: context];
-        self.currentItemObject = (Item *)item;
-        [item release];
+        // Nothing to do here right now.
     } 
     else if ([elementName isEqualToString: kTitleElementName] ||
                [elementName isEqualToString: kLastBuildDateElementName] ||
@@ -163,7 +172,7 @@ static NSString *const kContentURLElementName = @"media:content";
     } 
     else if ([elementName isEqualToString:kContentURLElementName]) 
     {
-        self.currentItemObject.contentUrl = [attributeDict valueForKey:@"url"];
+        self.contentURL = [attributeDict valueForKey:@"url"];
     }
     else
     {
@@ -185,7 +194,7 @@ static NSString *const kContentURLElementName = @"media:content";
     if ([elementName isEqualToString: kItemElementName]) 
     {
         NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
-        NSPredicate *predicate = [NSPredicate predicateWithFormat: @"guid MATCHES \'%@\'", currentItemObject.guid];
+        NSPredicate *predicate = [NSPredicate predicateWithFormat: @"guid MATCHES \'%@\'", self.guid];
         [request setPredicate: predicate];
         NSEntityDescription *entity = [NSEntityDescription entityForName:@"Item" 
                                                   inManagedObjectContext:self.context];
@@ -204,7 +213,7 @@ static NSString *const kContentURLElementName = @"media:content";
         {
             for (id item in items)
             {
-                if (NSOrderedSame == [self.currentItemObject.guid compare: ((Item *)item).guid])
+                if (NSOrderedSame == [self.guid compare: ((Item *)item).guid])
                 {
                     // This is a duplicate element, we don't want to save it.
                     [self.context deleteObject: self.currentItemObject];
@@ -217,29 +226,49 @@ static NSString *const kContentURLElementName = @"media:content";
         }
         
         [items release];
+        Item *item = [NSEntityDescription insertNewObjectForEntityForName: @"Item"
+                                                   inManagedObjectContext: context];
+        item.author = self.author;
+        item.pubDate = self.pubDate;
+        item.title = self.title;
+        item.summary = self.summary;
+        item.guid = self.guid;
+        item.contentUrl = self.contentURL;
         [self performSelectorOnMainThread: @selector(addPodcastsToList:)
-                               withObject: self.currentItemObject
+                               withObject: item
                             waitUntilDone: NO];
+        [author release];
+        [pubDate release];
+        [title release];
+        [summary release];
+        [guid release];
+        [contentURL release];
+        [item release];
     } 
     else if ([elementName isEqualToString: kAuthorElementName]) 
     {
-        [self.currentItemObject setAuthor:  [self.currentParsedCharacterData copy]];
+        //[self.currentItemObject setAuthor:  [self.currentParsedCharacterData copy]];
+        self.author = [self.currentParsedCharacterData copy];
     }
     else if ([elementName isEqualToString: kPubDateElementName]) 
     {
-        [self.currentItemObject setPubDate: [dateFormatter dateFromString: self.currentParsedCharacterData]];
+        //        [self.currentItemObject setPubDate: [dateFormatter dateFromString: self.currentParsedCharacterData]];
+        self.pubDate = [dateFormatter dateFromString: self.currentParsedCharacterData];
     }
     else if ([elementName isEqualToString: kTitleElementName]) 
     {
-        [self.currentItemObject setTitle: [self.currentParsedCharacterData copy]];
+        //        [self.currentItemObject setTitle: [self.currentParsedCharacterData copy]];
+        self.title = [self.currentParsedCharacterData copy];
     }
     else if ([elementName isEqualToString: kSummaryElementName]) 
     {
-        [self.currentItemObject setSummary: [self.currentParsedCharacterData copy]];
+        //        [self.currentItemObject setSummary: [self.currentParsedCharacterData copy]];
+        self.summary = [self.currentParsedCharacterData copy];
     }
     else if ([elementName isEqualToString: kGUIDElementName]) 
     {
-        [self.currentItemObject setGuid: [self.currentParsedCharacterData copy]];
+        //        [self.currentItemObject setGuid: [self.currentParsedCharacterData copy]];
+        self.guid = [self.currentParsedCharacterData copy];
     }
     
     // Stop accumulating parsed character data. We won't start again until specific elements begin.

@@ -124,7 +124,7 @@
 {
     NSLog(@"Entering saveContext");
     
-    NSError *error = nil;
+    NSError *error = [[[NSError alloc] init] autorelease];
     NSManagedObjectContext *managedObjectContext = self.managedObjectContext;
     if (managedObjectContext != nil)
     {

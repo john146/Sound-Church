@@ -33,6 +33,8 @@
 		52BE14F9137F5BF400A195FB /* Sound_ChurchTests.h in Resources */ = {isa = PBXBuildFile; fileRef = 52BE14F8137F5BF400A195FB /* Sound_ChurchTests.h */; };
 		52BE14FB137F5BF400A195FB /* Sound_ChurchTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 52BE14FA137F5BF400A195FB /* Sound_ChurchTests.m */; };
 		52C56A401389D41600ADD7C9 /* libOCMock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 52C56A3F1389D41600ADD7C9 /* libOCMock.a */; };
+		52C7B8C413CFD86000DAA90B /* SoundChurch57x57.png in Resources */ = {isa = PBXBuildFile; fileRef = 52C7B8C313CFD86000DAA90B /* SoundChurch57x57.png */; };
+		52C7B8C613CFD8AA00DAA90B /* SoundChurch72x72.png in Resources */ = {isa = PBXBuildFile; fileRef = 52C7B8C513CFD8AA00DAA90B /* SoundChurch72x72.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,6 +71,8 @@
 		52BE14F8137F5BF400A195FB /* Sound_ChurchTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Sound_ChurchTests.h; sourceTree = "<group>"; };
 		52BE14FA137F5BF400A195FB /* Sound_ChurchTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Sound_ChurchTests.m; sourceTree = "<group>"; };
 		52C56A3F1389D41600ADD7C9 /* libOCMock.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libOCMock.a; path = "OCMock-1.77/Release/Library/libOCMock.a"; sourceTree = "<group>"; };
+		52C7B8C313CFD86000DAA90B /* SoundChurch57x57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SoundChurch57x57.png; sourceTree = "<group>"; };
+		52C7B8C513CFD8AA00DAA90B /* SoundChurch72x72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SoundChurch72x72.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +113,8 @@
 		52BE14B6137F5BF300A195FB = {
 			isa = PBXGroup;
 			children = (
+				52C7B8C513CFD8AA00DAA90B /* SoundChurch72x72.png */,
+				52C7B8C313CFD86000DAA90B /* SoundChurch57x57.png */,
 				52BE14CD137F5BF300A195FB /* Sound-Church */,
 				52BE14F1137F5BF400A195FB /* Sound-ChurchTests */,
 				52BE14C4137F5BF300A195FB /* Frameworks */,
@@ -266,6 +272,8 @@
 				52BE14DE137F5BF400A195FB /* MainWindow.xib in Resources */,
 				52BE14E4137F5BF400A195FB /* RootViewController.xib in Resources */,
 				526D2FC8139C40E20058E08E /* MainWindow-iPad.xib in Resources */,
+				52C7B8C413CFD86000DAA90B /* SoundChurch57x57.png in Resources */,
+				52C7B8C613CFD8AA00DAA90B /* SoundChurch72x72.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
