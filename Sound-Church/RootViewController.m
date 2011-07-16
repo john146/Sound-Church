@@ -124,7 +124,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
         NSError *error = nil;
         if (![context save:&error])
         {
-            /*
+            /* TODO:
              Replace this implementation with code to handle the error appropriately.
              
              abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. If it is not possible to recover from the error, display an alert panel that instructs the user to quit the application by pressing the Home button.
@@ -143,6 +143,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    // TODO
     NSLog(@"Selected row %i", [indexPath row]);
     /*
     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
@@ -203,7 +204,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
     NSError *error = nil;
     if (![context save:&error])
     {
-        /*
+        /* TODO
          Replace this implementation with code to handle the error appropriately.
          
          abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. If it is not possible to recover from the error, display an alert panel that instructs the user to quit the application by pressing the Home button.
@@ -217,8 +218,6 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 
 - (NSFetchedResultsController *)fetchedResultsController
 {
-    NSLog(@"Entering fetchedResultsController");
-    
     if (fetchedResultsController != nil)
     {
         return fetchedResultsController;
@@ -235,7 +234,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
     [fetchRequest setEntity:entity];
     
     // Set the batch size to a suitable number.
-    [fetchRequest setFetchBatchSize:20];
+    [fetchRequest setFetchBatchSize:100];
     
     // Edit the sort key as appropriate.
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"pubDate" ascending:NO];
@@ -261,7 +260,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 	NSError *error = nil;
 	if (![self.fetchedResultsController performFetch:&error])
         {
-	    /*
+	    /* TODO
 	     Replace this implementation with code to handle the error appropriately.
 
 	     abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. If it is not possible to recover from the error, display an alert panel that instructs the user to quit the application by pressing the Home button.
