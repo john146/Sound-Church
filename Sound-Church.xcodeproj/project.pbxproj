@@ -7,7 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		52099DAF13D4EC5300F28402 /* Podcast.m in Sources */ = {isa = PBXBuildFile; fileRef = 52099DAE13D4EC5300F28402 /* Podcast.m */; };
 		52167B5913AD7E6400F745CB /* RSSDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 5270A3D71388A7F30035E522 /* RSSDownloader.m */; };
+		523E6B5313D23A1E00EE09F3 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 523E6B4E13D23A1E00EE09F3 /* FMDatabase.m */; };
+		523E6B5413D23A1E00EE09F3 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 523E6B5013D23A1E00EE09F3 /* FMDatabaseAdditions.m */; };
+		523E6B5513D23A1E00EE09F3 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 523E6B5213D23A1E00EE09F3 /* FMResultSet.m */; };
 		526D2FC8139C40E20058E08E /* MainWindow-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 526D2FC6139C40E20058E08E /* MainWindow-iPad.xib */; };
 		526D2FD3139C4FB80058E08E /* ParseOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 526D2FD2139C4FB80058E08E /* ParseOperation.m */; };
 		5270A3B713888E4A0035E522 /* RSSDownloadTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5270A3B613888E4A0035E522 /* RSSDownloadTests.m */; };
@@ -35,10 +39,17 @@
 		52C7B8C613CFD8AA00DAA90B /* SoundChurch72x72.png in Resources */ = {isa = PBXBuildFile; fileRef = 52C7B8C513CFD8AA00DAA90B /* SoundChurch72x72.png */; };
 		52C7B8CA13CFE4E000DAA90B /* SoundChurchwo114x114.png in Resources */ = {isa = PBXBuildFile; fileRef = 52C7B8C913CFE4E000DAA90B /* SoundChurchwo114x114.png */; };
 		52C7B8CC13CFE51A00DAA90B /* SoundChurchwo114x114.png in Resources */ = {isa = PBXBuildFile; fileRef = 52C7B8CB13CFE51A00DAA90B /* SoundChurchwo114x114.png */; };
-		52C7B91713D0C51800DAA90B /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = 52C7B91613D0C51800DAA90B /* Item.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		52099DAD13D4EC5200F28402 /* Podcast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Podcast.h; sourceTree = "<group>"; };
+		52099DAE13D4EC5300F28402 /* Podcast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Podcast.m; sourceTree = "<group>"; };
+		523E6B4D13D23A1E00EE09F3 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
+		523E6B4E13D23A1E00EE09F3 /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
+		523E6B4F13D23A1E00EE09F3 /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
+		523E6B5013D23A1E00EE09F3 /* FMDatabaseAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseAdditions.m; sourceTree = "<group>"; };
+		523E6B5113D23A1E00EE09F3 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
+		523E6B5213D23A1E00EE09F3 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
 		526D2FC7139C40E20058E08E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = "iPad/en.lproj/MainWindow-iPad.xib"; sourceTree = "<group>"; };
 		526D2FD1139C4FB70058E08E /* ParseOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParseOperation.h; sourceTree = "<group>"; };
 		526D2FD2139C4FB80058E08E /* ParseOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParseOperation.m; sourceTree = "<group>"; };
@@ -74,8 +85,6 @@
 		52C7B8C513CFD8AA00DAA90B /* SoundChurch72x72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = SoundChurch72x72.png; path = ../SoundChurch72x72.png; sourceTree = "<group>"; };
 		52C7B8C913CFE4E000DAA90B /* SoundChurchwo114x114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SoundChurchwo114x114.png; sourceTree = "<group>"; };
 		52C7B8CB13CFE51A00DAA90B /* SoundChurchwo114x114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = SoundChurchwo114x114.png; path = ../SoundChurchwo114x114.png; sourceTree = "<group>"; };
-		52C7B91513D0C51800DAA90B /* Item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Item.h; sourceTree = "<group>"; };
-		52C7B91613D0C51800DAA90B /* Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Item.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +114,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		523E6B4C13D23A1E00EE09F3 /* fmdb */ = {
+			isa = PBXGroup;
+			children = (
+				523E6B4D13D23A1E00EE09F3 /* FMDatabase.h */,
+				523E6B4E13D23A1E00EE09F3 /* FMDatabase.m */,
+				523E6B4F13D23A1E00EE09F3 /* FMDatabaseAdditions.h */,
+				523E6B5013D23A1E00EE09F3 /* FMDatabaseAdditions.m */,
+				523E6B5113D23A1E00EE09F3 /* FMResultSet.h */,
+				523E6B5213D23A1E00EE09F3 /* FMResultSet.m */,
+			);
+			path = fmdb;
+			sourceTree = "<group>";
+		};
 		526D2FC5139C40E00058E08E /* iPad */ = {
 			isa = PBXGroup;
 			children = (
@@ -148,6 +170,7 @@
 		52BE14CD137F5BF300A195FB /* Sound-Church */ = {
 			isa = PBXGroup;
 			children = (
+				523E6B4C13D23A1E00EE09F3 /* fmdb */,
 				526D2FC5139C40E00058E08E /* iPad */,
 				52BE14D6137F5BF400A195FB /* Sound_ChurchAppDelegate.h */,
 				52BE14D7137F5BF400A195FB /* Sound_ChurchAppDelegate.m */,
@@ -156,13 +179,13 @@
 				52BE14E0137F5BF400A195FB /* RootViewController.m */,
 				52BE14E2137F5BF400A195FB /* RootViewController.xib */,
 				52BE14D9137F5BF400A195FB /* Sound_Church.xcdatamodeld */,
-				52C7B91513D0C51800DAA90B /* Item.h */,
-				52C7B91613D0C51800DAA90B /* Item.m */,
 				52BE14CE137F5BF400A195FB /* Supporting Files */,
 				5270A3D61388A7F30035E522 /* RSSDownloader.h */,
 				5270A3D71388A7F30035E522 /* RSSDownloader.m */,
 				526D2FD1139C4FB70058E08E /* ParseOperation.h */,
 				526D2FD2139C4FB80058E08E /* ParseOperation.m */,
+				52099DAD13D4EC5200F28402 /* Podcast.h */,
+				52099DAE13D4EC5300F28402 /* Podcast.m */,
 			);
 			path = "Sound-Church";
 			sourceTree = "<group>";
@@ -322,7 +345,10 @@
 				52BE14E1137F5BF400A195FB /* RootViewController.m in Sources */,
 				5270A3D81388A7F30035E522 /* RSSDownloader.m in Sources */,
 				526D2FD3139C4FB80058E08E /* ParseOperation.m in Sources */,
-				52C7B91713D0C51800DAA90B /* Item.m in Sources */,
+				523E6B5313D23A1E00EE09F3 /* FMDatabase.m in Sources */,
+				523E6B5413D23A1E00EE09F3 /* FMDatabaseAdditions.m in Sources */,
+				523E6B5513D23A1E00EE09F3 /* FMResultSet.m in Sources */,
+				52099DAF13D4EC5300F28402 /* Podcast.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
