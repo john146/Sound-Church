@@ -67,7 +67,7 @@ NSString *kPodcastsMsgErrorKey = @"PodcastsMsgErrorKey";
 
 - (void)addPodcastsToList: (Item *)inPodcast 
 {
-    NSLog(@"Entering addPodcastsToList: %@", inPodcast.title);
+    NSLog(@"Entering [ParseOperation addPodcastsToList: %@]", inPodcast.title);
     
     assert([NSThread isMainThread]);
     
