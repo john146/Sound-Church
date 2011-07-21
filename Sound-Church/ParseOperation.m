@@ -235,9 +235,16 @@ static NSString *const kContentURLElementName = @"media:content";
         item.summary = self.summary;
         item.guid = self.guid;
         item.contentUrl = self.contentURL;
-        [self performSelectorOnMainThread: @selector(addPodcastsToList:)
-                               withObject: item
-                            waitUntilDone: NO];
+        // TODO: Temporary hack to see if we solve the context issue by insisting on saving a single element at a time.
+        //       [self performSelectorOnMainThread: @selector(addPodcastsToList:)
+        //                       withObject: item
+        //                    waitUntilDone: NO];
+        [self.context insertObject: item];
+        if (![self.context save: &error])
+        {
+            NSLog(@"Error with saving: %@, %@", [error localizedDescription], [error userInfo]);
+        }
+        
         [author release];
         [pubDate release];
         [title release];
