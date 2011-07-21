@@ -2,7 +2,7 @@
 //  Item.m
 //  Sound-Church
 //
-//  Created by John Ahrens on 7/15/11.
+//  Created by John Ahrens on 7/21/11.
 //  Copyright (c) 2011 John Ahrens, LLC. All rights reserved.
 //
 
@@ -17,5 +17,9 @@
 @dynamic message;
 @dynamic pubDate;
 @dynamic guid;
+@dynamic imageUrl;
+@dynamic deleted;
+@dynamic listenedTo;
+@dynamic image;
 
 @end

@@ -2,7 +2,7 @@
 //  Item.h
 //  Sound-Church
 //
-//  Created by John Ahrens on 7/15/11.
+//  Created by John Ahrens on 7/21/11.
 //  Copyright (c) 2011 John Ahrens, LLC. All rights reserved.
 //
 
@@ -20,5 +20,9 @@
 @property (nonatomic, retain) NSData * message;
 @property (nonatomic, retain) NSDate * pubDate;
 @property (nonatomic, retain) NSString * guid;
+@property (nonatomic, retain) NSString * imageUrl;
+@property (nonatomic, retain) NSNumber * deleted;
+@property (nonatomic, retain) NSNumber * listenedTo;
+@property (nonatomic, retain) NSData * image;
 
 @end
