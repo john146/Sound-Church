@@ -37,7 +37,7 @@ extern NSString *kPodcastsMsgErrorKey;
     NSDate *pubDate;
     NSString *contentURL;
     NSString *guid;
-    
+    NSString *imageURL;
 }
 
 @property (copy, readonly)NSData *podcastData;

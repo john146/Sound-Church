@@ -32,6 +32,7 @@ NSString *kPodcastsMsgErrorKey = @"PodcastsMsgErrorKey";
 @property (nonatomic, retain) NSDate *pubDate;
 @property (nonatomic, retain) NSString *contentURL;
 @property (nonatomic, retain) NSString *guid;
+@property (nonatomic, retain) NSString *imageURL;
 
 @end
 
@@ -49,6 +50,7 @@ NSString *kPodcastsMsgErrorKey = @"PodcastsMsgErrorKey";
 @synthesize pubDate;
 @synthesize contentURL;
 @synthesize guid;
+@synthesize imageURL;
 
 -  (id)initWithManagedObjectContext:(NSManagedObjectContext *)inContext 
 {
@@ -95,16 +97,6 @@ NSString *kPodcastsMsgErrorKey = @"PodcastsMsgErrorKey";
     [parser parse];
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     
-    // depending on the total number of podcasts parsed, the last batch might not have been a
-    // "full" batch, and thus not been part of the regular batch transfer. So, we check the count of
-    // the array and, if necessary, send it to the main thread.
-    //    if (self.currentItemObject) 
-    //{
-    //  [self performSelectorOnMainThread: @selector(addPodcastsToList:)
-    //                         withObject: self.currentParseBatch
-    //                      waitUntilDone: NO];
-    //}
-    
     self.currentParseBatch = nil;
     self.currentParsedCharacterData = nil;
 }
@@ -146,6 +138,7 @@ static NSString *const kAuthorElementName = @"itunes:author";
 static NSString *const kSummaryElementName = @"itunes:summary";
 static NSString *const kGUIDElementName = @"guid";
 static NSString *const kContentURLElementName = @"media:content";
+static NSString *const kImageURLElementName = @"media:thumbnail";
 
 #pragma mark - NSXMLParser delegate methods
 
@@ -175,6 +168,10 @@ static NSString *const kContentURLElementName = @"media:content";
     else if ([elementName isEqualToString:kContentURLElementName]) 
     {
         self.contentURL = [attributeDict valueForKey:@"url"];
+    }
+    else if ([elementName isEqualToString: kImageURLElementName])
+    {
+        self.imageURL = [attributeDict valueForKey: @"url"];
     }
     else
     {
@@ -236,22 +233,25 @@ static NSString *const kContentURLElementName = @"media:content";
         item.summary = self.summary;
         item.guid = self.guid;
         item.contentUrl = self.contentURL;
-        // TODO: Temporary hack to see if we solve the context issue by insisting on saving a single element at a time.
-        //       [self performSelectorOnMainThread: @selector(addPodcastsToList:)
-        //                       withObject: item
-        //                    waitUntilDone: NO];
+        item.imageUrl = self.imageURL;
+        if (![[contentURL pathExtension] isEqualToString: @"mp3"])
+        {
+            item.deleted = [NSNumber numberWithBool: YES];
+        }
+        
         [self.context insertObject: item];
         if (![self.context save: &error])
         {
             NSLog(@"Error with saving: %@, %@", [error localizedDescription], [error userInfo]);
         }
         
-        [author release];
-        [pubDate release];
-        [title release];
-        [summary release];
-        [guid release];
-        [contentURL release];
+        self.author = nil;
+        self.pubDate = nil;
+        self.title = nil;
+        self.summary = nil;
+        self.guid = nil;
+        self.contentURL = nil;
+        self.imageURL = nil;
     } 
     else if ([elementName isEqualToString: kAuthorElementName]) 
     {
