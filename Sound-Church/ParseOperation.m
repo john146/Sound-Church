@@ -93,6 +93,7 @@ NSString *kPodcastsMsgErrorKey = @"PodcastsMsgErrorKey";
                 [[[NSXMLParser alloc] initWithContentsOfURL: [NSURL URLWithString: rssFeedURLString]] autorelease];
     [parser setDelegate:self];
     [parser parse];
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     
     // depending on the total number of podcasts parsed, the last batch might not have been a
     // "full" batch, and thus not been part of the regular batch transfer. So, we check the count of
