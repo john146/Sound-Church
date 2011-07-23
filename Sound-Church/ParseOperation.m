@@ -193,8 +193,8 @@ static NSString *const kImageURLElementName = @"media:thumbnail";
     if ([elementName isEqualToString: kItemElementName]) 
     {
         NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
-        // NSPredicate *predicate = [NSPredicate predicateWithFormat: @"guid MATCHES \'%@\'", self.guid];
-        //[request setPredicate: predicate];
+        NSPredicate *predicate = [NSPredicate predicateWithFormat: @"guid MATCHES %@", self.guid];
+        [request setPredicate: predicate];
         NSEntityDescription *entity = [NSEntityDescription entityForName:@"Item" 
                                                   inManagedObjectContext:self.context];
         [request setEntity: entity];
@@ -208,7 +208,6 @@ static NSString *const kImageURLElementName = @"media:thumbnail";
             return;
         }
         
-        NSLog(@"Number of items from database: %i", [items count]);
         if (0 < [items count]) 
         {
             for (id item in items)
@@ -256,7 +255,6 @@ static NSString *const kImageURLElementName = @"media:thumbnail";
     else if ([elementName isEqualToString: kAuthorElementName]) 
     {
         self.author = [self.currentParsedCharacterData copy];
-        NSLog(@"Author: %@", self.author);
     }
     else if ([elementName isEqualToString: kPubDateElementName]) 
     {
@@ -264,22 +262,18 @@ static NSString *const kImageURLElementName = @"media:thumbnail";
         const char *formatString = "%a, %d %b %Y %k:%M:%S %z";
         (void)strptime([self.currentParsedCharacterData cStringUsingEncoding: NSUTF8StringEncoding], formatString, &timestruct);
         self.pubDate = [NSDate dateWithTimeIntervalSince1970: mktime(&timestruct)];
-        NSLog(@"PubDate: %@", self.pubDate);
     }
     else if ([elementName isEqualToString: kTitleElementName]) 
     {
         self.title = [self.currentParsedCharacterData copy];
-        NSLog(@"Title: %@", self.title);
     }
     else if ([elementName isEqualToString: kSummaryElementName]) 
     {
         self.summary = [self.currentParsedCharacterData copy];
-        NSLog(@"Summary: %@", self.summary);
     }
     else if ([elementName isEqualToString: kGUIDElementName]) 
     {
         self.guid = [self.currentParsedCharacterData copy];
-        NSLog(@"GUID: %@", self.guid);
     }
     
     // Stop accumulating parsed character data. We won't start again until specific elements begin.

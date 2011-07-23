@@ -178,39 +178,9 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"Entering configureCell:atIndexPath: for index %i", [indexPath row]);
-    
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     Item *item = [self.fetchedResultsController objectAtIndexPath:indexPath];
     cell.textLabel.text = item.title;
-}
-
-- (void)insertNewObject
-{
-    NSLog(@"Entering insertNewObject");
-    
-    // Create a new instance of the entity managed by the fetched results controller.
-    NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
-    NSEntityDescription *entity = [[self.fetchedResultsController fetchRequest] entity];
-    NSManagedObject *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:[entity name] 
-                                                                      inManagedObjectContext:context];
-    
-    // If appropriate, configure the new managed object.
-    // Normally you should use accessor methods, but using KVC here avoids the need to add a custom class to the template.
-    [newManagedObject setValue:[NSDate date] forKey:@"pubDate"];
-    
-    // Save the context.
-    NSError *error = nil;
-    if (![context save:&error])
-    {
-        /* TODO
-         Replace this implementation with code to handle the error appropriately.
-         
-         abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. If it is not possible to recover from the error, display an alert panel that instructs the user to quit the application by pressing the Home button.
-         */
-        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-        abort();
-    }
 }
 
 #pragma mark - Fetched results controller
@@ -231,6 +201,8 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
     Sound_ChurchAppDelegate *appDelegate = (Sound_ChurchAppDelegate *)[UIApplication sharedApplication].delegate;
     NSManagedObjectModel *mom = appDelegate.managedObjectModel;
     NSFetchRequest *activePodcasts = [mom fetchRequestTemplateForName: @"activePodcasts"];
+    NSPredicate *pred = [NSPredicate predicateWithFormat: @"deleted == NO"];
+    [activePodcasts setPredicate: pred];
     [activePodcasts setEntity: entity];
     
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"pubDate" ascending:NO];
@@ -262,13 +234,6 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 	    NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
 	    abort();
 	}
-    
-    NSArray *fetchedItems = self.fetchedResultsController.fetchedObjects;
-    for (id obj in fetchedItems) 
-    {
-        Item *item = (Item *)obj;
-        NSLog(@"Name: %@, isDeleted: %@", item.title, item.deleted);
-    }
     
     return fetchedResultsController;
 }    
