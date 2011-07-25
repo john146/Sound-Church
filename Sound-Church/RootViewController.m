@@ -196,14 +196,12 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
      Set up the fetched results controller.
     */
     // Create the fetch request for the entity.
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Item" 
-                                              inManagedObjectContext:self.managedObjectContext];
+    //    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Item" 
+    //                                          inManagedObjectContext:self.managedObjectContext];
     Sound_ChurchAppDelegate *appDelegate = (Sound_ChurchAppDelegate *)[UIApplication sharedApplication].delegate;
     NSManagedObjectModel *mom = appDelegate.managedObjectModel;
-    NSFetchRequest *activePodcasts = [mom fetchRequestTemplateForName: @"activePodcasts"];
-    NSPredicate *pred = [NSPredicate predicateWithFormat: @"deleted == NO"];
-    [activePodcasts setPredicate: pred];
-    [activePodcasts setEntity: entity];
+    NSFetchRequest *activePodcasts = [[mom fetchRequestTemplateForName: @"activePodcasts"] copy];
+    //    [activePodcasts setEntity: entity];
     
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"pubDate" ascending:NO];
     NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
@@ -219,7 +217,6 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
     self.fetchedResultsController = aFetchedResultsController;
     
     [aFetchedResultsController release];
-    [activePodcasts release];
     [sortDescriptor release];
     [sortDescriptors release];
 

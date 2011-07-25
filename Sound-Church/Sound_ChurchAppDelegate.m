@@ -3,7 +3,7 @@
 //  Sound-Church
 //
 //  Created by John Ahrens on 5/14/11.
-//  Copyright 2011 John Ahrens, LLC. All rights reserved.
+//  Copyright ©2011 John Ahrens, LLC. All rights reserved.
 //
 
 #import "Sound_ChurchAppDelegate.h"

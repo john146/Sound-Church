@@ -7,8 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		52099DD113DA0F7500F28402 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = 52099DD013DA0F7500F28402 /* Item.m */; };
-		52099DD213DA0F7500F28402 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = 52099DD013DA0F7500F28402 /* Item.m */; };
+		5212B43613DE345E005AB18B /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = 5212B43513DE345E005AB18B /* Item.m */; };
 		52167B5913AD7E6400F745CB /* RSSDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 5270A3D71388A7F30035E522 /* RSSDownloader.m */; };
 		526D2FC8139C40E20058E08E /* MainWindow-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 526D2FC6139C40E20058E08E /* MainWindow-iPad.xib */; };
 		526D2FD3139C4FB80058E08E /* ParseOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 526D2FD2139C4FB80058E08E /* ParseOperation.m */; };
@@ -44,8 +43,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		52099DCF13DA0F7500F28402 /* Item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Item.h; sourceTree = "<group>"; };
-		52099DD013DA0F7500F28402 /* Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Item.m; sourceTree = "<group>"; };
+		5212B43413DE345E005AB18B /* Item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Item.h; sourceTree = "<group>"; };
+		5212B43513DE345E005AB18B /* Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Item.m; sourceTree = "<group>"; };
 		526D2FC7139C40E20058E08E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = "iPad/en.lproj/MainWindow-iPad.xib"; sourceTree = "<group>"; };
 		526D2FD1139C4FB70058E08E /* ParseOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParseOperation.h; sourceTree = "<group>"; };
 		526D2FD2139C4FB80058E08E /* ParseOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParseOperation.m; sourceTree = "<group>"; };
@@ -156,6 +155,8 @@
 		52BE14CD137F5BF300A195FB /* Sound-Church */ = {
 			isa = PBXGroup;
 			children = (
+				5212B43413DE345E005AB18B /* Item.h */,
+				5212B43513DE345E005AB18B /* Item.m */,
 				526D2FC5139C40E00058E08E /* iPad */,
 				52BE14D6137F5BF400A195FB /* Sound_ChurchAppDelegate.h */,
 				52BE14D7137F5BF400A195FB /* Sound_ChurchAppDelegate.m */,
@@ -169,8 +170,6 @@
 				5270A3D71388A7F30035E522 /* RSSDownloader.m */,
 				526D2FD1139C4FB70058E08E /* ParseOperation.h */,
 				526D2FD2139C4FB80058E08E /* ParseOperation.m */,
-				52099DCF13DA0F7500F28402 /* Item.h */,
-				52099DD013DA0F7500F28402 /* Item.m */,
 				5281B98E13DB5B8B001E0285 /* DetailedViewController.h */,
 				5281B98F13DB5B8B001E0285 /* DetailedViewController.m */,
 				5281B99013DB5B8B001E0285 /* DetailedViewController.xib */,
@@ -335,8 +334,8 @@
 				52BE14E1137F5BF400A195FB /* RootViewController.m in Sources */,
 				5270A3D81388A7F30035E522 /* RSSDownloader.m in Sources */,
 				526D2FD3139C4FB80058E08E /* ParseOperation.m in Sources */,
-				52099DD113DA0F7500F28402 /* Item.m in Sources */,
 				5281B99113DB5B8B001E0285 /* DetailedViewController.m in Sources */,
+				5212B43613DE345E005AB18B /* Item.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -347,7 +346,6 @@
 				52BE14FB137F5BF400A195FB /* Sound_ChurchTests.m in Sources */,
 				5270A3B713888E4A0035E522 /* RSSDownloadTests.m in Sources */,
 				52167B5913AD7E6400F745CB /* RSSDownloader.m in Sources */,
-				52099DD213DA0F7500F28402 /* Item.m in Sources */,
 				5281B99213DB5B8B001E0285 /* DetailedViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

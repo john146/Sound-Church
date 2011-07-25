@@ -3,7 +3,7 @@
 //  Sound-Church
 //
 //  Created by John Ahrens on 6/5/11.
-//  Copyright 2011 John Ahrens, LLC. All rights reserved.
+//  Copyright ©2011 John Ahrens, LLC. All rights reserved.
 //
 
 #import "ParseOperation.h"
