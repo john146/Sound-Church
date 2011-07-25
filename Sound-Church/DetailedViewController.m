@@ -11,6 +11,9 @@
 
 @implementation DetailedViewController
 
+@synthesize image;
+@synthesize playbackProgress;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];

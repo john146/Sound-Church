@@ -14,6 +14,10 @@
 		526D2FD3139C4FB80058E08E /* ParseOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 526D2FD2139C4FB80058E08E /* ParseOperation.m */; };
 		5270A3B713888E4A0035E522 /* RSSDownloadTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5270A3B613888E4A0035E522 /* RSSDownloadTests.m */; };
 		5270A3D81388A7F30035E522 /* RSSDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 5270A3D71388A7F30035E522 /* RSSDownloader.m */; };
+		5281B99113DB5B8B001E0285 /* DetailedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5281B98F13DB5B8B001E0285 /* DetailedViewController.m */; };
+		5281B99213DB5B8B001E0285 /* DetailedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5281B98F13DB5B8B001E0285 /* DetailedViewController.m */; };
+		5281B99313DB5B8B001E0285 /* DetailedViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5281B99013DB5B8B001E0285 /* DetailedViewController.xib */; };
+		5281B99413DB5B8B001E0285 /* DetailedViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5281B99013DB5B8B001E0285 /* DetailedViewController.xib */; };
 		52BE14C6137F5BF300A195FB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52BE14C5137F5BF300A195FB /* UIKit.framework */; };
 		52BE14C8137F5BF300A195FB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52BE14C7137F5BF300A195FB /* Foundation.framework */; };
 		52BE14CA137F5BF300A195FB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52BE14C9137F5BF300A195FB /* CoreGraphics.framework */; };
@@ -50,6 +54,9 @@
 		5270A3D61388A7F30035E522 /* RSSDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSSDownloader.h; sourceTree = "<group>"; };
 		5270A3D71388A7F30035E522 /* RSSDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSSDownloader.m; sourceTree = "<group>"; };
 		5270A3DB1388B9B80035E522 /* OCMock.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OCMock.framework; path = "OCMock-1.77/Release/OCMock.framework"; sourceTree = "<group>"; };
+		5281B98E13DB5B8B001E0285 /* DetailedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailedViewController.h; sourceTree = "<group>"; };
+		5281B98F13DB5B8B001E0285 /* DetailedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailedViewController.m; sourceTree = "<group>"; };
+		5281B99013DB5B8B001E0285 /* DetailedViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailedViewController.xib; sourceTree = "<group>"; };
 		52BE14C1137F5BF300A195FB /* Sound-Church.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Sound-Church.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		52BE14C5137F5BF300A195FB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		52BE14C7137F5BF300A195FB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -164,6 +171,9 @@
 				526D2FD2139C4FB80058E08E /* ParseOperation.m */,
 				52099DCF13DA0F7500F28402 /* Item.h */,
 				52099DD013DA0F7500F28402 /* Item.m */,
+				5281B98E13DB5B8B001E0285 /* DetailedViewController.h */,
+				5281B98F13DB5B8B001E0285 /* DetailedViewController.m */,
+				5281B99013DB5B8B001E0285 /* DetailedViewController.xib */,
 			);
 			path = "Sound-Church";
 			sourceTree = "<group>";
@@ -282,6 +292,7 @@
 				52C7B8C613CFD8AA00DAA90B /* SoundChurch72x72.png in Resources */,
 				52C7B8CA13CFE4E000DAA90B /* SoundChurchwo114x114.png in Resources */,
 				52C7B8CC13CFE51A00DAA90B /* SoundChurchwo114x114.png in Resources */,
+				5281B99313DB5B8B001E0285 /* DetailedViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -291,6 +302,7 @@
 			files = (
 				52BE14F6137F5BF400A195FB /* InfoPlist.strings in Resources */,
 				52BE14F9137F5BF400A195FB /* Sound_ChurchTests.h in Resources */,
+				5281B99413DB5B8B001E0285 /* DetailedViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -324,6 +336,7 @@
 				5270A3D81388A7F30035E522 /* RSSDownloader.m in Sources */,
 				526D2FD3139C4FB80058E08E /* ParseOperation.m in Sources */,
 				52099DD113DA0F7500F28402 /* Item.m in Sources */,
+				5281B99113DB5B8B001E0285 /* DetailedViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -335,6 +348,7 @@
 				5270A3B713888E4A0035E522 /* RSSDownloadTests.m in Sources */,
 				52167B5913AD7E6400F745CB /* RSSDownloader.m in Sources */,
 				52099DD213DA0F7500F28402 /* Item.m in Sources */,
+				5281B99213DB5B8B001E0285 /* DetailedViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

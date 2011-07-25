@@ -10,7 +10,13 @@
 
 
 @interface DetailedViewController : UIViewController {
-    
+    IBOutlet UIImageView *image;
+    IBOutlet UISlider *playbackProgress;
 }
+
+@property (nonatomic, retain)UIImageView *image;
+@property (nonatomic, retain)UISlider *playbackProgress;
+
+- (IBAction)setPlaybackPosition: (double)position;
 
 @end
