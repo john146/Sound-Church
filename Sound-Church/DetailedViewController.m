@@ -3,7 +3,7 @@
 //  Sound-Church
 //
 //  Created by John Ahrens on 7/23/11.
-//  Copyright 2011 John Ahrens, LLC. All rights reserved.
+//  Copyright © 2011 John Ahrens, LLC. All rights reserved.
 //
 
 #import "DetailedViewController.h"
@@ -17,9 +17,12 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
+    if (self) 
+    {
         // Custom initialization
+        
     }
+    
     return self;
 }
 
@@ -47,8 +50,11 @@
 - (void)viewDidUnload
 {
     [super viewDidUnload];
+    
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+    self.image = nil;
+    self.playbackProgress = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
